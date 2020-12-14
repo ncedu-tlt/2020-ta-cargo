@@ -1,11 +1,11 @@
-package rest.controller;
+package com.netcracker.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import rest.model.Address;
-import rest.service.AddressService;
+import com.netcracker.model.Address;
+import com.netcracker.service.AddressService;
 
 import java.util.List;
 
