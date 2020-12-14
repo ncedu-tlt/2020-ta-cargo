@@ -1,13 +1,13 @@
 package rest.model;
 
 public class Client {
-    private Integer userId; //id user
-    private String lastName; // фамилия
-    private String firstName; // имя
+    private Integer userId;
+    private String lastName;
+    private String firstName;
     private String middleName;
     private String phone;
     private String email;
-    private String driveCategory; //
+    private String driveCategory;
 
     public Integer getUserId() {
         return userId;
