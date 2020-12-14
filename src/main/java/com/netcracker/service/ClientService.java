@@ -1,7 +1,7 @@
-package rest.service;
+package com.netcracker.service;
 
 import org.springframework.stereotype.Service;
-import rest.model.Client;
+import com.netcracker.model.Client;
 
 import java.util.ArrayList;
 import java.util.HashMap;
