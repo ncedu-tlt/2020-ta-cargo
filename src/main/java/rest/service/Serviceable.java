@@ -9,5 +9,5 @@ public interface Serviceable<T> {
     T read(int id);
     boolean update(int id, T object);
     boolean delete(int id);
-
+    boolean updatePartial(int id, String field, String ob);
 }

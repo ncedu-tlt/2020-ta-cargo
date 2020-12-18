@@ -57,4 +57,14 @@ public class AddressController {
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
+
+    @PatchMapping("/address/{id}")
+    public ResponseEntity<?> updateName(@PathVariable(name = "id") int id,
+                                        @RequestParam(value = "field") String field,
+                                        @RequestBody String ob ){
+        final boolean updateField = addressService.updatePartial(id, field, ob);
+        return updateField
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    }
 }

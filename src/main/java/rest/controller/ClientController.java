@@ -59,4 +59,15 @@ public class ClientController {
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
+
+    @PatchMapping("/client/{id}")
+    public ResponseEntity<?> updateName(@PathVariable(name = "id") int id,
+                                        @RequestParam(value = "field") String field,
+                                        @RequestBody String ob ){
+        final boolean updateField = clientService.updatePartial(id, field, ob);
+        return updateField
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    }
+
 }

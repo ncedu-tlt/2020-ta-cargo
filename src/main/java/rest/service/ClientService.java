@@ -51,4 +51,31 @@ public class ClientService implements Serviceable<Client>{
             return true;
         }else return false;
     }
+
+    @Override
+    public boolean updatePartial(int id, String field, String ob){
+        if (CLIENT_MAP.containsKey(id)) {
+            Client client = CLIENT_MAP.get(id);
+            boolean modify = true;
+                switch(field){
+                    case ("lastName"): client.setLastName(ob);
+                        break;
+                    case ("firstName"): client.setFirstName(ob);
+                        break;
+                    case ("middleName"): client.setMiddleName(ob);
+                        break;
+                    case ("phone"): client.setPhone(ob);
+                        break;
+                    case ("email"): client.setEmail(ob);
+                        break;
+                    case ("driveCategory"): client.setDriveCategory(ob);
+                        break;
+                    default: modify = false;
+                        break;
+                }
+                CLIENT_MAP.put(id, client);
+                return modify;
+            }else return  false;
+        }
+
 }
