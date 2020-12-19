@@ -1,6 +1,7 @@
 package rest.service;
 
 import org.springframework.stereotype.Service;
+import rest.model.Address;
 import rest.model.Client;
 
 import java.util.ArrayList;
@@ -17,10 +18,10 @@ public class ClientService implements Serviceable<Client>{
 
 
     @Override
-    public void create(Client object) {
+    public void create(Client client) {
         final int id = CLIENT_ID_HOLDER.incrementAndGet();
-        object.setUserId(id);
-        CLIENT_MAP.put(id,object);
+        client.setUserId(id);
+        CLIENT_MAP.put(id,client);
     }
 
     @Override
@@ -36,10 +37,10 @@ public class ClientService implements Serviceable<Client>{
     }
 
     @Override
-    public boolean update(int id, Client object) {
+    public boolean update(int id, Client client) {
         if (CLIENT_MAP.containsKey(id)) {
-            object.setUserId(id);
-            CLIENT_MAP.put(id, object);
+            client.setUserId(id);
+            CLIENT_MAP.put(id, client);
             return true;
         } else return false;
     }
@@ -53,28 +54,28 @@ public class ClientService implements Serviceable<Client>{
     }
 
     @Override
-    public boolean updatePartial(int id, String field, String ob){
+    public boolean updatePartial(int id, Client client){
         if (CLIENT_MAP.containsKey(id)) {
-            Client client = CLIENT_MAP.get(id);
-            boolean modify = true;
-                switch(field){
-                    case ("lastName"): client.setLastName(ob);
-                        break;
-                    case ("firstName"): client.setFirstName(ob);
-                        break;
-                    case ("middleName"): client.setMiddleName(ob);
-                        break;
-                    case ("phone"): client.setPhone(ob);
-                        break;
-                    case ("email"): client.setEmail(ob);
-                        break;
-                    case ("driveCategory"): client.setDriveCategory(ob);
-                        break;
-                    default: modify = false;
-                        break;
-                }
-                CLIENT_MAP.put(id, client);
-                return modify;
+            client.setUserId(id);
+            Client clientForModify = read(id);
+            clientForModify.setUserId(id);
+
+            if((client.getLastName() != null)&&(!client.getLastName().isEmpty())) {
+                clientForModify.setLastName(client.getLastName());
+            }else if((client.getFirstName() != null)&&(!client.getFirstName().isEmpty())) {
+                clientForModify.setFirstName(client.getFirstName());
+            }else if((client.getMiddleName() != null)&&(!client.getMiddleName().isEmpty())) {
+                clientForModify.setMiddleName(client.getMiddleName());
+            }else if((client.getPhone() != null)&&(!client.getPhone().isEmpty())) {
+                clientForModify.setPhone(client.getPhone());
+            }else if((client.getEmail() != null)&&(!client.getEmail().isEmpty())) {
+                clientForModify.setEmail(client.getEmail());
+            }else if((client.getDriveCategory() != null)&&(!client.getDriveCategory().isEmpty())) {
+                clientForModify.setDriveCategory(client.getDriveCategory());
+            }else return false;
+
+            CLIENT_MAP.put(id,clientForModify);
+                return true;
             }else return  false;
         }
 

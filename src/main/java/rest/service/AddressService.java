@@ -53,26 +53,25 @@ public class AddressService  implements Serviceable<Address>{
     }
 
     @Override
-    public boolean updatePartial(int id, String field, String ob){
+    public boolean updatePartial(int id, Address address){
         if (ADDRESS_MAP.containsKey(id)) {
-            Address address = ADDRESS_MAP.get(id);
-            boolean modify = true;
-            switch(field){
-                case ("country"): address.setCountry(ob);
-                    break;
-                case ("city"): address.setCity(ob);
-                    break;
-                case ("street"): address.setStreet(ob);
-                    break;
-                case ("home"): address.setHome(ob);
-                    break;
-                case ("apartment"): address.setApartment(ob);
-                    break;
-                default: modify = false;
-                    break;
-            }
-            ADDRESS_MAP.put(id, address);
-            return modify;
+            Address addressForModify = read(id);
+            addressForModify.setLocationId(id);
+
+            if((address.getCountry() != null)&&(!address.getCountry().isEmpty())) {
+                addressForModify.setCountry(address.getCountry());
+            }else if((address.getCountry() != null)&&(!address.getCity().isEmpty())){
+                addressForModify.setCity(address.getCity());
+            }else if((address.getStreet() != null)&&(!address.getStreet().isEmpty())){
+                addressForModify.setStreet(address.getStreet());
+            }else if((address.getHome() != null)&&(!address.getHome().isEmpty())){
+                addressForModify.setHome(address.getHome());
+            }else if((address.getApartment() != null)&&(!address.getApartment().isEmpty())) {
+                addressForModify.setApartment(address.getApartment());
+            }else return false;
+
+            ADDRESS_MAP.put(id, addressForModify);
+            return true;
         }else return  false;
     }
 }
