@@ -14,7 +14,9 @@ public class Client {
     }
 
     public void setUserId(Integer userId) {
-        this.userId = userId;
+        if (userId != null)  {
+            this.userId = userId;
+        }
     }
 
     public String getLastName() {
@@ -22,7 +24,9 @@ public class Client {
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        if ((lastName != null)&&(!lastName.isEmpty())) {
+            this.lastName = lastName;
+        }
     }
 
     public String getFirstName() {
@@ -30,7 +34,9 @@ public class Client {
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        if ((firstName != null)&&(!firstName.isEmpty())) {
+            this.firstName = firstName;
+        }
     }
 
     public String getMiddleName() {
@@ -38,7 +44,9 @@ public class Client {
     }
 
     public void setMiddleName(String middleName) {
-        this.middleName = middleName;
+        if ((middleName != null)&&(!middleName.isEmpty())) {
+            this.middleName = middleName;
+        }
     }
 
     public String getPhone() {
@@ -46,7 +54,9 @@ public class Client {
     }
 
     public void setPhone(String phone) {
-        this.phone = phone;
+        if ((phone != null)&&(!phone.isEmpty())) {
+            this.phone = phone;
+        }
     }
 
     public String getEmail() {
@@ -54,7 +64,9 @@ public class Client {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        if ((email != null)&&(!email.isEmpty())) {
+            this.email = email;
+        }
     }
 
     public String getDriveCategory() {
@@ -62,6 +74,8 @@ public class Client {
     }
 
     public void setDriveCategory(String driveCategory) {
-        this.driveCategory = driveCategory;
+        if ((driveCategory != null)&&(!driveCategory.isEmpty())) {
+            this.driveCategory = driveCategory;
+        }
     }
 }

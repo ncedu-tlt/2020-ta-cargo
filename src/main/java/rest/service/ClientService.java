@@ -26,21 +26,18 @@ public class ClientService implements Serviceable<Client>{
 
     @Override
     public List<Client> readAll() {
-        List<Client> clientList = new ArrayList<>(CLIENT_MAP.values());
-        return clientList;
+               return  new ArrayList<>(CLIENT_MAP.values());
     }
 
     @Override
     public Client read(int id) {
-        Client client = CLIENT_MAP.get(id);
-        return client;
+        return CLIENT_MAP.get(id);
     }
 
     @Override
-    public boolean update(int id, Client client) {
-        if (CLIENT_MAP.containsKey(id)) {
-            client.setUserId(id);
-            CLIENT_MAP.put(id, client);
+    public boolean update(Client client) {
+        if (CLIENT_MAP.containsKey(client.getUserId())) {
+            CLIENT_MAP.put(client.getUserId(), client);
             return true;
         } else return false;
     }
@@ -54,27 +51,17 @@ public class ClientService implements Serviceable<Client>{
     }
 
     @Override
-    public boolean updatePartial(int id, Client client){
-        if (CLIENT_MAP.containsKey(id)) {
-            client.setUserId(id);
-            Client clientForModify = read(id);
-            clientForModify.setUserId(id);
-
-            if((client.getLastName() != null)&&(!client.getLastName().isEmpty())) {
-                clientForModify.setLastName(client.getLastName());
-            }else if((client.getFirstName() != null)&&(!client.getFirstName().isEmpty())) {
-                clientForModify.setFirstName(client.getFirstName());
-            }else if((client.getMiddleName() != null)&&(!client.getMiddleName().isEmpty())) {
-                clientForModify.setMiddleName(client.getMiddleName());
-            }else if((client.getPhone() != null)&&(!client.getPhone().isEmpty())) {
-                clientForModify.setPhone(client.getPhone());
-            }else if((client.getEmail() != null)&&(!client.getEmail().isEmpty())) {
-                clientForModify.setEmail(client.getEmail());
-            }else if((client.getDriveCategory() != null)&&(!client.getDriveCategory().isEmpty())) {
-                clientForModify.setDriveCategory(client.getDriveCategory());
-            }else return false;
-
-            CLIENT_MAP.put(id,clientForModify);
+    public boolean updatePartial(Client client){
+        if (CLIENT_MAP.containsKey(client.getUserId())) {
+            Client clientForModify = read(client.getUserId());
+            clientForModify.setUserId(client.getUserId());
+            clientForModify.setLastName(client.getLastName());
+            clientForModify.setFirstName(client.getFirstName());
+            clientForModify.setMiddleName(client.getMiddleName());
+            clientForModify.setPhone(client.getPhone());
+            clientForModify.setEmail(client.getEmail());
+            clientForModify.setDriveCategory(client.getDriveCategory());
+            CLIENT_MAP.put(clientForModify.getUserId(), clientForModify);
                 return true;
             }else return  false;
         }
