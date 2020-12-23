@@ -40,10 +40,9 @@ public class ClientController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping("/client/{id}")
-    public ResponseEntity<?> update(@PathVariable(name = "id") int id,
-                                    @RequestBody Client client){
-        final  boolean update = clientService.update(id, client);
+    @PutMapping("/client")
+    public ResponseEntity<?> update(@RequestBody Client client){
+        final  boolean update = clientService.update(client);
         return update
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
@@ -56,5 +55,11 @@ public class ClientController {
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
-
+    @PatchMapping("/client")
+    public ResponseEntity<?> updatePartial(@RequestBody Client client ){
+        final boolean updateField = clientService.updatePartial(client);
+        return updateField
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    }
 }

@@ -1,19 +1,21 @@
 package com.netcracker.model;
 
 public class Address {
-    private Integer locationId;
+    private Integer addressId;
     private String country;
     private String city;
     private String street;
     private String home;
     private String apartment;
 
-    public Integer getLocationId() {
-        return locationId;
+    public Integer getAddressId() {
+        return addressId;
     }
 
-    public void setLocationId(Integer locationId) {
-        this.locationId = locationId;
+    public void setAddressId(Integer addressId) {
+        if(addressId != null) {
+            this.addressId = addressId;
+        }
     }
 
     public String getCountry() {
@@ -21,7 +23,9 @@ public class Address {
     }
 
     public void setCountry(String country) {
-        this.country = country;
+        if((country != null)&&(!country.isEmpty())) {
+            this.country = country;
+        }
     }
 
     public String getCity() {
@@ -29,7 +33,9 @@ public class Address {
     }
 
     public void setCity(String city) {
-        this.city = city;
+        if((city != null)&&(!city.isEmpty())) {
+            this.city = city;
+        }
     }
 
     public String getStreet() {
@@ -37,7 +43,9 @@ public class Address {
     }
 
     public void setStreet(String street) {
-        this.street = street;
+        if((street != null)&&(!street.isEmpty())) {
+            this.street = street;
+        }
     }
 
     public String getHome() {
@@ -45,7 +53,9 @@ public class Address {
     }
 
     public void setHome(String home) {
-        this.home = home;
+        if((home != null)&&(!home.isEmpty())) {
+            this.home = home;
+        }
     }
 
     public String getApartment() {
@@ -53,6 +63,8 @@ public class Address {
     }
 
     public void setApartment(String apartment) {
-        this.apartment = apartment;
+        if((apartment != null)&&(!apartment.isEmpty())) {
+            this.apartment = apartment;
+        }
     }
 }
