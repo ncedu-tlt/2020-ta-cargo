@@ -1,6 +1,5 @@
 package com.netcracker.model;
 
-
 public class Address {
     private Integer addressId;
     private String country;
