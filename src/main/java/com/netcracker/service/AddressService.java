@@ -18,27 +18,24 @@ public class AddressService  implements Serviceable<Address>{
     @Override
     public void create(Address object) {
         final int id = ADDRESS_ID_HOLDER.incrementAndGet();
-        object.setLocationId(id);
+        object.setAddressId(id);
         ADDRESS_MAP.put(id, object);
     }
 
     @Override
     public List<Address> readAll() {
-        List<Address> addressList = new ArrayList<>(ADDRESS_MAP.values());
-        return addressList;
+        return new ArrayList<>(ADDRESS_MAP.values());
     }
 
     @Override
     public Address read(int id) {
-        Address address = ADDRESS_MAP.get(id);
-        return address;
+        return  ADDRESS_MAP.get(id);
     }
 
     @Override
-    public boolean update(int id, Address object) {
-        if (ADDRESS_MAP.containsKey(id)) {
-            object.setLocationId(id);
-            ADDRESS_MAP.put(id, object);
+    public boolean update(Address object) {
+        if (ADDRESS_MAP.containsKey(object.getAddressId())) {
+            ADDRESS_MAP.put(object.getAddressId(), object);
             return true;
         } else return false;
     }
@@ -49,5 +46,20 @@ public class AddressService  implements Serviceable<Address>{
             ADDRESS_MAP.remove(id);
             return true;
         }else return false;
+    }
+
+    @Override
+    public boolean updatePartial(Address address){
+        if (ADDRESS_MAP.containsKey(address.getAddressId())) {
+            Address addressForModify = read(address.getAddressId());
+            addressForModify.setAddressId(address.getAddressId());
+            addressForModify.setCountry(address.getCountry());
+            addressForModify.setCity(address.getCity());
+            addressForModify.setStreet(address.getStreet());
+            addressForModify.setHome(address.getHome());
+            addressForModify.setApartment(address.getApartment());
+            ADDRESS_MAP.put(addressForModify.getAddressId(), addressForModify);
+            return true;
+        }else return  false;
     }
 }
