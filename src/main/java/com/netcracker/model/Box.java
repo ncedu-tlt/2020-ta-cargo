@@ -1,5 +1,6 @@
 package com.netcracker.model;
 
+
 public class Box {
     private String name;
     private int boxId;
@@ -26,7 +27,9 @@ public class Box {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if((name != null)&&(!name.isEmpty())) {
+            this.name = name;
+        }
     }
 
     public int getBoxId() {
@@ -34,7 +37,9 @@ public class Box {
     }
 
     public void setBoxId(int boxId) {
-        this.boxId = boxId;
+        if (boxId != 0) {
+            this.boxId = boxId;
+        }
     }
 
     public int getHeight() {
@@ -42,7 +47,9 @@ public class Box {
     }
 
     public void setHeight(int height) {
-        this.height = height;
+        if (height != 0) {
+            this.height = height;
+        }
     }
 
     public int getWidth() {
@@ -50,7 +57,9 @@ public class Box {
     }
 
     public void setWidth(int width) {
-        this.width = width;
+        if (width != 0) {
+            this.width = width;
+        }
     }
 
     public int getWeight() {
@@ -58,7 +67,9 @@ public class Box {
     }
 
     public void setWeight(int weight) {
-        this.weight = weight;
+        if (weight != 0) {
+            this.weight = weight;
+        }
     }
 
     public int getVolume() {
@@ -66,7 +77,9 @@ public class Box {
     }
 
     public void setVolume(int volume) {
-        this.volume = volume;
+        if (volume != 0) {
+            this.volume = volume;
+        }
     }
 
     public int getClientId() {
@@ -74,7 +87,9 @@ public class Box {
     }
 
     public void setClientId(int clientId) {
-        this.clientId = clientId;
+        if (clientId != 0) {
+            this.clientId = clientId;
+        }
     }
 
     public int getTypeId() {
@@ -82,6 +97,8 @@ public class Box {
     }
 
     public void setTypeId(int typeId) {
-        this.typeId = typeId;
+          if (typeId != 0) {
+              this.typeId = typeId;
+          }
     }
 }

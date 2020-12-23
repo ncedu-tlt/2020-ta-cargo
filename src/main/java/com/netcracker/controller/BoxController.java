@@ -58,4 +58,9 @@ public class BoxController {
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
+
+    @PatchMapping("/box/patch")
+    public void editName (@RequestBody Box box) {
+        boxService.edit(box);
+    }
 }

@@ -49,4 +49,20 @@ public class BoxService implements Serviceable<Box>{
             return true;
         }else return false;
     }
+
+    public void edit(Box box) {
+        if (BOX_MAP.containsKey(box.getBoxId())) {
+           Box boxModify = read(box.getBoxId());
+            boxModify.setName(box.getName());
+            boxModify.setWidth(box.getWidth());
+            boxModify.setHeight(box.getHeight());
+            boxModify.setVolume(box.getVolume());
+            boxModify.setWeight(box.getWeight());
+            boxModify.setTypeId(box.getTypeId());
+            boxModify.setClientId(box.getClientId());
+            BOX_MAP.put(boxModify.getBoxId(), boxModify);
+        }
+        System.out.println("The BoxId wasn't found");
+    }
+
 }
