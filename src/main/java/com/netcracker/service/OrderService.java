@@ -51,4 +51,18 @@ public class OrderService implements Serviceable<Order>{
             return true;
         }else return false;
     }
+
+    public void edit(Order order){
+        if  (ORDER_MAP.containsKey(order.getOrderId())) {
+            Order orderModify = read(order.getOrderId());
+            orderModify.setBoxId(order.getBoxId());
+            orderModify.setDestinationID(order.getDestinationID());
+            orderModify.setDriverId(order.getDriverId());
+            orderModify.setName(order.getName());
+            orderModify.setOrderId(order.getOrderId());
+            orderModify.setPrice(order.getPrice());
+            orderModify.setStatus(order.getStatus());
+            orderModify.setReceiverId(order.getReceiverId());
+        }
+    }
 }

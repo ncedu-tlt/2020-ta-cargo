@@ -23,22 +23,33 @@ public class Order {
     }
 
     public int getOrderId() {
+        if (orderId != 0) {
+            this.orderId = getOrderId();
+        }
         return orderId;
     }
 
     public void setOrderId(int orderId) {
+
         this.orderId = orderId;
     }
 
     public String getName() {
-        return name;
+        if (name != null) {
+            this.name = getName();
+        }
+        return getName();
     }
+
 
     public void setName(String name) {
         this.name = name;
     }
 
     public String getStatus() {
+        if (status != null) {
+            this.status = getStatus();
+        }
         return status;
     }
 
@@ -47,6 +58,9 @@ public class Order {
     }
 
     public int getDestinationID() {
+        if (destinationID != 0) {
+            this.destinationID = getDestinationID();
+        }
         return destinationID;
     }
 
@@ -55,6 +69,9 @@ public class Order {
     }
 
     public int getDriverId() {
+        if (driverId != 0) {
+            this.driverId = getDriverId();
+        }
         return driverId;
     }
 
@@ -63,6 +80,9 @@ public class Order {
     }
 
     public int getBoxId() {
+        if (boxId != 0) {
+            this.boxId = getBoxId();
+        }
         return boxId;
     }
 
@@ -71,6 +91,9 @@ public class Order {
     }
 
     public int getPrice() {
+        if (price != 0) {
+            this.price = getPrice();
+        }
         return price;
     }
 
@@ -79,6 +102,9 @@ public class Order {
     }
 
     public int getReceiverId() {
+        if (receiverId != 0) {
+            this.receiverId = getReceiverId();
+        }
         return receiverId;
     }
 

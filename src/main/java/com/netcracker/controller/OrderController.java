@@ -19,13 +19,13 @@ public class OrderController {
     }
 
     @PostMapping("/order")
-    public ResponseEntity<Order> create(@RequestBody Order order){
+    public ResponseEntity<Order> create (@RequestBody Order order){
         orderService.create(order);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     @PatchMapping("/order/patch")
-    public ResponseEntity<?> edit(@RequestBody Order update) {
-        return ResponseEntity.ok("resource order updated");
+    public void editOrder (@RequestBody Order order) {
+        orderService.edit(order);
     }
 
 
