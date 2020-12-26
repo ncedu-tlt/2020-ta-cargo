@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
-public class BoxService implements Serviceable<Box>{
+public class BoxService  implements Serviceable<Box>{
     private static final Map<Integer, Box> BOX_MAP = new HashMap<>();
     private static final AtomicInteger BOX_ID_HOLDER = new AtomicInteger();
 
@@ -20,6 +20,7 @@ public class BoxService implements Serviceable<Box>{
         box.setBoxId(id);
         BOX_MAP.put(id, box);
     }
+
 
     @Override
     public List<Box> readAll() {
@@ -34,13 +35,15 @@ public class BoxService implements Serviceable<Box>{
     }
 
     @Override
-    public boolean update(int id, Box object) {
+    public boolean update(int id, Box box) {
         if (BOX_MAP.containsKey(id)) {
-            object.setBoxId(id);
-            BOX_MAP.put(id, object);
+            box.setBoxId(id);
+            BOX_MAP.put(id, box);
             return true;
-        } else return false;
+        }
+        return false;
     }
+
 
     @Override
     public boolean delete(int id) {
@@ -50,8 +53,12 @@ public class BoxService implements Serviceable<Box>{
         }else return false;
     }
 
-    public void edit(Box box) {
-        if (BOX_MAP.containsKey(box.getBoxId())) {
+
+
+    public boolean updatePartial(Box box) {
+        int id = box.getBoxId();
+
+        if (BOX_MAP.containsKey(id)) {
            Box boxModify = read(box.getBoxId());
             boxModify.setName(box.getName());
             boxModify.setWidth(box.getWidth());
@@ -61,8 +68,9 @@ public class BoxService implements Serviceable<Box>{
             boxModify.setTypeId(box.getTypeId());
             boxModify.setClientId(box.getClientId());
             BOX_MAP.put(boxModify.getBoxId(), boxModify);
+            return true;
+        }else{
+            return false;
         }
-        System.out.println("The BoxId wasn't found");
     }
-
 }

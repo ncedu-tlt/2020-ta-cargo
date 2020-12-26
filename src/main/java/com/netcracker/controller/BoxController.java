@@ -60,7 +60,10 @@ public class BoxController {
     }
 
     @PatchMapping("/box/patch")
-    public void editName (@RequestBody Box box) {
-        boxService.edit(box);
+    public ResponseEntity<?>  edit (@RequestBody Box box) {
+        boolean edit = boxService.updatePartial(box);
+        return edit
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 }
