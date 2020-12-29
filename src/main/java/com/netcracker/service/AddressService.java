@@ -37,9 +37,8 @@ public class AddressService  implements Serviceable<Address>{
         if (ADDRESS_MAP.containsKey(object.getAddressId())) {
             ADDRESS_MAP.put(object.getAddressId(), object);
             return true;
-        } else {
-            return false;
-        }
+        } else return false;
+
     }
 
     @Override
