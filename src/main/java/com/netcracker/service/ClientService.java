@@ -25,7 +25,7 @@ public class ClientService implements Serviceable<Client>{
 
     @Override
     public List<Client> readAll() {
-               return  new ArrayList<>(CLIENT_MAP.values());
+        return  new ArrayList<>(CLIENT_MAP.values());
     }
 
     @Override
@@ -64,5 +64,4 @@ public class ClientService implements Serviceable<Client>{
                 return true;
             }else return  false;
         }
-
 }
