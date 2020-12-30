@@ -24,8 +24,11 @@ public class OrderController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     @PatchMapping("/order/patch")
-    public void editOrder (@RequestBody Order order) {
-        orderService.edit(order);
+    public ResponseEntity<?> editOrder (@RequestBody Order order) {
+         boolean editOrder = orderService.updatePartial(order);
+         return editOrder
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 
@@ -48,7 +51,7 @@ public class OrderController {
     @PutMapping("/order/{id}")
     public ResponseEntity<?> update(@PathVariable(name = "id") int id,
                                     @RequestBody Order order){
-        final  boolean update = orderService.update(id, order);
+        final  boolean update = orderService.update(order);
         return update
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);

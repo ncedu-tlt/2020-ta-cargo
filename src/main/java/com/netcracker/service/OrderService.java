@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
-public class OrderService implements Serviceable<Order>{
+public class OrderService implements Serviceable<Order> {
 
     private static final Map<Integer, Order> ORDER_MAP = new HashMap<>();
     private static final AtomicInteger ORDER_ID_HOLDER = new AtomicInteger();
@@ -20,7 +20,7 @@ public class OrderService implements Serviceable<Order>{
     public void create(Order order) {
         final int id = ORDER_ID_HOLDER.incrementAndGet();
         order.setOrderId(id);
-        ORDER_MAP.put(id,order);
+        ORDER_MAP.put(id, order);
     }
 
     @Override
@@ -36,24 +36,25 @@ public class OrderService implements Serviceable<Order>{
     }
 
     @Override
-    public boolean update(int id, Order object) {
-        if (ORDER_MAP.containsKey(id)) {
-            object.setOrderId(id);
-            ORDER_MAP.put(id, object);
+    public boolean update(Order object) {
+        if (ORDER_MAP.containsKey(object.getOrderId())) {
+            ORDER_MAP.put(object.getOrderId(), object);
             return true;
         } else return false;
     }
+
 
     @Override
     public boolean delete(int id) {
         if (ORDER_MAP.containsKey(id)) {
             ORDER_MAP.remove(id);
             return true;
-        }else return false;
+        } else return false;
     }
 
-    public void edit(Order order){
-        if  (ORDER_MAP.containsKey(order.getOrderId())) {
+    @Override
+    public boolean updatePartial(Order order) {
+        if (ORDER_MAP.containsKey(order.getOrderId())) {
             Order orderModify = read(order.getOrderId());
             orderModify.setBoxId(order.getBoxId());
             orderModify.setDestinationID(order.getDestinationID());
@@ -63,6 +64,7 @@ public class OrderService implements Serviceable<Order>{
             orderModify.setPrice(order.getPrice());
             orderModify.setStatus(order.getStatus());
             orderModify.setReceiverId(order.getReceiverId());
-        }
+        return true;
+        } else return false;
     }
 }
