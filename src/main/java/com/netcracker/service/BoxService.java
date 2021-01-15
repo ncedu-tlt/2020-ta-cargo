@@ -35,10 +35,9 @@ public class BoxService  implements Serviceable<Box>{
     }
 
     @Override
-    public boolean update(int id, Box box) {
-        if (BOX_MAP.containsKey(id)) {
-            box.setBoxId(id);
-            BOX_MAP.put(id, box);
+    public boolean update(Box box) {
+        if (BOX_MAP.containsKey(box.getBoxId())) {
+            BOX_MAP.put(box.getBoxId(), box);
             return true;
         }
         return false;
