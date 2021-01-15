@@ -6,8 +6,8 @@ public interface Serviceable<T> {
 
     void create(T object);
     List<T> readAll();
-    T read(int id);
+    T readById(Integer id);
     boolean update(T object);
-    boolean delete(int id);
+    boolean delete(Integer id);
     boolean updatePartial(T ob);
 }

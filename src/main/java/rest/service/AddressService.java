@@ -1,65 +1,66 @@
 package rest.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rest.model.Address;
+import rest.repository.AddressRepository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
-public class AddressService  implements Serviceable<Address>{
+public class AddressService implements Serviceable<Address> {
 
-    private static final Map<Integer, Address> ADDRESS_MAP = new HashMap<>();
-    private static final AtomicInteger ADDRESS_ID_HOLDER = new AtomicInteger();
+    private final AddressRepository addressRepository;
 
-    @Override
-    public void create(Address object) {
-        final int id = ADDRESS_ID_HOLDER.incrementAndGet();
-        object.setAddressId(id);
-        ADDRESS_MAP.put(id, object);
+    @Autowired
+    public AddressService(AddressRepository addressRepository) {
+        this.addressRepository = addressRepository;
     }
 
     @Override
-    public List<Address> readAll() {
-        return new ArrayList<>(ADDRESS_MAP.values());
+    public void create(Address address){
+        addressRepository.saveAndFlush(address);
     }
 
     @Override
-    public Address read(int id) {
-        return  ADDRESS_MAP.get(id);
+    public List<Address> readAll(){
+        return addressRepository.findAll();
+
     }
 
     @Override
-    public boolean update(Address object) {
-        if (ADDRESS_MAP.containsKey(object.getAddressId())) {
-            ADDRESS_MAP.put(object.getAddressId(), object);
+    public Address readById(Integer id){
+        return addressRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public boolean update(Address address){
+        if (addressRepository.existsById(address.getAddressId())) {
+            addressRepository.saveAndFlush(address);
             return true;
-        } else return false;
+        }else return false;
     }
 
     @Override
-    public boolean delete(int id) {
-        if (ADDRESS_MAP.containsKey(id)) {
-            ADDRESS_MAP.remove(id);
+    public boolean delete(Integer id){
+        if (addressRepository.existsById(id)) {
+            addressRepository.deleteById(id);
             return true;
         }else return false;
     }
 
     @Override
     public boolean updatePartial(Address address){
-        if (ADDRESS_MAP.containsKey(address.getAddressId())) {
-            Address addressForModify = read(address.getAddressId());
+        if (addressRepository.existsById(address.getAddressId())) {
+            Address addressForModify = readById(address.getAddressId());
             addressForModify.setAddressId(address.getAddressId());
             addressForModify.setCountry(address.getCountry());
             addressForModify.setCity(address.getCity());
             addressForModify.setStreet(address.getStreet());
             addressForModify.setHome(address.getHome());
             addressForModify.setApartment(address.getApartment());
-            ADDRESS_MAP.put(addressForModify.getAddressId(), addressForModify);
+            addressRepository.saveAndFlush(addressForModify);
             return true;
-        }else return  false;
+        }else  return false;
     }
 }

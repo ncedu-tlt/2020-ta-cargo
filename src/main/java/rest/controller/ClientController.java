@@ -20,12 +20,14 @@ public class ClientController {
         this.clientService = clientService;
     }
 
+    //@CrossOrigin(origins = "")
     @PostMapping("/client")
     public ResponseEntity<?> create(@RequestBody Client client){
         clientService.create(client);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    //@CrossOrigin(origins = "")
     @GetMapping("/client")
     public ResponseEntity<List<Client>>readeAll(){
         final List<Client> clientList = clientService.readAll();
@@ -34,14 +36,16 @@ public class ClientController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    //@CrossOrigin(origins = "")
     @GetMapping("/client/{id}")
     public ResponseEntity<Client> readId(@PathVariable(name = "id") int id){
-        final Client client = clientService.read(id);
+        final Client client = clientService.readById(id);
         return client != null
                 ? new ResponseEntity<>(client, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    //@CrossOrigin(origins = "")
     @PutMapping("/client")
     public ResponseEntity<?> update(@RequestBody Client client){
         final  boolean update = clientService.update(client);
@@ -50,6 +54,7 @@ public class ClientController {
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
+    //@CrossOrigin(origins = "")
     @DeleteMapping("/client/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") int id){
         boolean delete = clientService.delete(id);
@@ -58,7 +63,7 @@ public class ClientController {
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
-
+    //@CrossOrigin(origins = "")
     @PatchMapping("/client")
     public ResponseEntity<?> updatePartial(@RequestBody Client client ){
         final boolean updateField = clientService.updatePartial(client);

@@ -19,12 +19,14 @@ public class AddressController {
         this.addressService = addressService;
     }
 
+    //@CrossOrigin(origins = "")
     @PostMapping("/address")
     public ResponseEntity<?> create(@RequestBody Address address){
         addressService.create(address);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    //@CrossOrigin(origins = "")
     @GetMapping("/address")
     public ResponseEntity<List<Address>>readeAll(){
         final List<Address> clientList = addressService.readAll();
@@ -33,14 +35,16 @@ public class AddressController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    //@CrossOrigin(origins = "")
     @GetMapping("/address/{id}")
     public ResponseEntity<Address> readId(@PathVariable(name = "id") int id){
-        final Address address = addressService.read(id);
+        final Address address = addressService.readById(id);
         return address != null
                 ? new ResponseEntity<>(address, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    //@CrossOrigin(origins = "")
     @PutMapping("/address")
     public ResponseEntity<?> update(@RequestBody Address address){
         final  boolean update = addressService.update(address);
@@ -49,6 +53,7 @@ public class AddressController {
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
+    //@CrossOrigin(origins = "")
     @DeleteMapping("/address/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") int id){
         boolean delete = addressService.delete(id);
@@ -57,6 +62,7 @@ public class AddressController {
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
+    //@CrossOrigin(origins = "")
     @PatchMapping("/address")
     public ResponseEntity<?> updatePartial(@RequestBody Address address ){
         final boolean updateField = addressService.updatePartial(address);
