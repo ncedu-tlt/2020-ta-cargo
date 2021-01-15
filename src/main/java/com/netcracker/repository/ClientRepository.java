@@ -1,7 +1,7 @@
-package rest.repository;
+package com.netcracker.repository;
 
+import com.netcracker.model.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
-import rest.model.Client;
 
 
 public interface ClientRepository extends JpaRepository<Client,Integer> {

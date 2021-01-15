@@ -1,10 +1,10 @@
-package rest.service;
+package com.netcracker.service;
 
 
+import com.netcracker.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import rest.model.Client;
-import rest.repository.ClientRepository;
+import com.netcracker.model.Client;
 
 import java.util.List;
 
@@ -19,25 +19,23 @@ public class ClientService implements Serviceable<Client>{
         this.clientRepository = clientRepository;
     }
 
-
     @Override
-    public void create(Client client){
+    public void create(Client client) {
         clientRepository.saveAndFlush(client);
     }
 
     @Override
-    public List<Client> readAll(){
+    public List<Client> readAll() {
         return clientRepository.findAll();
-
     }
 
     @Override
-    public Client readById(Integer id){
+    public Client readById(Integer id) {
         return clientRepository.findById(id).orElse(null);
     }
 
     @Override
-    public boolean update(Client client){
+    public boolean update(Client client) {
         if (clientRepository.existsById(client.getUserId())) {
             clientRepository.saveAndFlush(client);
             return true;
@@ -45,7 +43,7 @@ public class ClientService implements Serviceable<Client>{
     }
 
     @Override
-    public boolean delete(Integer id){
+    public boolean delete(Integer id) {
         if (clientRepository.existsById(id)) {
             clientRepository.deleteById(id);
             return true;
@@ -53,7 +51,7 @@ public class ClientService implements Serviceable<Client>{
     }
 
     @Override
-    public boolean updatePartial(Client client){
+    public boolean updatePartial(Client client) {
         if (clientRepository.existsById(client.getUserId())) {
             Client clientForModify = readById(client.getUserId());
             clientForModify.setUserId(client.getUserId());
@@ -67,5 +65,4 @@ public class ClientService implements Serviceable<Client>{
             return true;
         }else  return false;
     }
-
 }

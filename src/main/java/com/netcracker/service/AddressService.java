@@ -1,9 +1,10 @@
-package rest.service;
+package com.netcracker.service;
 
+import com.netcracker.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import rest.model.Address;
-import rest.repository.AddressRepository;
+import com.netcracker.model.Address;
+
 
 import java.util.List;
 
@@ -34,12 +35,14 @@ public class AddressService implements Serviceable<Address> {
     }
 
     @Override
-    public boolean update(Address address){
+    public boolean update(Address address) {
         if (addressRepository.existsById(address.getAddressId())) {
             addressRepository.saveAndFlush(address);
             return true;
-        }else return false;
+
+        } else return false;
     }
+
 
     @Override
     public boolean delete(Integer id){

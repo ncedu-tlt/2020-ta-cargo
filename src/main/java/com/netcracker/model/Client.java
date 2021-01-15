@@ -1,4 +1,4 @@
-package rest.model;
+package com.netcracker.model;
 
 import javax.persistence.*;
 

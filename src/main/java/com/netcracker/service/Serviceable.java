@@ -1,4 +1,4 @@
-package rest.service;
+package com.netcracker.service;
 
 import java.util.List;
 

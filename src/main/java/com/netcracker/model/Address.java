@@ -1,6 +1,7 @@
-package rest.model;
+package com.netcracker.model;
 
 import javax.persistence.*;
+
 
 @Entity
 @Table(name = "cg_address")
