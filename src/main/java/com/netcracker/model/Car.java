@@ -21,7 +21,7 @@ public class Car {
     @Column(name = "volume")
     private Integer volume;
 
-    @Column(name = "liftingCapacity")
+    @Column(name = "lifting_capacity")
     private Integer liftingCapacity;
 
     @JsonBackReference

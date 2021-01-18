@@ -21,7 +21,7 @@ public class Client {
     private String phone;
     @Column(name = "email")
     private String email;
-    @Column(name = "drivecategory")
+    @Column(name = "drive_category")
     private String driveCategory;
 
 
