@@ -55,7 +55,7 @@ public class CarService implements Serviceable<Car> {
             carForModify.setName(ob.getName());
             carForModify.setVolume(ob.getVolume());
             carForModify.setLiftingCapacity(ob.getLiftingCapacity());
-            carForModify.setUser(ob.getUser());
+            carForModify.setClient(ob.getClient());
             carRepository.saveAndFlush(carForModify);
             return true;
         }else return false;

@@ -24,10 +24,9 @@ public class Client {
     @Column(name = "drivecategory")
     private String driveCategory;
 
-    @OneToMany(mappedBy = "cg_client", cascade = CascadeType.ALL, orphanRemoval = true)
+
+    @OneToMany(mappedBy = "client",   orphanRemoval = true)
     private List<Car> cars;
-
-
 
     public List<Car> getCars() {
         return cars;

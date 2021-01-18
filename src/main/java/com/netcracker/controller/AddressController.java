@@ -30,9 +30,9 @@ public class AddressController {
 
     @GetMapping("/address")
     public ResponseEntity<List<Address>>readeAll(){
-        final List<Address> clientList = addressService.readAll();
-        return clientList != null && !clientList.isEmpty()
-                ? new ResponseEntity<>(clientList, HttpStatus.OK)
+        final List<Address> addressList = addressService.readAll();
+        return addressList != null && !addressList.isEmpty()
+                ? new ResponseEntity<>(addressList, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 

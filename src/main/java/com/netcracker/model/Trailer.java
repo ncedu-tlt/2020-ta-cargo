@@ -4,11 +4,10 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name = "cg_car")
-public class Car {
+@Table(name = "cg_trailer")
+public class Trailer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +17,9 @@ public class Car {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "number")
+    private String number;
+
     @Column(name = "volume")
     private Integer volume;
 
@@ -25,36 +27,10 @@ public class Car {
     private Integer liftingCapacity;
 
     @JsonBackReference
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "USER_ID")
-    private Client client;
-
-
-    @OneToMany(mappedBy = "car", orphanRemoval = true)
-    private List<Trailer> trailerList;
-
-    public List<Trailer> getTrailerList() {
-        return trailerList;
-    }
-
-    public void setTrailerList(List<Trailer> trailerList) {
-        if((trailerList != null) && (!trailerList.isEmpty())) {
-            this.trailerList = trailerList;
-        }
-    }
-
-
-
-    public Integer getLiftingCapacity() {
-        return liftingCapacity;
-    }
-
-    public void setLiftingCapacity(Integer liftingCapacity) {
-        if(liftingCapacity != null) {
-            this.liftingCapacity = liftingCapacity;
-        }
-    }
+    @JoinColumn(name = "CAR_ID")
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    private Car car;
 
     public Integer getId() {
         return id;
@@ -76,6 +52,16 @@ public class Car {
         }
     }
 
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        if((number != null) && (!number.isEmpty())) {
+            this.number = number;
+        }
+    }
+
     public Integer getVolume() {
         return volume;
     }
@@ -86,13 +72,23 @@ public class Car {
         }
     }
 
-    public Client getClient() {
-        return client;
+    public Integer getLiftingCapacity() {
+        return liftingCapacity;
     }
 
-    public void setClient(Client client) {
-        if(client != null) {
-            this.client = client;
+    public void setLiftingCapacity(Integer liftingCapacity) {
+        if(liftingCapacity != null) {
+            this.liftingCapacity = liftingCapacity;
+        }
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        if(car != null) {
+            this.car = car;
         }
     }
 }
