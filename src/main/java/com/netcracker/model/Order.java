@@ -38,7 +38,7 @@ public class Order {
         if (name != null) {
             this.name = getName();
         }
-        return getName();
+        return name;
     }
 
 
@@ -111,4 +111,5 @@ public class Order {
     public void setReceiverId(int receiverId) {
         this.receiverId = receiverId;
     }
+
 }
