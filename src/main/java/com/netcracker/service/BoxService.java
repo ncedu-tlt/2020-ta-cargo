@@ -24,14 +24,12 @@ public class BoxService  implements Serviceable<Box>{
 
     @Override
     public List<Box> readAll() {
-        List<Box> boxesList = new ArrayList<>(BOX_MAP.values());
-        return boxesList;
+        return new ArrayList<>(BOX_MAP.values());
     }
 
     @Override
     public Box read(int id) {
-        Box box = BOX_MAP.get(id);
-        return box;
+        return BOX_MAP.get(id);
     }
 
     @Override

@@ -43,7 +43,8 @@ public class BoxController {
     }
 
     @PutMapping("/box/{id}")
-    public ResponseEntity<?> update(@RequestBody Box box){
+    public ResponseEntity<?> update(@PathVariable(name = "id") int id,
+                                    @RequestBody Box box){
         final  boolean update = boxService.update(box);
         return update
                 ? new ResponseEntity<>(HttpStatus.OK)

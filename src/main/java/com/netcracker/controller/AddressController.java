@@ -41,8 +41,9 @@ public class AddressController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping("/address")
-    public ResponseEntity<?> update(@RequestBody Address address){
+    @PutMapping("/address/{id}")
+    public ResponseEntity<?> update(@PathVariable(name = "id") int id,
+                                    @RequestBody Address address){
         final  boolean update = addressService.update(address);
         return update
                 ? new ResponseEntity<>(HttpStatus.OK)
@@ -56,11 +57,5 @@ public class AddressController {
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
-    @PatchMapping("/address")
-    public ResponseEntity<?> updatePartial(@RequestBody Address address ){
-        final boolean updateField = addressService.updatePartial(address);
-        return updateField
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
-    }
+
 }
