@@ -12,7 +12,6 @@ import java.util.List;
 @RestController
 public class AddressController {
 
-
     private final AddressService addressService;
 
     @Autowired
@@ -20,13 +19,11 @@ public class AddressController {
         this.addressService = addressService;
     }
 
-
     @PostMapping("/address")
     public ResponseEntity<?> create(@RequestBody Address address){
         addressService.create(address);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-
 
     @GetMapping("/address")
     public ResponseEntity<List<Address>>readeAll(){
@@ -35,7 +32,6 @@ public class AddressController {
                 ? new ResponseEntity<>(addressList, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
 
     @GetMapping("/address/{id}")
     public ResponseEntity<Address> readById(@PathVariable(name = "id") int id){
@@ -53,7 +49,6 @@ public class AddressController {
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
-
 
     @DeleteMapping("/address/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") int id){

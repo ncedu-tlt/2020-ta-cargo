@@ -43,7 +43,6 @@ public class AddressService implements Serviceable<Address> {
         } else return false;
     }
 
-
     @Override
     public boolean delete(Integer id){
         if (addressRepository.existsById(id)) {

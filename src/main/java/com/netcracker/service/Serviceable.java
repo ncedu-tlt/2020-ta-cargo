@@ -10,4 +10,8 @@ public interface Serviceable<T> {
     boolean update(T object);
     boolean delete(Integer id);
     boolean updatePartial(T ob);
+
+
 }
+
+

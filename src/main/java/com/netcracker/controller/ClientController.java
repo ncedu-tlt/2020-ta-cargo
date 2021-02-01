@@ -19,13 +19,11 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-
     @PostMapping("/client")
     public ResponseEntity<?> create(@RequestBody Client client){
         clientService.create(client);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-
 
     @GetMapping("/client")
     public ResponseEntity<List<Client>>readeAll(){
@@ -35,7 +33,6 @@ public class ClientController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-
     @GetMapping("/client/{id}")
     public ResponseEntity<Client> readById(@PathVariable(name = "id") int id){
         final Client client = clientService.readById(id);
@@ -44,7 +41,6 @@ public class ClientController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-
     @PutMapping("/client")
     public ResponseEntity<?> update(@RequestBody Client client){
         final  boolean update = clientService.update(client);
@@ -52,7 +48,6 @@ public class ClientController {
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
-
 
     @DeleteMapping("/client/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") int id){
