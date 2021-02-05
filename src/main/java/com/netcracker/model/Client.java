@@ -1,12 +1,26 @@
 package com.netcracker.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "cg_clients")
 public class Client {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer userId;
+    @Column(name = "lastname")
     private String lastName;
+    @Column(name = "firstname")
     private String firstName;
+    @Column(name = "middlename")
     private String middleName;
+    @Column(name = "phone")
     private String phone;
+    @Column(name = "email")
     private String email;
+    @Column(name = "drive_category")
     private String driveCategory;
 
     public Integer getUserId() {
