@@ -18,4 +18,11 @@ public class ClientController {
         this.clientService = clientService;
     }
 
+    @GetMapping("/client")
+    public ResponseEntity<List<Client>> displayAll(){
+        final List<Client> clientList = clientService.displayAll();
+        return clientList != null && !clientList.isEmpty()
+                ? new ResponseEntity<>(clientList, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }
