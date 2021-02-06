@@ -22,4 +22,12 @@ public class TrailerController {
         trailerService.create(trailer);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @PatchMapping("/trailer")
+    public ResponseEntity<?> modify(@RequestBody Trailer trailer){
+        final boolean updateField = trailerService.modify(trailer);
+        return updateField
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    }
 }
