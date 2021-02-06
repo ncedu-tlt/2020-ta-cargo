@@ -18,4 +18,11 @@ public class ClientController {
         this.clientService = clientService;
     }
 
+    @PatchMapping("/client")
+    public ResponseEntity<?> modify(@RequestBody Client client ){
+        final boolean updateField = clientService.modify(client);
+        return updateField
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    }
 }
