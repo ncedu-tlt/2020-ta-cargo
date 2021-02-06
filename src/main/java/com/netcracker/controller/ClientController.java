@@ -31,4 +31,12 @@ public class ClientController {
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
+
+    @GetMapping("/client")
+    public ResponseEntity<List<Client>> displayAll(){
+        final List<Client> clientList = clientService.displayAll();
+        return clientList != null && !clientList.isEmpty()
+                ? new ResponseEntity<>(clientList, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }
