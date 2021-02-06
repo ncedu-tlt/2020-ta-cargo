@@ -23,4 +23,12 @@ public class ClientController {
         clientService.create(client);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/client/{id}")
+    public ResponseEntity<?> delete(@PathVariable(name = "id") int id){
+        boolean delete = clientService.delete(id);
+        return delete
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    }
 }
