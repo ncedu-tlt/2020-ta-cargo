@@ -1,6 +1,9 @@
 package com.netcracker.controller;
 
+import com.netcracker.model.Address;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.netcracker.service.AddressService;
 
@@ -14,4 +17,9 @@ public class AddressController {
         this.addressService = addressService;
     }
 
+    @PostMapping("/address")
+    public ResponseEntity<?> create(@RequestBody Address address){
+        addressService.create(address);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 }
