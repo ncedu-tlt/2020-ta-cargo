@@ -46,4 +46,12 @@ public class TrailerController {
                 ? new ResponseEntity<>(trailer, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    @GetMapping("/trailer/volume/{volume}")
+    public ResponseEntity<Trailer> displayByVolume(@PathVariable(name = "volume") int volume){
+        final Trailer trailer = trailerService.displayByVolume(volume);
+        return trailer != null
+                ? new ResponseEntity<>(trailer, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }
