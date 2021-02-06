@@ -18,4 +18,11 @@ public class ClientController {
         this.clientService = clientService;
     }
 
+    @GetMapping("/client/phone/{phone}")
+    public ResponseEntity<Client> displayByPhone(@PathVariable(name = "phone") String phone){
+        final Client client = clientService.displayByPhone(phone);
+        return client != null
+                ? new ResponseEntity<>(client, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }
