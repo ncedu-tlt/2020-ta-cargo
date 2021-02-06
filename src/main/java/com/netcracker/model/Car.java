@@ -2,7 +2,6 @@ package com.netcracker.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 
 @Entity
