@@ -3,6 +3,7 @@ package com.netcracker.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.Cascade;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "cg_car")
@@ -27,6 +28,19 @@ public class Car {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_ID")
     private Client client;
+
+    @OneToMany(mappedBy = "car", orphanRemoval = true)
+    private List<Trailer> trailerList;
+
+    public List<Trailer> getTrailerList() {
+        return trailerList;
+    }
+
+    public void setTrailerList(List<Trailer> trailerList) {
+        if((trailerList != null) && (!trailerList.isEmpty())) {
+            this.trailerList = trailerList;
+        }
+    }
 
     public Integer getLiftingCapacity() {
         return liftingCapacity;
