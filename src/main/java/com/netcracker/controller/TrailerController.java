@@ -38,4 +38,12 @@ public class TrailerController {
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
+
+    @GetMapping("/trailer/{id}")
+    public ResponseEntity<Trailer> displayById(@PathVariable(name = "id") int id){
+        final Trailer trailer = trailerService.displayById(id);
+        return trailer != null
+                ? new ResponseEntity<>(trailer, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }
