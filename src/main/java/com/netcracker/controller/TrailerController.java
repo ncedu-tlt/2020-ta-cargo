@@ -30,4 +30,12 @@ public class TrailerController {
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
+
+    @DeleteMapping("/trailer/{id}")
+    public ResponseEntity<?> delete(@PathVariable(name = "id") int id){
+        boolean delete = trailerService.delete(id);
+        return delete
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    }
 }
