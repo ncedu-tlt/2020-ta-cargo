@@ -22,4 +22,12 @@ public class CarController {
         carService.create(car);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @PatchMapping("/car")
+    public ResponseEntity<?> modify(@RequestBody Car car ){
+        final boolean updateField = carService.modify(car);
+        return updateField
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    }
 }
