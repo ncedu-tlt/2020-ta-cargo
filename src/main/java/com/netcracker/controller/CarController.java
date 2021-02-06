@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class CarController {
 
@@ -37,5 +39,13 @@ public class CarController {
         return delete
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    }
+
+    @GetMapping("/car")
+    public ResponseEntity<List<Car>> displayAll(){
+        final List<Car> carList = carService.displayAll();
+        return carList != null && !carList.isEmpty()
+                ? new ResponseEntity<>(carList, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
