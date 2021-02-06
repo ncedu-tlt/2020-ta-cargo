@@ -30,4 +30,12 @@ public class CarController {
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
+
+    @DeleteMapping("/car/{id}")
+    public ResponseEntity<?> delete(@PathVariable(name = "id") int id){
+        boolean delete = carService.delete(id);
+        return delete
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    }
 }
