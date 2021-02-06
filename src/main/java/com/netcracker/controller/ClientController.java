@@ -18,49 +18,4 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-    @PostMapping("/client")
-    public ResponseEntity<?> create(@RequestBody Client client){
-        clientService.create(client);
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
-
-    @GetMapping("/client")
-    public ResponseEntity<List<Client>>readeAll(){
-        final List<Client> clientList = clientService.readAll();
-        return clientList != null && !clientList.isEmpty()
-                ? new ResponseEntity<>(clientList, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    @GetMapping("/client/{id}")
-    public ResponseEntity<Client> readId(@PathVariable(name = "id") int id){
-        final Client client = clientService.read(id);
-        return client != null
-                ? new ResponseEntity<>(client, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    @PutMapping("/client")
-    public ResponseEntity<?> update(@RequestBody Client client){
-        final  boolean update = clientService.update(client);
-        return update
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
-    }
-
-    @DeleteMapping("/client/{id}")
-    public ResponseEntity<?> delete(@PathVariable(name = "id") int id){
-        boolean delete = clientService.delete(id);
-        return delete
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
-    }
-
-    @PatchMapping("/client")
-    public ResponseEntity<?> updatePartial(@RequestBody Client client ){
-        final boolean updateField = clientService.updatePartial(client);
-        return updateField
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
-    }
 }
