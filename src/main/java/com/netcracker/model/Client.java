@@ -1,6 +1,7 @@
 package com.netcracker.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "cg_clients")
@@ -22,6 +23,20 @@ public class Client {
     private String email;
     @Column(name = "drive_category")
     private String driveCategory;
+
+
+    @OneToMany(mappedBy = "client",   orphanRemoval = true)
+    private List<Car> cars;
+
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(List<Car> cars) {
+        if((cars != null) && (!cars.isEmpty())) {
+            this.cars = cars;
+        }
+    }
 
     public Integer getUserId() {
         return userId;
