@@ -47,4 +47,11 @@ public class ClientController {
                 ? new ResponseEntity<>(client, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+    @GetMapping("/client/{id}")
+    public ResponseEntity<Client> displayById(@PathVariable(name = "id") int id){
+        final Client client = clientService.displayById(id);
+        return client != null
+                ? new ResponseEntity<>(client, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }
