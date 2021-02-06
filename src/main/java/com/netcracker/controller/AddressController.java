@@ -22,4 +22,12 @@ public class AddressController {
         addressService.create(address);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/address/{id}")
+    public ResponseEntity<?> delete(@PathVariable(name = "id") int id){
+        boolean delete = addressService.delete(id);
+        return delete
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    }
 }
