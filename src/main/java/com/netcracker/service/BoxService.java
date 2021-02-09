@@ -9,15 +9,14 @@ import java.util.List;
 
 
 @Service
-public class BoxService  implements Serviceable<Box>{
+public class BoxService implements Serviceable<Box>{
 
     @Autowired
     private BoxRepository boxRepository;
 
-    public void create(Box box){
-        boxRepository.save(box);
+    @Override
+    public void create(Box box) {
     }
-
 
     @Override
     public List<Box> displayAll() {
