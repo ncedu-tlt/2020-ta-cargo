@@ -13,7 +13,7 @@ public class BoxController {
 
     @PostMapping("/box/create")
     public Box create(@RequestBody Box box) {
-        boxService.createBox(box);
+        boxService.create(box);
         return box;
     }
 
