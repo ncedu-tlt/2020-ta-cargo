@@ -27,4 +27,8 @@ public class BoxService implements Serviceable<Box>{
     public boolean delete(Integer id) {
         return false;
     }
+
+    public Box searchById (Box box) {
+        return boxRepository.findById(box.getBoxId()).get();
+    }
 }
