@@ -50,4 +50,8 @@ public class BoxService implements Serviceable<Box>{
     public Box searchById (Box box) {
         return boxRepository.findById(box.getBoxId()).get();
     }
+
+    public List<Box> searchByUser (Box box){
+        return boxRepository.findBoxByClientId(box.getClientId());
+    }
 }
