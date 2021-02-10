@@ -20,7 +20,7 @@ public class BoxService implements Serviceable<Box>{
 
     @Override
     public List<Box> displayAll() {
-        return boxRepository.findAll();
+        return null;
     }
 
     @Override
@@ -50,6 +50,4 @@ public class BoxService implements Serviceable<Box>{
     public Box searchById (Box box) {
         return boxRepository.findById(box.getBoxId()).get();
     }
-
-
 }

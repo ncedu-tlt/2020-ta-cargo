@@ -38,4 +38,8 @@ public class BoxController {
     public List<Box> showAll(){
         return boxService.displayAll();
     }
+    @GetMapping("/box/showById")
+    public Box showById (@RequestBody Box box) {
+        return boxService.searchById(box);
+    }
 }
