@@ -34,4 +34,8 @@ public class BoxController {
     }
 
 
+    @GetMapping ("/box/showAll")
+    public List<Box> showAll(){
+        return boxService.displayAll();
+    }
 }
