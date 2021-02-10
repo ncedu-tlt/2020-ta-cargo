@@ -16,7 +16,6 @@ public class BoxService implements Serviceable<Box>{
 
     @Override
     public void create(Box box) {
-        boxRepository.save(box);
     }
 
     @Override
@@ -47,5 +46,12 @@ public class BoxService implements Serviceable<Box>{
 
     public Box searchById (Box box) {
         return boxRepository.findById(box.getBoxId()).get();
+    }
+
+    public Box deleteBox (Box box){
+        if (boxRepository.existsById(box.getBoxId())){
+            boxRepository.delete(box);
+        }
+        return box;
     }
 }
