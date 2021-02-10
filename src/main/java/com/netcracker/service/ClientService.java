@@ -25,21 +25,21 @@ public class ClientService implements Serviceable<Client>{
     }
 
     @Override
-    public List<Client> readAll() {
+    public List<Client> displayAll() {
         return clientRepository.findAll();
     }
 
     @Override
-    public Client readById(Integer id) {
+    public Client displayById(Integer id) {
         return clientRepository.findById(id).orElse(null);
     }
 
-    @Override
-    public boolean update(Client client) {
-        if (clientRepository.existsById(client.getUserId())) {
-            clientRepository.saveAndFlush(client);
-            return true;
-        }else return false;
+    public Client displayByEmail(String email) {
+        return clientRepository.findByEmail(email).orElse(null);
+    }
+
+    public Client displayByPhone(String phone) {
+        return clientRepository.findByPhone(phone).orElse(null);
     }
 
     @Override
@@ -51,9 +51,9 @@ public class ClientService implements Serviceable<Client>{
     }
 
     @Override
-    public boolean updatePartial(Client client) {
+    public boolean update(Client client) {
         if (clientRepository.existsById(client.getUserId())) {
-            Client clientForModify = readById(client.getUserId());
+            Client clientForModify = displayById(client.getUserId());
             clientForModify.setUserId(client.getUserId());
             clientForModify.setLastName(client.getLastName());
             clientForModify.setFirstName(client.getFirstName());

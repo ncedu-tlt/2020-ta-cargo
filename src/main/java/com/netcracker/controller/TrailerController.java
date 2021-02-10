@@ -1,6 +1,5 @@
 package com.netcracker.controller;
 
-import com.netcracker.model.Address;
 import com.netcracker.model.Trailer;
 import com.netcracker.service.TrailerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +27,8 @@ public class TrailerController {
 
 
     @GetMapping("/trailer")
-    public ResponseEntity<List<Trailer>>readeAll(){
-        final List<Trailer> trailerList = trailerService.readAll();
+    public ResponseEntity<List<Trailer>> displayAll(){
+        final List<Trailer> trailerList = trailerService.displayAll();
         return trailerList != null && !trailerList.isEmpty()
                 ? new ResponseEntity<>(trailerList, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -37,22 +36,20 @@ public class TrailerController {
 
 
     @GetMapping("/trailer/{id}")
-    public ResponseEntity<Trailer> readById(@PathVariable(name = "id") int id){
-        final Trailer trailer = trailerService.readById(id);
+    public ResponseEntity<Trailer> displayById(@PathVariable(name = "id") int id){
+        final Trailer trailer = trailerService.displayById(id);
         return trailer != null
                 ? new ResponseEntity<>(trailer, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-
-    @PutMapping("/trailer")
-    public ResponseEntity<?> update(@RequestBody Trailer trailer){
-        final  boolean update = trailerService.update(trailer);
-        return update
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    @GetMapping("/trailer/volume/{volume}")
+    public ResponseEntity<Trailer> displayByVolume(@PathVariable(name = "volume") int volume){
+        final Trailer trailer = trailerService.displayByVolume(volume);
+        return trailer != null
+                ? new ResponseEntity<>(trailer, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
 
     @DeleteMapping("/trailer/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") int id){
@@ -62,10 +59,9 @@ public class TrailerController {
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
-
     @PatchMapping("/trailer")
-    public ResponseEntity<?> updatePartial(@RequestBody Trailer trailer){
-        final boolean updateField = trailerService.updatePartial(trailer);
+    public ResponseEntity<?> modify(@RequestBody Trailer trailer){
+        final boolean updateField = trailerService.update(trailer);
         return updateField
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);

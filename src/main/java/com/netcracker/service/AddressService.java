@@ -24,25 +24,14 @@ public class AddressService implements Serviceable<Address> {
     }
 
     @Override
-    public List<Address> readAll(){
+    public List<Address> displayAll(){
         return addressRepository.findAll();
-
     }
 
     @Override
-    public Address readById(Integer id){
+    public Address displayById(Integer id){
         return addressRepository.findById(id).orElse(null);
     }
-
-    @Override
-    public boolean update(Address address) {
-        if (addressRepository.existsById(address.getAddressId())) {
-            addressRepository.saveAndFlush(address);
-            return true;
-
-        } else return false;
-    }
-
 
     @Override
     public boolean delete(Integer id){
@@ -53,9 +42,9 @@ public class AddressService implements Serviceable<Address> {
     }
 
     @Override
-    public boolean updatePartial(Address address){
+    public boolean update(Address address){
         if (addressRepository.existsById(address.getAddressId())) {
-            Address addressForModify = readById(address.getAddressId());
+            Address addressForModify = displayById(address.getAddressId());
             addressForModify.setAddressId(address.getAddressId());
             addressForModify.setCountry(address.getCountry());
             addressForModify.setCity(address.getCity());

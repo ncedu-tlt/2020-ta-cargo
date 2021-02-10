@@ -23,21 +23,17 @@ public class TrailerService implements Serviceable<Trailer>{
     }
 
     @Override
-    public List<Trailer> readAll() {
+    public List<Trailer> displayAll() {
         return  trailerRepository.findAll();
     }
 
     @Override
-    public Trailer readById(Integer id) {
+    public Trailer displayById(Integer id) {
         return trailerRepository.findById(id).orElse(null);
     }
 
-    @Override
-    public boolean update(Trailer object) {
-        if (trailerRepository.existsById(object.getId())) {
-            trailerRepository.saveAndFlush(object);
-            return true;
-        }else return false;
+    public Trailer displayByVolume(Integer volume) {
+        return trailerRepository.findByVolume(volume).orElse(null);
     }
 
     @Override
@@ -49,9 +45,9 @@ public class TrailerService implements Serviceable<Trailer>{
     }
 
     @Override
-    public boolean updatePartial(Trailer ob) {
+    public boolean update(Trailer ob) {
         if (trailerRepository.existsById(ob.getId())) {
-            Trailer trailerForModify = readById(ob.getId());
+            Trailer trailerForModify = displayById(ob.getId());
             trailerForModify.setName(ob.getName());
             trailerForModify.setNumber(ob.getNumber());
             trailerForModify.setVolume(ob.getVolume());
@@ -61,5 +57,4 @@ public class TrailerService implements Serviceable<Trailer>{
             return true;
         }else return false;
     }
-
 }

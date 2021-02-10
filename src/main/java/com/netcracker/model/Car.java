@@ -44,8 +44,6 @@ public class Car {
         }
     }
 
-
-
     public Integer getLiftingCapacity() {
         return liftingCapacity;
     }

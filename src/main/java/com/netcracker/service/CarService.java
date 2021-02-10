@@ -23,21 +23,13 @@ public class CarService implements Serviceable<Car> {
     }
 
     @Override
-    public List<Car> readAll() {
+    public List<Car> displayAll() {
         return carRepository.findAll();
     }
 
     @Override
-    public Car readById(Integer id) {
+    public Car displayById(Integer id) {
         return carRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public boolean update(Car object) {
-        if (carRepository.existsById(object.getId())) {
-            carRepository.saveAndFlush(object);
-            return true;
-        }else return false;
     }
 
     @Override
@@ -49,9 +41,9 @@ public class CarService implements Serviceable<Car> {
     }
 
     @Override
-    public boolean updatePartial(Car ob) {
+    public boolean update(Car ob) {
         if (carRepository.existsById(ob.getId())) {
-            Car carForModify = readById(ob.getId());
+            Car carForModify = displayById(ob.getId());
             carForModify.setName(ob.getName());
             carForModify.setVolume(ob.getVolume());
             carForModify.setLiftingCapacity(ob.getLiftingCapacity());
