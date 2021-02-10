@@ -1,11 +1,13 @@
 package com.netcracker.controller;
 
 
-import com.netcracker.model.Box;
+
 import com.netcracker.service.BoxService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 
 
 @RestController
@@ -13,11 +15,11 @@ public class BoxController {
 
     private  BoxService boxService;
 
-    @PostMapping ("/box/delete")
-    public Box delete (@RequestBody Box box){
-        boxService.deleteBox(box);
-        return box;
+    @DeleteMapping ("/box/delete")
+    public ResponseEntity<?> delete(@PathVariable(name = "id") int id){
+        boolean delete = boxService.delete(id);
+        return delete
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
-
-
 }

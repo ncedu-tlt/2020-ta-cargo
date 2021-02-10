@@ -24,14 +24,10 @@ public class BoxService implements Serviceable<Box>{
     }
 
     @Override
-    public boolean delete(Integer id) {
-        return false;
-    }
-
-    public Box deleteBox (Box box){
-        if (boxRepository.existsById(box.getBoxId())){
-            boxRepository.delete(box);
-        }
-        return box;
+        public boolean delete (Integer id){
+        if (boxRepository.existsById(id)){
+            boxRepository.deleteById(id);
+            return true;
+        }else return false;
     }
 }

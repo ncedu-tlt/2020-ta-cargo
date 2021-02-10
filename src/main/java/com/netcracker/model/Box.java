@@ -9,7 +9,7 @@ public class Box {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "box_id")
-    private Long boxId;
+    private Integer boxId;
 
     @Column(name = "name")
     private String name;
@@ -35,11 +35,11 @@ public class Box {
     @Column(name = "weight")
     private Integer weight;
 
-    public Long getBoxId() {
+    public Integer getBoxId() {
         return boxId;
     }
 
-    public void setBoxId(Long boxId) {
+    public void setBoxId(Integer boxId) {
         if((boxId != null)) {
             this.boxId = boxId;
         }
