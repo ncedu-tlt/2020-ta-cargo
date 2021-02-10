@@ -9,8 +9,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class BoxController {
 
-    private BoxService boxService;
+    private  BoxService boxService;
 
+    @PatchMapping ("/box/edit")
+    public void edit(@RequestBody Box box){
+        boxService.editBox(box);
+    }
     @PostMapping("/box/create")
     public Box create(@RequestBody Box box) {
         boxService.create(box);
