@@ -19,6 +19,7 @@ public class BoxController {
     public void edit(@RequestBody Box box){
         boxService.editBox(box);
     }
+
     @PostMapping("/box/create")
     public Box create(@RequestBody Box box) {
         boxService.create(box);
@@ -38,10 +39,12 @@ public class BoxController {
     public List<Box> showAll(){
         return boxService.displayAll();
     }
+
     @GetMapping("/box/showById")
     public Box showById (@RequestBody Box box) {
         return boxService.searchById(box);
     }
+
     @GetMapping("/box/showByUser")
     public List<Box> searchByUser (@RequestBody Box box) {
         return boxService.searchByUser(box);
