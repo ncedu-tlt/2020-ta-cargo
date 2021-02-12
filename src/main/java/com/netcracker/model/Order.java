@@ -13,9 +13,6 @@ public class Order {
     @Column (name = "name")
     private String name;
 
-    @Column (name = "status")
-    private  String status;
-
     @Column (name = "destination_id")
     private int destinationId;
 
@@ -30,6 +27,10 @@ public class Order {
 
     @Column (name = "receiver_id")
     private int receiverId;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn( name = "status_id")
+    private Status status;
 
     public Long getId() {
         return id;
@@ -47,13 +48,6 @@ public class Order {
         this.name = name;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public int getDestinationID() {
         return destinationId;
@@ -62,6 +56,7 @@ public class Order {
     public void setDestinationID(int destinationID) {
         this.destinationId = destinationId;
     }
+
 
     public int getDriverId() {
         return driverId;
@@ -93,5 +88,13 @@ public class Order {
 
     public void setReceiverId(int receiverId) {
         this.receiverId = receiverId;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

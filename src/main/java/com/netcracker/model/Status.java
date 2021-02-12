@@ -16,7 +16,7 @@ import javax.persistence.*;
         private String name;
 
         @Column (name = "description")
-        private int description;
+        private String description;
 
         public Long getId() {
             return id;
@@ -34,11 +34,11 @@ import javax.persistence.*;
             this.name = name;
         }
 
-        public int getDescription() {
+        public String getDescription() {
             return description;
         }
 
-        public void setDescription(int description) {
+        public void setDescription(String description) {
             this.description = description;
         }
     }

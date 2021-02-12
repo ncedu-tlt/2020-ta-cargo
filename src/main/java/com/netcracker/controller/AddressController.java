@@ -26,28 +26,11 @@ public class AddressController {
     }
 
     @GetMapping("/address")
-    public ResponseEntity<List<Address>>readeAll(){
-        final List<Address> clientList = addressService.readAll();
-        return clientList != null && !clientList.isEmpty()
-                ? new ResponseEntity<>(clientList, HttpStatus.OK)
+    public ResponseEntity<List<Address>> displayAll(){
+        final List<Address> addressList = addressService.displayAll();
+        return addressList != null && !addressList.isEmpty()
+                ? new ResponseEntity<>(addressList, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    @GetMapping("/address/{id}")
-    public ResponseEntity<Address> readId(@PathVariable(name = "id") int id){
-        final Address address = addressService.read(id);
-        return address != null
-                ? new ResponseEntity<>(address, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    @PutMapping("/address/{id}")
-    public ResponseEntity<?> update(@PathVariable(name = "id") int id,
-                                    @RequestBody Address address){
-        final  boolean update = addressService.update(address);
-        return update
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     @DeleteMapping("/address/{id}")
@@ -57,5 +40,4 @@ public class AddressController {
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
-
 }
