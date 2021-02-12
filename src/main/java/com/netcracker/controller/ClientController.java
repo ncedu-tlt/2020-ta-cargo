@@ -1,4 +1,5 @@
 package com.netcracker.controller;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ public class ClientController {
         this.clientService = clientService;
     }
 
+
     @PostMapping("/client")
     public ResponseEntity<?> create(@RequestBody Client client){
         clientService.create(client);
@@ -25,27 +27,35 @@ public class ClientController {
     }
 
     @GetMapping("/client")
-    public ResponseEntity<List<Client>>readeAll(){
-        final List<Client> clientList = clientService.readAll();
+    public ResponseEntity<List<Client>> displayAll(){
+        final List<Client> clientList = clientService.displayAll();
         return clientList != null && !clientList.isEmpty()
                 ? new ResponseEntity<>(clientList, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/client/{id}")
-    public ResponseEntity<Client> readId(@PathVariable(name = "id") int id){
-        final Client client = clientService.read(id);
+    public ResponseEntity<Client> displayById(@PathVariable(name = "id") int id){
+        final Client client = clientService.displayById(id);
         return client != null
                 ? new ResponseEntity<>(client, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping("/client")
-    public ResponseEntity<?> update(@RequestBody Client client){
-        final  boolean update = clientService.update(client);
-        return update
-                ? new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    @GetMapping("/client/email/{email}")
+    public ResponseEntity<Client> displayByEmail(@PathVariable(name = "email") String email){
+        final Client client = clientService.displayByEmail(email);
+        return client != null
+                ? new ResponseEntity<>(client, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/client/phone{phone}")
+    public ResponseEntity<Client> displayByPhone(@PathVariable(name = "phone") String phone){
+        final Client client = clientService.displayByPhone(phone);
+        return client != null
+                ? new ResponseEntity<>(client, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/client/{id}")
@@ -57,8 +67,8 @@ public class ClientController {
     }
 
     @PatchMapping("/client")
-    public ResponseEntity<?> updatePartial(@RequestBody Client client ){
-        final boolean updateField = clientService.updatePartial(client);
+    public ResponseEntity<?> modify(@RequestBody Client client ){
+        final boolean updateField = clientService.modify(client);
         return updateField
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);

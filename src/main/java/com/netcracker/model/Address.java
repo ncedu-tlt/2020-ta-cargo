@@ -1,11 +1,30 @@
 package com.netcracker.model;
 
+import javax.persistence.*;
+
+
+@Entity
+@Table(name = "cg_address")
 public class Address {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer addressId;
+
+    @Column(name = "country")
     private String country;
+
+    @Column(name = "city")
     private String city;
+
+    @Column(name = "street")
     private String street;
+
+    @Column(name = "home")
     private String home;
+
+    @Column(name = "apartment")
     private String apartment;
 
     public Integer getAddressId() {

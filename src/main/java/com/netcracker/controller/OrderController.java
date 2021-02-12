@@ -17,7 +17,7 @@ public class OrderController {
     }
 
     @GetMapping("/order/id")
-    public List<Order> showAll (@RequestBody Order order) {
+    public List<Order> showAll () {
         orderService.showAll();
         return orderService.showAll();
     }
