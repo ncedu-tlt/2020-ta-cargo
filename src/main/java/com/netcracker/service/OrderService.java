@@ -8,24 +8,25 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class OrderService {
+public class OrderService implements Serviceable<Order> {
     @Autowired
     private OrderRepository orderRepository;
 
-
-    public Order createOrder(Order order){
+    @Override
+    public void create(Order order) {
         orderRepository.save(order);
-        return order;
     }
 
-    public List<Order> showAll(){
+    @Override
+    public List<Order> displayAll() {
         return orderRepository.findAll();
     }
 
-    public Order deleteOrder (Order order){
-        if (orderRepository.existsById(order.getId())){
-            orderRepository.delete((order));
-        }
-        return order;
+    @Override
+    public boolean delete(Integer id) {
+        if (orderRepository.existsById(id)){
+            orderRepository.deleteById((id));
+            return true;
+        } else return false;
     }
 }

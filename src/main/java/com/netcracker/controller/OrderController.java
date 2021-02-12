@@ -3,6 +3,8 @@ package com.netcracker.controller;
 import com.netcracker.model.Order;
 import com.netcracker.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,19 +20,21 @@ public class OrderController {
 
     @GetMapping("/order/getAll")
     public List<Order> showAll () {
-        orderService.showAll();
-        return orderService.showAll();
+        orderService.displayAll();
+        return orderService.displayAll();
     }
 
     @PostMapping("/order/create")
     public Order create (@RequestBody Order order){
-        orderService.createOrder(order);
+        orderService.create(order);
         return  order;
     }
 
-    @DeleteMapping ("/order/delete")
-    public Order delete (@RequestBody Order order){
-        orderService.deleteOrder(order);
-        return  order;
+    @DeleteMapping ("/order/delete/{id}")
+    public ResponseEntity<?> delete (@PathVariable(name = "id") int id){
+        boolean delete = orderService.delete(id);
+        return delete
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 }

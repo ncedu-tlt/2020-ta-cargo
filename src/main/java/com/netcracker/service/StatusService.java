@@ -18,8 +18,8 @@ public class StatusService {
         return status;
     }
 
-    public Status displayById(Status status){
-        return statusRepository.findById(status.getId()).get();
+    public Status displayById(int id){
+        return statusRepository.findById(id).get();
     }
 
     public Status deleteStatus (Status status){
