@@ -16,7 +16,7 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @GetMapping("/order/id")
+    @GetMapping("/order/getAll")
     public List<Order> showAll () {
         orderService.showAll();
         return orderService.showAll();
