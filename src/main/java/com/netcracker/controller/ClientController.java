@@ -67,8 +67,8 @@ public class ClientController {
     }
 
     @PatchMapping("/client")
-    public ResponseEntity<?> update(@RequestBody Client client ){
-        final boolean updateField = clientService.update(client);
+    public ResponseEntity<?> modify(@RequestBody Client client ){
+        final boolean updateField = clientService.modify(client);
         return updateField
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);

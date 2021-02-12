@@ -28,9 +28,8 @@ public class AddressService implements Serviceable<Address> {
         return addressRepository.findAll();
     }
 
-    @Override
     public Address displayById(Integer id){
-        return addressRepository.findById(id).orElse(null);
+        return addressRepository.findById(id).get();
     }
 
     @Override
@@ -41,8 +40,7 @@ public class AddressService implements Serviceable<Address> {
         }else return false;
     }
 
-    @Override
-    public boolean update(Address address){
+    public boolean modify(Address address){
         if (addressRepository.existsById(address.getAddressId())) {
             Address addressForModify = displayById(address.getAddressId());
             addressForModify.setAddressId(address.getAddressId());

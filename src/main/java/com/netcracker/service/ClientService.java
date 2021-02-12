@@ -29,17 +29,16 @@ public class ClientService implements Serviceable<Client>{
         return clientRepository.findAll();
     }
 
-    @Override
     public Client displayById(Integer id) {
-        return clientRepository.findById(id).orElse(null);
+        return clientRepository.findById(id).get();
     }
 
     public Client displayByEmail(String email) {
-        return clientRepository.findByEmail(email).orElse(null);
+        return clientRepository.findByEmail(email).get();
     }
 
     public Client displayByPhone(String phone) {
-        return clientRepository.findByPhone(phone).orElse(null);
+        return clientRepository.findByPhone(phone).get();
     }
 
     @Override
@@ -50,8 +49,7 @@ public class ClientService implements Serviceable<Client>{
         }else return false;
     }
 
-    @Override
-    public boolean update(Client client) {
+    public boolean modify(Client client) {
         if (clientRepository.existsById(client.getUserId())) {
             Client clientForModify = displayById(client.getUserId());
             clientForModify.setUserId(client.getUserId());

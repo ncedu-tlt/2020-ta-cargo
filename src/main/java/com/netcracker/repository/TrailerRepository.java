@@ -8,6 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface TrailerRepository extends JpaRepository<Trailer, Integer> {
-    Optional<Trailer> findById(Integer id);
     Optional<Trailer> findByVolume(Integer volume);
 }

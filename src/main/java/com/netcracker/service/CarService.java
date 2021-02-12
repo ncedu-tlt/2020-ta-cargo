@@ -27,9 +27,8 @@ public class CarService implements Serviceable<Car> {
         return carRepository.findAll();
     }
 
-    @Override
     public Car displayById(Integer id) {
-        return carRepository.findById(id).orElse(null);
+        return carRepository.findById(id).get();
     }
 
     @Override
@@ -40,8 +39,7 @@ public class CarService implements Serviceable<Car> {
         }else return false;
     }
 
-    @Override
-    public boolean update(Car ob) {
+    public boolean modify(Car ob) {
         if (carRepository.existsById(ob.getId())) {
             Car carForModify = displayById(ob.getId());
             carForModify.setName(ob.getName());

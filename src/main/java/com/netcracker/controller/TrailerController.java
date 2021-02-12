@@ -61,7 +61,7 @@ public class TrailerController {
 
     @PatchMapping("/trailer")
     public ResponseEntity<?> modify(@RequestBody Trailer trailer){
-        final boolean updateField = trailerService.update(trailer);
+        final boolean updateField = trailerService.modify(trailer);
         return updateField
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
