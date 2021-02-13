@@ -1,25 +1,50 @@
 package com.netcracker.model;
 
 
-public class Box {
-    private String name;
-    private int boxId;
-    private int height;
-    private int width;
-    private int weight;
-    private int volume;
-    private int clientId;
-    private int typeId;
+import javax.persistence.*;
 
-    public Box(String name, int boxId, int height, int width, int weight, int volume, int clientId, int typeId) {
-        this.name = name;
-        this.boxId = boxId;
-        this.height = height;
-        this.width = width;
-        this.weight = weight;
-        this.volume = volume;
-        this.clientId = clientId;
-        this.typeId = typeId;
+@Entity
+@Table(name = "cg_box")
+public class Box {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "box_id")
+    private Integer boxId;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "height")
+    private Integer height;
+
+    @Column(name = "width")
+    private Integer width;
+
+    @Column(name = "volume")
+    private Integer volume;
+
+    @Column(name = "current_location")
+    private Integer currentLocation;
+
+    @Column(name = "client_id")
+    private Integer clientId;
+
+    @JoinColumn (name="type_id")
+    @OneToOne (fetch = FetchType.EAGER)
+    private TypeCargo typeCargo;
+
+
+    @Column(name = "weight")
+    private Integer weight;
+
+    public Integer getBoxId() {
+        return boxId;
+    }
+
+    public void setBoxId(Integer boxId) {
+        if((boxId != null)) {
+            this.boxId = boxId;
+        }
     }
 
     public String getName() {
@@ -27,78 +52,79 @@ public class Box {
     }
 
     public void setName(String name) {
-        if((name != null)&&(!name.isEmpty())) {
+        if((name != null) && (!name.isEmpty())) {
             this.name = name;
         }
     }
 
-    public int getBoxId() {
-        return boxId;
-    }
-
-    public void setBoxId(int boxId) {
-        if (boxId != 0) {
-            this.boxId = boxId;
-        }
-    }
-
-    public int getHeight() {
+    public Integer getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
-        if (height != 0) {
+    public void setHeight(Integer height) {
+        if((height != null) ) {
             this.height = height;
         }
     }
 
-    public int getWidth() {
+    public Integer getWidth() {
         return width;
     }
 
-    public void setWidth(int width) {
-        if (width != 0) {
+    public void setWidth(Integer width) {
+        if((width != null)) {
             this.width = width;
         }
     }
 
-    public int getWeight() {
-        return weight;
-    }
-
-    public void setWeight(int weight) {
-        if (weight != 0) {
-            this.weight = weight;
-        }
-    }
-
-    public int getVolume() {
+    public Integer getVolume() {
         return volume;
     }
 
-    public void setVolume(int volume) {
-        if (volume != 0) {
+    public void setVolume(Integer volume) {
+        if((volume != null)) {
             this.volume = volume;
         }
     }
 
-    public int getClientId() {
+    public Integer getCurrentLocation() {
+        return currentLocation;
+    }
+
+    public void setCurrentLocation(Integer currentLocation) {
+        if((currentLocation != null)) {
+            this.currentLocation = currentLocation;
+        }
+    }
+
+    public Integer getClientId() {
         return clientId;
     }
 
-    public void setClientId(int clientId) {
-        if (clientId != 0) {
+    public void setClientId(Integer clientId) {
+        if((clientId != null)) {
             this.clientId = clientId;
         }
     }
 
-    public int getTypeId() {
-        return typeId;
+
+    public Integer getWeight() {
+        return weight;
     }
 
-    public void setTypeId(int typeId) {
-          if (typeId != 0) {
-              this.typeId = typeId;
-          }
+    public void setWeight(Integer weight) {
+        if((weight != null) ) {
+            this.weight = weight;
+        }
+    }
+
+    public TypeCargo getTypeCargo() {
+        return typeCargo;
+    }
+
+    public void setTypeCargo(TypeCargo typeCargo) {
+        if(typeCargo != null) {
+            this.typeCargo = typeCargo;
+        }
     }
 }
