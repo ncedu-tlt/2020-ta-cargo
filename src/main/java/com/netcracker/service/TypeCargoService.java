@@ -1,6 +1,7 @@
 package com.netcracker.service;
 
 
+import com.netcracker.model.Box;
 import com.netcracker.model.TypeCargo;
 import com.netcracker.repository.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,9 @@ public class TypeCargoService implements Serviceable<TypeCargo>{
             typeRepository.deleteById(id);
             return true;
         }else return false;
+    }
+
+    public TypeCargo searchById (TypeCargo typeCargo) {
+        return typeRepository.findById(typeCargo.getTypeId()).get();
     }
 }

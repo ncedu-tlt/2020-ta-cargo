@@ -1,5 +1,6 @@
 package com.netcracker.controller;
 
+import com.netcracker.model.Box;
 import com.netcracker.model.TypeCargo;
 import com.netcracker.service.TypeCargoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,10 @@ public class TypeCargoController {
         return delete
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    }
+
+    @GetMapping("/type/displayBuId")
+    public TypeCargo showById (@RequestBody TypeCargo typeCargo) {
+        return typeService.searchById(typeCargo);
     }
 }
