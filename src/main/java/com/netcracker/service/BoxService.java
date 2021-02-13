@@ -16,7 +16,7 @@ public class BoxService implements Serviceable<Box>{
 
     @Override
     public void create(Box box) {
-        boxRepository.save(box);
+        boxRepository.saveAndFlush(box);
     }
 
     @Override
@@ -38,11 +38,11 @@ public class BoxService implements Serviceable<Box>{
             boxForModify.setName(box.getName());
             boxForModify.setHeight(box.getHeight());
             boxForModify.setWeight(box.getWeight());
-            boxForModify.setWidht(box.getWidht());
+            boxForModify.setWidth(box.getWidth());
             boxForModify.setVolume(box.getVolume());
             boxForModify.setCurrentLocation(box.getCurrentLocation());
             boxForModify.setClientId(box.getClientId());
-            boxForModify.setTypeId(box.getTypeId());
+            boxForModify.setTypeCargo(box.getTypeCargo());
             boxRepository.saveAndFlush(boxForModify);
             return true;
         }else return false;

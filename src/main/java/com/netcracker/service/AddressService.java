@@ -10,29 +10,29 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
-public class AddressService  implements Serviceable<Address>{
+public class AddressService {
 
     private static final Map<Integer, Address> ADDRESS_MAP = new HashMap<>();
     private static final AtomicInteger ADDRESS_ID_HOLDER = new AtomicInteger();
 
-    @Override
+
     public void create(Address object) {
         final int id = ADDRESS_ID_HOLDER.incrementAndGet();
         object.setAddressId(id);
         ADDRESS_MAP.put(id, object);
     }
 
-    @Override
+
     public List<Address> readAll() {
         return new ArrayList<>(ADDRESS_MAP.values());
     }
 
-    @Override
+
     public Address read(int id) {
         return  ADDRESS_MAP.get(id);
     }
 
-    @Override
+
     public boolean update(Address object) {
         if (ADDRESS_MAP.containsKey(object.getAddressId())) {
             ADDRESS_MAP.put(object.getAddressId(), object);
@@ -41,7 +41,7 @@ public class AddressService  implements Serviceable<Address>{
 
     }
 
-    @Override
+
     public boolean delete(int id) {
         if (ADDRESS_MAP.containsKey(id)) {
             ADDRESS_MAP.remove(id);
@@ -49,7 +49,7 @@ public class AddressService  implements Serviceable<Address>{
         }else return false;
     }
 
-    @Override
+
     public boolean updatePartial(Address address){
         if (ADDRESS_MAP.containsKey(address.getAddressId())) {
             Address addressForModify = read(address.getAddressId());

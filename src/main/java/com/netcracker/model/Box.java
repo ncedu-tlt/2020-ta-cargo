@@ -17,8 +17,8 @@ public class Box {
     @Column(name = "height")
     private Integer height;
 
-    @Column(name = "widht")
-    private Integer widht;
+    @Column(name = "width")
+    private Integer width;
 
     @Column(name = "volume")
     private Integer volume;
@@ -29,8 +29,10 @@ public class Box {
     @Column(name = "client_id")
     private Integer clientId;
 
-    @Column(name = "type_id")
-    private Integer typeId;
+    @JoinColumn (name="type_id")
+    @OneToOne (fetch = FetchType.EAGER)
+    private TypeCargo typeCargo;
+
 
     @Column(name = "weight")
     private Integer weight;
@@ -65,13 +67,13 @@ public class Box {
         }
     }
 
-    public Integer getWidht() {
-        return widht;
+    public Integer getWidth() {
+        return width;
     }
 
-    public void setWidht(Integer widht) {
-        if((widht != null)) {
-            this.widht = widht;
+    public void setWidth(Integer width) {
+        if((width != null)) {
+            this.width = width;
         }
     }
 
@@ -105,15 +107,6 @@ public class Box {
         }
     }
 
-    public Integer getTypeId() {
-        return typeId;
-    }
-
-    public void setTypeId(Integer typeId) {
-        if((typeId != null)) {
-            this.typeId = typeId;
-        }
-    }
 
     public Integer getWeight() {
         return weight;
@@ -123,5 +116,15 @@ public class Box {
         if((weight != null) ) {
             this.weight = weight;
         }
+    }
+
+    public TypeCargo getTypeCargo() {
+        return typeCargo;
+    }
+
+    public void setTypeCargo(TypeCargo typeCargo) {
+        if(typeCargo != null) {
+        this.typeCargo = typeCargo;
+    }
     }
 }

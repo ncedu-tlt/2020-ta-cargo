@@ -10,30 +10,30 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
-public class ClientService implements Serviceable<Client>{
+public class ClientService {
 
     private static final Map<Integer, Client> CLIENT_MAP = new HashMap<>();
     private static final AtomicInteger CLIENT_ID_HOLDER = new AtomicInteger();
 
 
-    @Override
+
     public void create(Client client) {
         final int id = CLIENT_ID_HOLDER.incrementAndGet();
         client.setUserId(id);
         CLIENT_MAP.put(id,client);
     }
 
-    @Override
+
     public List<Client> readAll() {
         return  new ArrayList<>(CLIENT_MAP.values());
     }
 
-    @Override
+
     public Client read(int id) {
         return CLIENT_MAP.get(id);
     }
 
-    @Override
+
     public boolean update(Client client) {
         if (CLIENT_MAP.containsKey(client.getUserId())) {
             CLIENT_MAP.put(client.getUserId(), client);
@@ -41,7 +41,7 @@ public class ClientService implements Serviceable<Client>{
         } else return false;
     }
 
-    @Override
+
     public boolean delete(int id) {
         if (CLIENT_MAP.containsKey(id)) {
             CLIENT_MAP.remove(id);
@@ -49,7 +49,7 @@ public class ClientService implements Serviceable<Client>{
         }else return false;
     }
 
-    @Override
+
     public boolean updatePartial(Client client){
         if (CLIENT_MAP.containsKey(client.getUserId())) {
             Client clientForModify = read(client.getUserId());

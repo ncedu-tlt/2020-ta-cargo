@@ -21,12 +21,12 @@ public class BoxController {
     }
 
     @PostMapping("/box/create")
-    public Box create(@RequestBody Box box) {
+    public void create(@RequestBody Box box) {
         boxService.create(box);
-        return box;
+
     }
 
-    @DeleteMapping ("/box/delete")
+    @DeleteMapping ("/box/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") int id){
         boolean delete = boxService.delete(id);
         return delete
