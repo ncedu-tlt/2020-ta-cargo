@@ -20,8 +20,8 @@ public class TypeCargoService implements Serviceable<TypeCargo>{
     }
 
     @Override
-    public void create(TypeCargo object) {
-
+    public void create(TypeCargo type) {
+        typeRepository.save(type);
     }
 
     @Override
