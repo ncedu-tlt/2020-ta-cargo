@@ -13,7 +13,11 @@ import java.util.List;
 @RestController
 public class BoxController {
 
-    private  BoxService boxService;
+    private final  BoxService boxService;
+
+    public BoxController(BoxService boxService) {
+        this.boxService = boxService;
+    }
 
     @PatchMapping ("/box/edit")
     public void edit(@RequestBody Box box){
