@@ -9,5 +9,4 @@ import java.util.List;
 public interface BoxRepository extends JpaRepository<Box, Integer> {
 
     List<Box> findBoxByClientId(Integer clientId);
-
 }

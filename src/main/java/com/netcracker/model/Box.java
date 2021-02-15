@@ -124,7 +124,7 @@ public class Box {
 
     public void setTypeCargo(TypeCargo typeCargo) {
         if(typeCargo != null) {
-            this.typeCargo = typeCargo;
-        }
+        this.typeCargo = typeCargo;
+    }
     }
 }
