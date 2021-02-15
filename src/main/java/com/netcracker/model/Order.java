@@ -1,77 +1,64 @@
 package com.netcracker.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "cg_order")
 public class Order {
-    private int orderId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "order_id")
+    private Long id;
+
+    @Column (name = "name")
     private String name;
-    private String status;
-    private int destinationID;
+
+    @Column (name = "destination_id")
+    private int destinationId;
+
+    @Column (name = "driver_id")
     private int driverId;
+
+    @Column (name = "box_id")
     private int boxId;
+
+    @Column (name = "price")
     private int price;
+
+    @Column (name = "receiver_id")
     private int receiverId;
 
-    public Order(int orderId, String name, String status, int destinationID,
-                 int driverId, int boxId, int price, int receiverId) {
-        this.orderId = orderId;
-        this.name = name;
-        this.status = status;
-        this.destinationID = destinationID;
-        this.driverId = driverId;
-        this.boxId = boxId;
-        this.price = price;
-        this.receiverId = receiverId;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn( name = "status_id")
+    private Status status;
+
+    public Long getId() {
+        return id;
     }
 
-    public int getOrderId() {
-        if (orderId != 0) {
-            this.orderId = getOrderId();
-        }
-        return orderId;
-    }
-
-    public void setOrderId(int orderId) {
-
-        this.orderId = orderId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
-        if (name != null) {
-            this.name = getName();
-        }
         return name;
     }
-
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getStatus() {
-        if (status != null) {
-            this.status = getStatus();
-        }
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public int getDestinationID() {
-        if (destinationID != 0) {
-            this.destinationID = getDestinationID();
-        }
-        return destinationID;
+        return destinationId;
     }
 
     public void setDestinationID(int destinationID) {
-        this.destinationID = destinationID;
+        this.destinationId = destinationId;
     }
 
+
     public int getDriverId() {
-        if (driverId != 0) {
-            this.driverId = getDriverId();
-        }
         return driverId;
     }
 
@@ -80,9 +67,6 @@ public class Order {
     }
 
     public int getBoxId() {
-        if (boxId != 0) {
-            this.boxId = getBoxId();
-        }
         return boxId;
     }
 
@@ -91,9 +75,6 @@ public class Order {
     }
 
     public int getPrice() {
-        if (price != 0) {
-            this.price = getPrice();
-        }
         return price;
     }
 
@@ -102,9 +83,6 @@ public class Order {
     }
 
     public int getReceiverId() {
-        if (receiverId != 0) {
-            this.receiverId = getReceiverId();
-        }
         return receiverId;
     }
 
@@ -112,4 +90,11 @@ public class Order {
         this.receiverId = receiverId;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 }
