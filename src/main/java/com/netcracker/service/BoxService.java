@@ -56,3 +56,4 @@ public class BoxService implements Serviceable<Box>{
         return boxRepository.findBoxByClientId(box.getClientId());
     }
 }
+

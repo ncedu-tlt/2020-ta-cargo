@@ -10,7 +10,7 @@ import javax.persistence.*;
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         @Column(name = "status_id")
-        private Long id;
+        private Integer id;
 
         @Column (name = "name")
         private String name;
@@ -18,11 +18,11 @@ import javax.persistence.*;
         @Column (name = "description")
         private String description;
 
-        public Long getId() {
+        public Integer getId() {
             return id;
         }
 
-        public void setId(Long id) {
+        public void setId(Integer id) {
             this.id = id;
         }
 
