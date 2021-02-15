@@ -1,73 +1,58 @@
 package com.netcracker.service;
 
+import com.netcracker.repository.BoxRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.netcracker.model.Box;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
+
 
 @Service
-public class BoxService  implements Serviceable<Box>{
-    private static final Map<Integer, Box> BOX_MAP = new HashMap<>();
-    private static final AtomicInteger BOX_ID_HOLDER = new AtomicInteger();
+public class BoxService implements Serviceable<Box>{
+
+    @Autowired
+    private BoxRepository boxRepository;
 
     @Override
     public void create(Box box) {
-        final int id = BOX_ID_HOLDER.incrementAndGet();
-        box.setBoxId(id);
-        BOX_MAP.put(id, box);
-    }
-
-
-    @Override
-    public List<Box> readAll() {
-        return new ArrayList<>(BOX_MAP.values());
+        boxRepository.saveAndFlush(box);
     }
 
     @Override
-    public Box read(int id) {
-        return BOX_MAP.get(id);
+    public List<Box> displayAll() {
+        return boxRepository.findAll();
     }
 
     @Override
-    public boolean update(Box box) {
-        if (BOX_MAP.containsKey(box.getBoxId())) {
-            BOX_MAP.put(box.getBoxId(), box);
+    public boolean delete (Integer id) {
+        if (boxRepository.existsById(id)) {
+            boxRepository.deleteById(id);
             return true;
-        }
-        return false;
+        } else return false;
     }
 
-
-    @Override
-    public boolean delete(int id) {
-        if (BOX_MAP.containsKey(id)) {
-            BOX_MAP.remove(id);
+    public boolean editBox (Box box){
+        if (boxRepository.existsById(box.getBoxId())) {
+            Box boxForModify = searchById(box);
+            boxForModify.setName(box.getName());
+            boxForModify.setHeight(box.getHeight());
+            boxForModify.setWeight(box.getWeight());
+            boxForModify.setWidth(box.getWidth());
+            boxForModify.setVolume(box.getVolume());
+            boxForModify.setCurrentLocation(box.getCurrentLocation());
+            boxForModify.setClientId(box.getClientId());
+            boxForModify.setTypeCargo(box.getTypeCargo());
+            boxRepository.saveAndFlush(boxForModify);
             return true;
         }else return false;
     }
 
+    public Box searchById (Box box) {
+        return boxRepository.findById(box.getBoxId()).get();
+    }
 
-
-    public boolean updatePartial(Box box) {
-        int id = box.getBoxId();
-
-        if (BOX_MAP.containsKey(id)) {
-           Box boxModify = read(box.getBoxId());
-            boxModify.setName(box.getName());
-            boxModify.setWidth(box.getWidth());
-            boxModify.setHeight(box.getHeight());
-            boxModify.setVolume(box.getVolume());
-            boxModify.setWeight(box.getWeight());
-            boxModify.setTypeId(box.getTypeId());
-            boxModify.setClientId(box.getClientId());
-            BOX_MAP.put(boxModify.getBoxId(), boxModify);
-            return true;
-        }else{
-            return false;
-        }
+    public List<Box> searchByUser (Box box){
+        return boxRepository.findBoxByClientId(box.getClientId());
     }
 }
