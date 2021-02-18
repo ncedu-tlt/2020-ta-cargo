@@ -15,8 +15,9 @@ public class BoxService implements Serviceable<Box>{
     private BoxRepository boxRepository;
 
     @Override
-    public void create(Box box) {
+    public Box create(Box box) {
         boxRepository.saveAndFlush(box);
+        return box;
     }
 
     @Override

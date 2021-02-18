@@ -25,8 +25,9 @@ public class BoxController {
     }
 
     @PostMapping("/box/create")
-    public void create(@RequestBody Box box) {
+    public Box create(@RequestBody Box box) {
         boxService.create(box);
+        return box;
 
     }
 

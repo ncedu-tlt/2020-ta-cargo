@@ -33,7 +33,6 @@ public class Box {
     @OneToOne (fetch = FetchType.EAGER)
     private TypeCargo typeCargo;
 
-
     @Column(name = "weight")
     private Integer weight;
 
