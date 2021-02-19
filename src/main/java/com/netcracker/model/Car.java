@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "cg_car")
@@ -26,21 +25,21 @@ public class Car {
 
     @JsonBackReference
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "USER_ID")
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private Client client;
 
 
-    @OneToMany(mappedBy = "car", orphanRemoval = true)
-    private List<Trailer> trailerList;
+    @OneToOne(mappedBy = "car", orphanRemoval = true)
+    private Trailer trailer;
 
-    public List<Trailer> getTrailerList() {
-        return trailerList;
+    public Trailer getTrailer() {
+        return trailer;
     }
 
-    public void setTrailerList(List<Trailer> trailerList) {
-        if((trailerList != null) && (!trailerList.isEmpty())) {
-            this.trailerList = trailerList;
+    public void setTrailer(Trailer trailer) {
+        if(trailer != null) {
+            this.trailer = trailer;
         }
     }
 

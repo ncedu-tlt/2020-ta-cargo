@@ -7,19 +7,20 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class StatusController {
-    private StatusService statusService;
+
+    private final StatusService statusService;
 
     @Autowired
     public StatusController(StatusService statusService) {
         this.statusService = statusService;
     }
 
-    @GetMapping("/status/get/{id}")
+    @GetMapping("/status/{id}")
     public Status displayById(@PathVariable (name = "id") int id) {
         return statusService.displayById(id);
     }
 
-    @PostMapping ("/status/create")
+    @PostMapping ("/status")
     public Status createStatus (@RequestBody Status status){
         statusService.createStatus (status);
         return  status;

@@ -25,16 +25,16 @@ public class Client {
     private String driveCategory;
 
 
-    @OneToMany(mappedBy = "client",   orphanRemoval = true)
-    private List<Car> cars;
+    @OneToOne(mappedBy = "client", orphanRemoval = true)
+    private Car cars;
 
-    public List<Car> getCars() {
+    public Car getCars() {
         return cars;
     }
 
-    public void setCars(List<Car> cars) {
-        if((cars != null) && (!cars.isEmpty())) {
-            this.cars = cars;
+    public void setCars(Car cars) {
+        if(cars != null){
+        this.cars = cars;
         }
     }
 

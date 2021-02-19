@@ -1,6 +1,5 @@
 package com.netcracker.controller;
 
-import com.netcracker.model.Box;
 import com.netcracker.model.TypeCargo;
 import com.netcracker.service.TypeCargoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,26 +12,25 @@ import java.util.List;
 @RestController
 public class TypeCargoController {
 
-    @Autowired
     private final TypeCargoService typeService;
 
-
+    @Autowired
     public TypeCargoController(TypeCargoService typeService) {
         this.typeService = typeService;
     }
 
-    @PostMapping("/type/create")
+    @PostMapping("/type")
     public TypeCargo create(@RequestBody TypeCargo type) {
         typeService.create(type);
         return type;
     }
 
-    @GetMapping("/type/showAll")
-    public List<TypeCargo> showAll(){
+    @GetMapping("/type")
+    public List<TypeCargo> displayAll(){
         return typeService.displayAll();
     }
 
-    @DeleteMapping ("/type/delete/{id}")
+    @DeleteMapping ("/type/{id}")
     public ResponseEntity<?> delete (@PathVariable(name = "id") int id){
         boolean delete = typeService.delete(id);
         return delete
@@ -40,8 +38,8 @@ public class TypeCargoController {
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
-    @GetMapping("/type/displayBuId")
-    public TypeCargo showById (@RequestBody TypeCargo typeCargo) {
-        return typeService.searchById(typeCargo);
+    @GetMapping("/type/{id}")
+    public TypeCargo displayById(@PathVariable(name = "id") int id) {
+        return typeService.displayById(id);
     }
 }

@@ -13,22 +13,30 @@ public class Order {
     @Column (name = "name")
     private String name;
 
-    @Column (name = "destination_id")
-    private int destinationId;
+    @OneToOne
+    @JoinColumn(name = "destinationId")
+    private Address destinationId;
 
-    @Column (name = "driver_id")
-    private int driverId;
+    @OneToOne
+    @JoinColumn(name = "locationId")
+    private Address locationId;
 
-    @Column (name = "box_id")
-    private int boxId;
+    @OneToOne
+    @JoinColumn(name = "driverId")
+    private Client driverId;
+
+    @OneToOne
+    @JoinColumn(name = "boxId")
+    private Box boxId;
 
     @Column (name = "price")
     private int price;
 
-    @Column (name = "receiver_id")
-    private int receiverId;
+    @OneToOne
+    @JoinColumn(name = "receiverId")
+    private Client receiverId;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne
     @JoinColumn( name = "status_id")
     private Status status;
 
@@ -48,29 +56,35 @@ public class Order {
         this.name = name;
     }
 
-
-    public int getDestinationID() {
+    public Address getDestinationId() {
         return destinationId;
     }
 
-    public void setDestinationID(int destinationID) {
+    public void setDestinationId(Address destinationId) {
         this.destinationId = destinationId;
     }
 
+    public Address getLocationId() {
+        return locationId;
+    }
 
-    public int getDriverId() {
+    public void setLocationId(Address locationId) {
+        this.locationId = locationId;
+    }
+
+    public Client getDriverId() {
         return driverId;
     }
 
-    public void setDriverId(int driverId) {
+    public void setDriverId(Client driverId) {
         this.driverId = driverId;
     }
 
-    public int getBoxId() {
+    public Box getBoxId() {
         return boxId;
     }
 
-    public void setBoxId(int boxId) {
+    public void setBoxId(Box boxId) {
         this.boxId = boxId;
     }
 
@@ -82,11 +96,11 @@ public class Order {
         this.price = price;
     }
 
-    public int getReceiverId() {
+    public Client getReceiverId() {
         return receiverId;
     }
 
-    public void setReceiverId(int receiverId) {
+    public void setReceiverId(Client receiverId) {
         this.receiverId = receiverId;
     }
 

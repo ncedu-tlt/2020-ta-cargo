@@ -23,19 +23,25 @@ public class Box {
     @Column(name = "volume")
     private Integer volume;
 
-    @Column(name = "current_location")
-    private Integer currentLocation;
+    @OneToOne
+    @JoinColumn(name = "client_id")
+    private Client clientId;
 
-    @Column(name = "client_id")
-    private Integer clientId;
-
+    @OneToOne
     @JoinColumn (name="type_id")
-    @OneToOne (fetch = FetchType.EAGER)
     private TypeCargo typeCargo;
 
 
     @Column(name = "weight")
     private Integer weight;
+
+    public Client getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Client clientId) {
+        this.clientId = clientId;
+    }
 
     public Integer getBoxId() {
         return boxId;
@@ -84,26 +90,6 @@ public class Box {
     public void setVolume(Integer volume) {
         if((volume != null)) {
             this.volume = volume;
-        }
-    }
-
-    public Integer getCurrentLocation() {
-        return currentLocation;
-    }
-
-    public void setCurrentLocation(Integer currentLocation) {
-        if((currentLocation != null)) {
-            this.currentLocation = currentLocation;
-        }
-    }
-
-    public Integer getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(Integer clientId) {
-        if((clientId != null)) {
-            this.clientId = clientId;
         }
     }
 

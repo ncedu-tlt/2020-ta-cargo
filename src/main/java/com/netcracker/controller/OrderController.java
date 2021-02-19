@@ -11,31 +11,30 @@ import java.util.List;
 
 @RestController
 public class OrderController {
-    private OrderService orderService;
+
+    private final OrderService orderService;
 
     @Autowired
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
 
-    @GetMapping("/order/getAll")
+    @GetMapping("/order")
     public List<Order> showAll () {
-        orderService.displayAll();
         return orderService.displayAll();
     }
 
-    @PostMapping("/order/create")
+    @PostMapping("/order")
     public Order create (@RequestBody Order order){
         orderService.create(order);
         return  order;
     }
 
-    @DeleteMapping ("/order/delete/{id}")
+    @DeleteMapping ("/order/{id}")
     public ResponseEntity<?> delete (@PathVariable(name = "id") int id){
         boolean delete = orderService.delete(id);
         return delete
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
-
     }
 }
