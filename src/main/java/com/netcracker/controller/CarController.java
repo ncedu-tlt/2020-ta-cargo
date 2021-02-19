@@ -21,9 +21,9 @@ public class CarController {
     }
 
     @PostMapping("/car")
-    public ResponseEntity<?> create(@RequestBody Car car){
+    public Car create(@RequestBody Car car){
         carService.create(car);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return car;
     }
 
     @GetMapping("/car")

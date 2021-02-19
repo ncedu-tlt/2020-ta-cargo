@@ -20,9 +20,9 @@ public class TrailerController {
     }
 
     @PostMapping("/trailer")
-    public ResponseEntity<?> create(@RequestBody Trailer trailer){
+    public Trailer create(@RequestBody Trailer trailer){
         trailerService.create(trailer);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return trailer;
     }
 
 

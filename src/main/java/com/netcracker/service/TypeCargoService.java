@@ -21,8 +21,9 @@ public class TypeCargoService implements Serviceable<TypeCargo>{
     }
 
     @Override
-    public void create(TypeCargo type) {
+    public TypeCargo create(TypeCargo type) {
         typeRepository.save(type);
+        return type;
     }
 
     @Override

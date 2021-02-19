@@ -18,8 +18,9 @@ public class CarService implements Serviceable<Car> {
     }
 
     @Override
-    public void create(Car object) {
+    public Car create(Car object) {
         carRepository.saveAndFlush(object);
+        return object;
     }
 
     @Override
