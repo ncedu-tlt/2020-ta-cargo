@@ -31,7 +31,6 @@ public class Box {
     @JoinColumn (name="type_id")
     private TypeCargo typeCargo;
 
-
     @Column(name = "weight")
     private Integer weight;
 

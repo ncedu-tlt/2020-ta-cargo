@@ -18,8 +18,9 @@ public class TrailerService implements Serviceable<Trailer>{
     }
 
     @Override
-    public void create(Trailer object) {
+    public Trailer create(Trailer object) {
         trailerRepository.saveAndFlush(object);
+        return object;
     }
 
     @Override

@@ -20,9 +20,9 @@ public class AddressController {
     }
 
     @PostMapping("/address")
-    public ResponseEntity<?> create(@RequestBody Address address){
+    public Address create(@RequestBody Address address){
         addressService.create(address);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return address;
     }
 
     @GetMapping("/address")
