@@ -30,9 +30,8 @@ public class BoxController {
 
 
     @PostMapping("/box")
-    public void create(@RequestBody Box box) {
-        boxService.create(box);
-        return box;
+    public Box create(@RequestBody Box box) {
+       return boxService.create(box);
     }
 
     @DeleteMapping ("/box/{id}")
