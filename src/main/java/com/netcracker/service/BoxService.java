@@ -20,8 +20,9 @@ public class BoxService implements Serviceable<Box> {
     }
 
     @Override
-    public void create(Box box) {
+    public Box create(Box box) {
         boxRepository.saveAndFlush(box);
+        return box;
     }
 
     @Override

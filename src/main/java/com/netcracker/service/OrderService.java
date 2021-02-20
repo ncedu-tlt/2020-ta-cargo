@@ -19,8 +19,9 @@ public class OrderService implements Serviceable<Order> {
     }
 
     @Override
-    public void create(Order order) {
+    public Order create(Order order) {
         orderRepository.save(order);
+        return order;
     }
 
     @Override

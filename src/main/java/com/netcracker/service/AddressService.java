@@ -19,8 +19,9 @@ public class AddressService implements Serviceable<Address> {
     }
 
     @Override
-    public void create(Address address){
+    public Address create(Address address){
         addressRepository.saveAndFlush(address);
+        return address;
     }
 
     @Override

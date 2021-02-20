@@ -20,8 +20,9 @@ public class ClientService implements Serviceable<Client>{
     }
 
     @Override
-    public void create(Client client) {
+    public Client create(Client client) {
         clientRepository.saveAndFlush(client);
+        return client;
     }
 
     @Override

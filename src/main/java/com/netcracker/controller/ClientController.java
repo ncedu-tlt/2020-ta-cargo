@@ -21,9 +21,9 @@ public class ClientController {
 
 
     @PostMapping("/client")
-    public ResponseEntity<?> create(@RequestBody Client client){
+    public Client create(@RequestBody Client client){
         clientService.create(client);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return client;
     }
 
     @GetMapping("/client")
