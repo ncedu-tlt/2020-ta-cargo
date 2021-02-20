@@ -1,7 +1,6 @@
 package com.netcracker.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "cg_clients")
@@ -24,17 +23,16 @@ public class Client {
     @Column(name = "drive_category")
     private String driveCategory;
 
-
     @OneToOne(mappedBy = "client", orphanRemoval = true)
-    private Car cars;
+    private Car car;
 
-    public Car getCars() {
-        return cars;
+    public Car getCar() {
+        return car;
     }
 
-    public void setCars(Car cars) {
+    public void setCar(Car cars) {
         if(cars != null){
-        this.cars = cars;
+        this.car = cars;
         }
     }
 

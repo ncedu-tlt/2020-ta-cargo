@@ -15,26 +15,26 @@ public class Order {
 
     @OneToOne
     @JoinColumn(name = "destinationId")
-    private Address destinationId;
+    private Address destination;
 
     @OneToOne
     @JoinColumn(name = "locationId")
-    private Address locationId;
+    private Address location;
 
     @OneToOne
     @JoinColumn(name = "driverId")
-    private Client driverId;
+    private Client driver;
 
     @OneToOne
     @JoinColumn(name = "boxId")
-    private Box boxId;
+    private Box box;
 
     @Column (name = "price")
     private int price;
 
     @OneToOne
     @JoinColumn(name = "receiverId")
-    private Client receiverId;
+    private Client receiver;
 
     @OneToOne
     @JoinColumn( name = "status_id")
@@ -56,36 +56,36 @@ public class Order {
         this.name = name;
     }
 
-    public Address getDestinationId() {
-        return destinationId;
+    public Address getDestination() {
+        return destination;
     }
 
-    public void setDestinationId(Address destinationId) {
-        this.destinationId = destinationId;
+    public void setDestination(Address destinationId) {
+        this.destination = destinationId;
     }
 
-    public Address getLocationId() {
-        return locationId;
+    public Address getLocation() {
+        return location;
     }
 
-    public void setLocationId(Address locationId) {
-        this.locationId = locationId;
+    public void setLocation(Address locationId) {
+        this.location = locationId;
     }
 
-    public Client getDriverId() {
-        return driverId;
+    public Client getDriver() {
+        return driver;
     }
 
-    public void setDriverId(Client driverId) {
-        this.driverId = driverId;
+    public void setDriver(Client driverId) {
+        this.driver = driverId;
     }
 
-    public Box getBoxId() {
-        return boxId;
+    public Box getBox() {
+        return box;
     }
 
-    public void setBoxId(Box boxId) {
-        this.boxId = boxId;
+    public void setBox(Box boxId) {
+        this.box = boxId;
     }
 
     public int getPrice() {
@@ -96,12 +96,12 @@ public class Order {
         this.price = price;
     }
 
-    public Client getReceiverId() {
-        return receiverId;
+    public Client getReceiver() {
+        return receiver;
     }
 
-    public void setReceiverId(Client receiverId) {
-        this.receiverId = receiverId;
+    public void setReceiver(Client receiverId) {
+        this.receiver = receiverId;
     }
 
     public Status getStatus() {

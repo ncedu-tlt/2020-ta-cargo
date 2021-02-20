@@ -17,12 +17,10 @@ import java.util.List;
 public class BoxController {
 
     private final  BoxService boxService;
-    private  final ClientService clientService;
 
     @Autowired
-    public BoxController(BoxService boxService, ClientService clientService) {
+    public BoxController(BoxService boxService) {
         this.boxService = boxService;
-        this.clientService = clientService;
     }
 
     @PatchMapping ("/box")
@@ -49,7 +47,7 @@ public class BoxController {
         return boxService.displayAll();
     }
 
-    @GetMapping("/box/showById/{id}")
+    @GetMapping("/box/{id}")
     public ResponseEntity<Box> showById (@PathVariable(name = "id") int id) {
         Box box = boxService.displayById(id);
         return box != null
@@ -58,10 +56,9 @@ public class BoxController {
 
     }
 
-    @GetMapping("/box/ClientId/{id}")
+    @GetMapping("/box/byClientId/{id}")
     public ResponseEntity<Box> displayByClientId (@PathVariable(name = "id") Integer id) {
-        Client client = clientService.displayById(id);
-        Box box = boxService.displayByClientId(client);
+        Box box = boxService.displayByClientId(id);
         return box != null
                 ? new ResponseEntity<>(box, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);

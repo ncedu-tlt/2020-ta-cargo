@@ -1,6 +1,5 @@
 package com.netcracker.service;
 
-import com.netcracker.model.Client;
 import com.netcracker.repository.BoxRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,8 +45,8 @@ public class BoxService implements Serviceable<Box> {
             boxForModify.setWeight(box.getWeight());
             boxForModify.setWidth(box.getWidth());
             boxForModify.setVolume(box.getVolume());
-            boxForModify.setClientId(box.getClientId());
             boxForModify.setTypeCargo(box.getTypeCargo());
+            boxForModify.setClient(box.getClient());
             boxRepository.saveAndFlush(boxForModify);
             return true;
         } else return false;
@@ -57,8 +56,8 @@ public class BoxService implements Serviceable<Box> {
         return boxRepository.findById(id).get();
     }
 
-    public Box displayByClientId(Client client){
-        return boxRepository.findBoxByClientId(client).get();
+    public Box displayByClientId(Integer id){
+        return boxRepository.findBoxByClient_UserId(id).get();
     }
 
 }

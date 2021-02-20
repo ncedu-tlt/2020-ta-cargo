@@ -25,22 +25,34 @@ public class Box {
 
     @OneToOne
     @JoinColumn(name = "client_id")
-    private Client clientId;
+    private Client client;
 
     @OneToOne
     @JoinColumn (name="type_id")
     private TypeCargo typeCargo;
 
-
     @Column(name = "weight")
     private Integer weight;
 
-    public Client getClientId() {
-        return clientId;
+
+    public Client getClient() {
+        return client;
     }
 
-    public void setClientId(Client clientId) {
-        this.clientId = clientId;
+    public void setClient(Client client) {
+        if(client != null) {
+            this.client = client;
+        }
+    }
+
+    public TypeCargo getTypeCargo() {
+        return typeCargo;
+    }
+
+    public void setTypeCargo(TypeCargo typeCargo) {
+        if(typeCargo != null) {
+            this.typeCargo = typeCargo;
+        }
     }
 
     public Integer getBoxId() {
@@ -93,7 +105,6 @@ public class Box {
         }
     }
 
-
     public Integer getWeight() {
         return weight;
     }
@@ -102,15 +113,5 @@ public class Box {
         if((weight != null) ) {
             this.weight = weight;
         }
-    }
-
-    public TypeCargo getTypeCargo() {
-        return typeCargo;
-    }
-
-    public void setTypeCargo(TypeCargo typeCargo) {
-        if(typeCargo != null) {
-        this.typeCargo = typeCargo;
-    }
     }
 }
