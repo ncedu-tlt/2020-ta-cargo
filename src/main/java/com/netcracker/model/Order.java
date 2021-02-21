@@ -8,7 +8,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "order_id")
-    private Long id;
+    private Integer id;
 
     @Column (name = "name")
     private String name;
@@ -40,11 +40,11 @@ public class Order {
     @JoinColumn( name = "status_id")
     private Status status;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
