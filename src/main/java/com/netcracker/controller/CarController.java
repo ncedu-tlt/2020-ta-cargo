@@ -1,6 +1,5 @@
 package com.netcracker.controller;
 
-
 import com.netcracker.model.Car;
 import com.netcracker.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class CarController {
 
     private final CarService carService;
@@ -48,6 +48,14 @@ public class CarController {
         return updateField
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    }
+
+    @GetMapping("/car/byOrderId/{id}")
+    public ResponseEntity<Car> displayCarByOrderId(@PathVariable(name = "id") int id){
+        final Car car = carService.displayCarByOrderId(id);
+        return car != null
+                ? new ResponseEntity<>(car, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 }

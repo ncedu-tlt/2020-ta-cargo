@@ -9,8 +9,13 @@ import java.util.List;
 
 @Service
 public class OrderService implements Serviceable<Order> {
+
+    private final OrderRepository orderRepository;
+
     @Autowired
-    private OrderRepository orderRepository;
+    public OrderService(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
 
     @Override
     public Order create(Order order) {
@@ -30,4 +35,7 @@ public class OrderService implements Serviceable<Order> {
             return true;
         } else return false;
     }
-}
+    Order displayById(Integer id){
+       return orderRepository.findById(id).get();
+    }
+ }

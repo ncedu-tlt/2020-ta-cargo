@@ -9,10 +9,15 @@ import java.util.List;
 
 
 @Service
-public class BoxService implements Serviceable<Box>{
+public class BoxService implements Serviceable<Box> {
+
+
+    private final BoxRepository boxRepository;
 
     @Autowired
-    private BoxRepository boxRepository;
+    public BoxService(BoxRepository boxRepository) {
+        this.boxRepository = boxRepository;
+    }
 
     @Override
     public Box create(Box box) {
@@ -26,35 +31,35 @@ public class BoxService implements Serviceable<Box>{
     }
 
     @Override
-    public boolean delete (Integer id) {
+    public boolean delete(Integer id) {
         if (boxRepository.existsById(id)) {
             boxRepository.deleteById(id);
             return true;
         } else return false;
     }
 
-    public boolean editBox (Box box){
+    public boolean modify(Box box) {
         if (boxRepository.existsById(box.getBoxId())) {
-            Box boxForModify = searchById(box);
+            Box boxForModify = displayById(box.getBoxId());
             boxForModify.setName(box.getName());
             boxForModify.setHeight(box.getHeight());
             boxForModify.setWeight(box.getWeight());
             boxForModify.setWidth(box.getWidth());
             boxForModify.setVolume(box.getVolume());
-            boxForModify.setCurrentLocation(box.getCurrentLocation());
-            boxForModify.setClientId(box.getClientId());
             boxForModify.setTypeCargo(box.getTypeCargo());
+            boxForModify.setClient(box.getClient());
             boxRepository.saveAndFlush(boxForModify);
             return true;
-        }else return false;
+        } else return false;
     }
 
-    public Box searchById (Box box) {
-        return boxRepository.findById(box.getBoxId()).get();
+    public Box displayById(Integer id) {
+        return boxRepository.findById(id).get();
     }
 
-    public List<Box> searchByUser (Box box){
-        return boxRepository.findBoxByClientId(box.getClientId());
+    public Box displayByClientId(Integer id){
+        return boxRepository.findBoxByClient_UserId(id).get();
     }
+
 }
 

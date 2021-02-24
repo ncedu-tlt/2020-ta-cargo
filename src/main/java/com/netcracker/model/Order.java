@@ -8,35 +8,43 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "order_id")
-    private Long id;
+    private Integer id;
 
     @Column (name = "name")
     private String name;
 
-    @Column (name = "destination_id")
-    private int destinationId;
+    @OneToOne
+    @JoinColumn(name = "destinationId")
+    private Address destination;
 
-    @Column (name = "driver_id")
-    private int driverId;
+    @OneToOne
+    @JoinColumn(name = "locationId")
+    private Address location;
 
-    @Column (name = "box_id")
-    private int boxId;
+    @OneToOne
+    @JoinColumn(name = "driverId")
+    private Client driver;
+
+    @OneToOne
+    @JoinColumn(name = "boxId")
+    private Box box;
 
     @Column (name = "price")
     private int price;
 
-    @Column (name = "receiver_id")
-    private int receiverId;
+    @OneToOne
+    @JoinColumn(name = "receiverId")
+    private Client receiver;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne
     @JoinColumn( name = "status_id")
     private Status status;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -48,30 +56,36 @@ public class Order {
         this.name = name;
     }
 
-
-    public int getDestinationID() {
-        return destinationId;
+    public Address getDestination() {
+        return destination;
     }
 
-    public void setDestinationID(int destinationID) {
-        this.destinationId = destinationId;
+    public void setDestination(Address destinationId) {
+        this.destination = destinationId;
     }
 
-
-    public int getDriverId() {
-        return driverId;
+    public Address getLocation() {
+        return location;
     }
 
-    public void setDriverId(int driverId) {
-        this.driverId = driverId;
+    public void setLocation(Address locationId) {
+        this.location = locationId;
     }
 
-    public int getBoxId() {
-        return boxId;
+    public Client getDriver() {
+        return driver;
     }
 
-    public void setBoxId(int boxId) {
-        this.boxId = boxId;
+    public void setDriver(Client driverId) {
+        this.driver = driverId;
+    }
+
+    public Box getBox() {
+        return box;
+    }
+
+    public void setBox(Box boxId) {
+        this.box = boxId;
     }
 
     public int getPrice() {
@@ -82,12 +96,12 @@ public class Order {
         this.price = price;
     }
 
-    public int getReceiverId() {
-        return receiverId;
+    public Client getReceiver() {
+        return receiver;
     }
 
-    public void setReceiverId(int receiverId) {
-        this.receiverId = receiverId;
+    public void setReceiver(Client receiverId) {
+        this.receiver = receiverId;
     }
 
     public Status getStatus() {

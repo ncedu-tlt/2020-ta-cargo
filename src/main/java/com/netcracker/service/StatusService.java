@@ -28,7 +28,4 @@ public class StatusService {
         }
         return status;
     }
-//    public void statusOption (Status status){ // предложить
-//
-//    }
 }

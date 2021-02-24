@@ -23,18 +23,37 @@ public class Box {
     @Column(name = "volume")
     private Integer volume;
 
-    @Column(name = "current_location")
-    private Integer currentLocation;
+    @OneToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
 
-    @Column(name = "client_id")
-    private Integer clientId;
-
+    @OneToOne
     @JoinColumn (name="type_id")
-    @OneToOne (fetch = FetchType.EAGER)
     private TypeCargo typeCargo;
 
     @Column(name = "weight")
     private Integer weight;
+
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        if(client != null) {
+            this.client = client;
+        }
+    }
+
+    public TypeCargo getTypeCargo() {
+        return typeCargo;
+    }
+
+    public void setTypeCargo(TypeCargo typeCargo) {
+        if(typeCargo != null) {
+            this.typeCargo = typeCargo;
+        }
+    }
 
     public Integer getBoxId() {
         return boxId;
@@ -86,27 +105,6 @@ public class Box {
         }
     }
 
-    public Integer getCurrentLocation() {
-        return currentLocation;
-    }
-
-    public void setCurrentLocation(Integer currentLocation) {
-        if((currentLocation != null)) {
-            this.currentLocation = currentLocation;
-        }
-    }
-
-    public Integer getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(Integer clientId) {
-        if((clientId != null)) {
-            this.clientId = clientId;
-        }
-    }
-
-
     public Integer getWeight() {
         return weight;
     }
@@ -115,15 +113,5 @@ public class Box {
         if((weight != null) ) {
             this.weight = weight;
         }
-    }
-
-    public TypeCargo getTypeCargo() {
-        return typeCargo;
-    }
-
-    public void setTypeCargo(TypeCargo typeCargo) {
-        if(typeCargo != null) {
-        this.typeCargo = typeCargo;
-    }
     }
 }

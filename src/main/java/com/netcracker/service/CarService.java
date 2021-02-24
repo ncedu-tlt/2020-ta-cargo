@@ -1,20 +1,26 @@
 package com.netcracker.service;
 
 import com.netcracker.model.Car;
+import com.netcracker.model.Order;
 import com.netcracker.repository.CarRepository;
+import com.netcracker.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @Service
 public class CarService implements Serviceable<Car> {
 
     private final CarRepository carRepository;
+    private final OrderService orderService;
 
     @Autowired
-    public CarService(CarRepository carRepository) {
+    public CarService(CarRepository carRepository,
+                      OrderService orderService) {
         this.carRepository = carRepository;
+        this.orderService = orderService;
     }
 
     @Override
@@ -50,5 +56,11 @@ public class CarService implements Serviceable<Car> {
             carRepository.saveAndFlush(carForModify);
             return true;
         }else return false;
+    }
+
+    public Car displayCarByOrderId(Integer id){
+        Order order = orderService.displayById(id);
+        Car car = order.getDriver().getCar();
+        return car;
     }
 }

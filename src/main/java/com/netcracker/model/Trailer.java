@@ -27,9 +27,9 @@ public class Trailer {
     private Integer liftingCapacity;
 
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "CAR_ID")
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @OneToOne
+    @JoinColumn(name = "car_id")
     private Car car;
 
     public Integer getId() {

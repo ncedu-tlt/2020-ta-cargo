@@ -2,7 +2,6 @@ package com.netcracker.model;
 
 import javax.persistence.*;
 
-
     @Entity
     @Table(name = "cg_status")
     public class Status {
