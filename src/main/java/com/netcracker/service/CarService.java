@@ -14,13 +14,13 @@ import java.util.List;
 public class CarService implements Serviceable<Car> {
 
     private final CarRepository carRepository;
-    private final OrderRepository orderRepository;
+    private final OrderService orderService;
 
     @Autowired
     public CarService(CarRepository carRepository,
-                      OrderRepository orderRepository) {
+                      OrderService orderService) {
         this.carRepository = carRepository;
-        this.orderRepository = orderRepository;
+        this.orderService = orderService;
     }
 
     @Override
@@ -59,7 +59,7 @@ public class CarService implements Serviceable<Car> {
     }
 
     public Car displayCarByOrderId(Integer id){
-        Order order = orderRepository.findById(id).get();
+        Order order = orderService.displayById(id);
         Car car = order.getDriver().getCar();
         return car;
     }

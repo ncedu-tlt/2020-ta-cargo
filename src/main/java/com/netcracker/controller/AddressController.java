@@ -10,6 +10,7 @@ import com.netcracker.service.AddressService;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class AddressController {
 
     private final AddressService addressService;

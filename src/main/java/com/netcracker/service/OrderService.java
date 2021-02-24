@@ -35,4 +35,7 @@ public class OrderService implements Serviceable<Order> {
             return true;
         } else return false;
     }
+    Order displayById(Integer id){
+       return orderRepository.findById(id).get();
+    }
  }
