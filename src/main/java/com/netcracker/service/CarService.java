@@ -1,6 +1,8 @@
 package com.netcracker.service;
 
+import com.netcracker.exception.SomethingNotFoundException;
 import com.netcracker.model.Car;
+import com.netcracker.model.Client;
 import com.netcracker.model.Order;
 import com.netcracker.repository.CarRepository;
 import com.netcracker.repository.OrderRepository;
@@ -35,7 +37,8 @@ public class CarService implements Serviceable<Car> {
     }
 
     public Car displayById(Integer id) {
-        return carRepository.findById(id).get();
+        return carRepository.findById(id).
+                orElseThrow(() -> new SomethingNotFoundException("your Id " + id + " not found"));
     }
 
     @Override
@@ -60,7 +63,8 @@ public class CarService implements Serviceable<Car> {
 
     public Car displayCarByOrderId(Integer id){
         Order order = orderService.displayById(id);
-        Car car = order.getDriver().getCar();
+        Client driver = order.getDriver();
+        Car car = driver.getCar();
         return car;
     }
 }

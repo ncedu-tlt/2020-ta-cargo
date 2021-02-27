@@ -1,6 +1,7 @@
 package com.netcracker.service;
 
 
+import com.netcracker.exception.SomethingNotFoundException;
 import com.netcracker.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,15 +32,18 @@ public class ClientService implements Serviceable<Client>{
     }
 
     public Client displayById(Integer id) {
-        return clientRepository.findById(id).get();
+        return clientRepository.findById(id).
+                orElseThrow(() -> new SomethingNotFoundException("Client with this id " + id + " not found"));
     }
 
     public Client displayByEmail(String email) {
-        return clientRepository.findByEmail(email).get();
+        return clientRepository.findByEmail(email).
+                orElseThrow(() -> new SomethingNotFoundException("Client with this email" + email + " not found"));
     }
 
     public Client displayByPhone(String phone) {
-        return clientRepository.findByPhone(phone).get();
+        return clientRepository.findByPhone(phone).
+        orElseThrow(() -> new SomethingNotFoundException("Client with this phone " + phone + " not found"));
     }
 
     @Override

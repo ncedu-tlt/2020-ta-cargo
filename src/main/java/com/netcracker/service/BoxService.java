@@ -1,11 +1,14 @@
 package com.netcracker.service;
 
+import com.netcracker.exception.SomethingNotFoundException;
+import com.netcracker.model.Client;
 import com.netcracker.repository.BoxRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.netcracker.model.Box;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -54,12 +57,13 @@ public class BoxService implements Serviceable<Box> {
     }
 
     public Box displayById(Integer id) {
-        return boxRepository.findById(id).get();
+        return boxRepository.findById(id).
+                orElseThrow(() -> new SomethingNotFoundException("The Box " + id + " not found"));
     }
 
-    public Box displayByClientId(Integer id){
-        return boxRepository.findBoxByClient_UserId(id).get();
+    public List<Box> displayByClientId(Integer id){
+        return boxRepository.findBoxByClientUserId(id).
+                orElseThrow(() -> new SomethingNotFoundException("The Client with Id " + id + " doesn't have any box"));
     }
-
 }
 

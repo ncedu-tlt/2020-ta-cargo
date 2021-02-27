@@ -1,5 +1,6 @@
 package com.netcracker.service;
 
+import com.netcracker.exception.SomethingNotFoundException;
 import com.netcracker.model.Order;
 import com.netcracker.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,13 @@ public class OrderService implements Serviceable<Order> {
         } else return false;
     }
     Order displayById(Integer id){
-       return orderRepository.findById(id).get();
+       return orderRepository.findById(id).
+               orElseThrow(() -> new SomethingNotFoundException("your Id " + id + " not found"));
+    }
+
+    public boolean isItHere (Integer id){
+        if(orderRepository.existsById(id)){
+            return true;
+        }else return false;
     }
  }

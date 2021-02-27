@@ -1,5 +1,6 @@
 package com.netcracker.controller;
 
+import com.netcracker.exception.SomethingNotFoundException;
 import com.netcracker.model.Car;
 import com.netcracker.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +22,13 @@ public class CarController {
     }
 
     @PostMapping("/car")
-    public Car create(@RequestBody Car car){
+    public Car create(@RequestBody Car car) {
         carService.create(car);
         return car;
     }
 
     @GetMapping("/car")
-    public ResponseEntity<List<Car>> displayAll(){
+    public ResponseEntity<List<Car>> displayAll() {
         final List<Car> carList = carService.displayAll();
         return carList != null && !carList.isEmpty()
                 ? new ResponseEntity<>(carList, HttpStatus.OK)
@@ -35,7 +36,7 @@ public class CarController {
     }
 
     @DeleteMapping("/car/{id}")
-    public ResponseEntity<?> delete(@PathVariable(name = "id") int id){
+    public ResponseEntity<?> delete(@PathVariable(name = "id") int id) {
         boolean delete = carService.delete(id);
         return delete
                 ? new ResponseEntity<>(HttpStatus.OK)
@@ -43,7 +44,7 @@ public class CarController {
     }
 
     @PatchMapping("/car")
-    public ResponseEntity<?> modify(@RequestBody Car car ){
+    public ResponseEntity<?> modify(@RequestBody Car car) {
         final boolean updateField = carService.modify(car);
         return updateField
                 ? new ResponseEntity<>(HttpStatus.OK)
@@ -51,11 +52,8 @@ public class CarController {
     }
 
     @GetMapping("/car/byOrderId/{id}")
-    public ResponseEntity<Car> displayCarByOrderId(@PathVariable(name = "id") int id){
-        final Car car = carService.displayCarByOrderId(id);
-        return car != null
-                ? new ResponseEntity<>(car, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
+    public Car displayCarByOrderId(@PathVariable(name = "id") int id) {
+        return carService.displayCarByOrderId(id);
 
+    }
 }

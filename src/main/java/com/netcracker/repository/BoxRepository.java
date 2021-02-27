@@ -10,5 +10,5 @@ import java.util.Optional;
 
 @Repository
 public interface BoxRepository extends JpaRepository<Box, Integer> {
-    Optional<Box> findBoxByClient_UserId(Integer id);
+    Optional<List<Box>> findBoxByClientUserId(Integer id);
 }

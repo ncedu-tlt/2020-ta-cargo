@@ -1,5 +1,6 @@
 package com.netcracker.service;
 
+import com.netcracker.exception.SomethingNotFoundException;
 import com.netcracker.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,8 @@ public class AddressService implements Serviceable<Address> {
     }
 
     public Address displayById(Integer id){
-        return addressRepository.findById(id).get();
+        return addressRepository.findById(id).
+                orElseThrow(() -> new SomethingNotFoundException("your Id " + id + " not found"));
     }
 
     @Override

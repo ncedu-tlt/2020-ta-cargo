@@ -1,5 +1,6 @@
 package com.netcracker.service;
 
+import com.netcracker.exception.SomethingNotFoundException;
 import com.netcracker.model.Trailer;
 import com.netcracker.repository.TrailerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +26,21 @@ public class TrailerService implements Serviceable<Trailer>{
 
     @Override
     public List<Trailer> displayAll() {
-        return  trailerRepository.findAll();
+        try {
+            return trailerRepository.findAll();
+        }catch (Exception ex){
+            throw new SomethingNotFoundException("There aren't any Trailers");
+        }
     }
 
     public Trailer displayById(Integer id) {
-        return trailerRepository.findById(id).get();
+        return trailerRepository.findById(id).
+           orElseThrow(() -> new SomethingNotFoundException("your Id " + id + " not found"));
     }
 
     public Trailer displayByVolume(Integer volume) {
-        return trailerRepository.findByVolume(volume).get();
+        return trailerRepository.findByVolume(volume).
+                orElseThrow(() -> new SomethingNotFoundException("your volume " + volume + " not found"));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.netcracker.service;
 
+import com.netcracker.exception.SomethingNotFoundException;
 import com.netcracker.model.Status;
 import com.netcracker.repository.StatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,8 @@ public class StatusService {
     }
 
     public Status displayById(int id){
-        return statusRepository.findById(id).get();
+        return statusRepository.findById(id).
+                orElseThrow(() -> new SomethingNotFoundException("your Id " + id + " not found"));
     }
 
     public Status deleteStatus (Status status){
