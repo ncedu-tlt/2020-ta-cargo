@@ -1,5 +1,6 @@
 package com.netcracker.controller;
 
+import com.netcracker.model.Address;
 import com.netcracker.model.Order;
 import com.netcracker.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,4 +39,10 @@ public class OrderController {
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
+
+    @GetMapping ("/order/showCity/{city}")
+    public  List<Order> searchByCity (@PathVariable(name = "city") String city){
+        return orderService.searchByCity(city);
+    }
+
 }

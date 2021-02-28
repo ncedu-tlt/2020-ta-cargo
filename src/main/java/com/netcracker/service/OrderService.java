@@ -38,4 +38,9 @@ public class OrderService implements Serviceable<Order> {
     Order displayById(Integer id){
        return orderRepository.findById(id).get();
     }
+    public List<Order> searchByCity (String city){
+       return orderRepository.findOrderByLocation_City(city);
+    }
+
+
  }
