@@ -26,7 +26,11 @@ public class OrderService implements Serviceable<Order> {
 
     @Override
     public List<Order> displayAll() {
+        try{
         return orderRepository.findAll();
+    }catch (Exception ex){
+        throw new SomethingNotFoundException("There aren't any Orders");
+    }
     }
 
     @Override

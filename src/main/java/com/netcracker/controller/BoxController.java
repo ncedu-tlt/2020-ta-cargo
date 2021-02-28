@@ -2,9 +2,7 @@ package com.netcracker.controller;
 
 
 import com.netcracker.model.Box;
-import com.netcracker.model.Client;
 import com.netcracker.service.BoxService;
-import com.netcracker.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

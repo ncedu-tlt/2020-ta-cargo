@@ -28,7 +28,11 @@ public class ClientService implements Serviceable<Client>{
 
     @Override
     public List<Client> displayAll() {
+        try{
         return clientRepository.findAll();
+    }catch (Exception ex){
+        throw new SomethingNotFoundException("There aren't any Clients");
+    }
     }
 
     public Client displayById(Integer id) {

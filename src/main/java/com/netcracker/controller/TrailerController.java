@@ -28,11 +28,9 @@ public class TrailerController {
 
 
     @GetMapping("/trailer")
-    public ResponseEntity<List<Trailer>> displayAll(){
-        final List<Trailer> trailerList = trailerService.displayAll();
-        return trailerList != null && !trailerList.isEmpty()
-                ? new ResponseEntity<>(trailerList, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public List<Trailer> displayAll(){
+        return trailerService.displayAll();
+
     }
 
 

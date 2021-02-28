@@ -30,7 +30,11 @@ public class BoxService implements Serviceable<Box> {
 
     @Override
     public List<Box> displayAll() {
+        try {
         return boxRepository.findAll();
+        }catch (Exception ex){
+            throw new SomethingNotFoundException("There aren't any Boxes");
+        }
     }
 
     @Override

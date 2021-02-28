@@ -27,7 +27,11 @@ public class AddressService implements Serviceable<Address> {
 
     @Override
     public List<Address> displayAll(){
+        try{
         return addressRepository.findAll();
+        }catch (Exception ex){
+            throw new SomethingNotFoundException("There aren't any Addresses");
+        }
     }
 
     public Address displayById(Integer id){

@@ -27,11 +27,9 @@ public class AddressController {
     }
 
     @GetMapping("/address")
-    public ResponseEntity<List<Address>> displayAll(){
-        final List<Address> addressList = addressService.displayAll();
-        return addressList != null && !addressList.isEmpty()
-                ? new ResponseEntity<>(addressList, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public List<Address> displayAll(){
+        return addressService.displayAll();
+
     }
 
     @DeleteMapping("/address/{id}")

@@ -28,11 +28,9 @@ public class ClientController {
     }
 
     @GetMapping("/client")
-    public ResponseEntity<List<Client>> displayAll(){
-        final List<Client> clientList = clientService.displayAll();
-        return clientList != null && !clientList.isEmpty()
-                ? new ResponseEntity<>(clientList, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public List<Client> displayAll(){
+        return clientService.displayAll();
+
     }
 
     @GetMapping("/client/{id}")

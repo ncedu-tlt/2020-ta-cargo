@@ -28,11 +28,9 @@ public class CarController {
     }
 
     @GetMapping("/car")
-    public ResponseEntity<List<Car>> displayAll() {
-        final List<Car> carList = carService.displayAll();
-        return carList != null && !carList.isEmpty()
-                ? new ResponseEntity<>(carList, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public List<Car> displayAll() {
+        return carService.displayAll();
+
     }
 
     @DeleteMapping("/car/{id}")
