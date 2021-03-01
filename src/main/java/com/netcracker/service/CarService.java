@@ -1,13 +1,14 @@
 package com.netcracker.service;
 
+import com.netcracker.exception.SomethingNotFoundException;
 import com.netcracker.model.Car;
+import com.netcracker.model.Client;
 import com.netcracker.model.Order;
 import com.netcracker.repository.CarRepository;
-import com.netcracker.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
+
 import java.util.List;
 
 @Service
@@ -31,11 +32,16 @@ public class CarService implements Serviceable<Car> {
 
     @Override
     public List<Car> displayAll() {
+        try{
         return carRepository.findAll();
+    }catch (Exception ex){
+        throw new SomethingNotFoundException("There aren't any Cars");
+    }
     }
 
     public Car displayById(Integer id) {
-        return carRepository.findById(id).get();
+        return carRepository.findById(id).
+                orElseThrow(() -> new SomethingNotFoundException("your Id " + id + " not found"));
     }
 
     @Override
@@ -60,7 +66,8 @@ public class CarService implements Serviceable<Car> {
 
     public Car displayCarByOrderId(Integer id){
         Order order = orderService.displayById(id);
-        Car car = order.getDriver().getCar();
+        Client driver = order.getDriver();
+        Car car = driver.getCar();
         return car;
     }
 }

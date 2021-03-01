@@ -28,35 +28,26 @@ public class ClientController {
     }
 
     @GetMapping("/client")
-    public ResponseEntity<List<Client>> displayAll(){
-        final List<Client> clientList = clientService.displayAll();
-        return clientList != null && !clientList.isEmpty()
-                ? new ResponseEntity<>(clientList, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public List<Client> displayAll(){
+        return clientService.displayAll();
+
     }
 
     @GetMapping("/client/{id}")
-    public ResponseEntity<Client> displayById(@PathVariable(name = "id") int id){
-        final Client client = clientService.displayById(id);
-        return client != null
-                ? new ResponseEntity<>(client, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public Client displayById(@PathVariable(name = "id") int id){
+        return clientService.displayById(id);
+
     }
 
     @GetMapping("/client/email/{email}")
-    public ResponseEntity<Client> displayByEmail(@PathVariable(name = "email") String email){
-        final Client client = clientService.displayByEmail(email);
-        return client != null
-                ? new ResponseEntity<>(client, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public Client displayByEmail(@PathVariable(name = "email") String email){
+        return clientService.displayByEmail(email);
+
     }
 
-    @GetMapping("/client/phone{phone}")
-    public ResponseEntity<Client> displayByPhone(@PathVariable(name = "phone") String phone){
-        final Client client = clientService.displayByPhone(phone);
-        return client != null
-                ? new ResponseEntity<>(client, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @GetMapping("/client/phone/{phone}")
+    public Client displayByPhone(@PathVariable(name = "phone") String phone){
+        return clientService.displayByPhone(phone);
     }
 
     @DeleteMapping("/client/{id}")

@@ -1,6 +1,7 @@
 package com.netcracker.service;
 
 
+import com.netcracker.exception.SomethingNotFoundException;
 import com.netcracker.model.Box;
 import com.netcracker.model.TypeCargo;
 import com.netcracker.repository.TypeRepository;
@@ -28,7 +29,11 @@ public class TypeCargoService implements Serviceable<TypeCargo>{
 
     @Override
     public List<TypeCargo> displayAll() {
+        try{
         return typeRepository.findAll();
+        }catch (Exception ex){
+            throw new SomethingNotFoundException("There aren't any Types");
+        }
     }
 
     @Override

@@ -28,28 +28,21 @@ public class TrailerController {
 
 
     @GetMapping("/trailer")
-    public ResponseEntity<List<Trailer>> displayAll(){
-        final List<Trailer> trailerList = trailerService.displayAll();
-        return trailerList != null && !trailerList.isEmpty()
-                ? new ResponseEntity<>(trailerList, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public List<Trailer> displayAll(){
+        return trailerService.displayAll();
+
     }
 
 
     @GetMapping("/trailer/{id}")
-    public ResponseEntity<Trailer> displayById(@PathVariable(name = "id") int id){
-        final Trailer trailer = trailerService.displayById(id);
-        return trailer != null
-                ? new ResponseEntity<>(trailer, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public Trailer displayById(@PathVariable(name = "id") int id){
+        return trailerService.displayById(id);
+
     }
 
     @GetMapping("/trailer/volume/{volume}")
-    public ResponseEntity<Trailer> displayByVolume(@PathVariable(name = "volume") int volume){
-        final Trailer trailer = trailerService.displayByVolume(volume);
-        return trailer != null
-                ? new ResponseEntity<>(trailer, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public Trailer displayByVolume(@PathVariable(name = "volume") int volume){
+        return trailerService.displayByVolume(volume);
     }
 
     @DeleteMapping("/trailer/{id}")

@@ -2,9 +2,7 @@ package com.netcracker.controller;
 
 
 import com.netcracker.model.Box;
-import com.netcracker.model.Client;
 import com.netcracker.service.BoxService;
-import com.netcracker.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,19 +47,13 @@ public class BoxController {
     }
 
     @GetMapping("/box/{id}")
-    public ResponseEntity<Box> showById (@PathVariable(name = "id") int id) {
-        Box box = boxService.displayById(id);
-        return box != null
-                ? new ResponseEntity<>(box, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public Box showById (@PathVariable(name = "id") int id) {
+        return boxService.displayById(id);
 
     }
 
     @GetMapping("/box/byClientId/{id}")
-    public ResponseEntity<Box> displayByClientId (@PathVariable(name = "id") Integer id) {
-        Box box = boxService.displayByClientId(id);
-        return box != null
-                ? new ResponseEntity<>(box, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public List<Box> displayByClientId (@PathVariable(name = "id") Integer id) {
+        return boxService.displayByClientId(id);
     }
 }
