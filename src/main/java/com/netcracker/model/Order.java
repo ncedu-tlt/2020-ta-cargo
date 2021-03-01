@@ -14,26 +14,26 @@ public class Order {
     private String name;
 
     @OneToOne
-    @JoinColumn(name = "destinationId")
+    @JoinColumn(name = "destination_id")
     private Address destination;
 
     @OneToOne
-    @JoinColumn(name = "locationId")
+    @JoinColumn(name = "location_id")
     private Address location;
 
     @OneToOne
-    @JoinColumn(name = "driverId")
+    @JoinColumn(name = "driver_id")
     private Client driver;
 
     @OneToOne
-    @JoinColumn(name = "boxId")
+    @JoinColumn(name = "box_id")
     private Box box;
 
     @Column (name = "price")
     private int price;
 
     @OneToOne
-    @JoinColumn(name = "receiverId")
+    @JoinColumn(name = "receiver_id")
     private Client receiver;
 
     @OneToOne

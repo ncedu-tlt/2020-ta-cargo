@@ -50,4 +50,9 @@ public class OrderService implements Serviceable<Order> {
             return true;
         }else return false;
     }
+    public List<Order> searchByCity (String city){
+       return orderRepository.findOrderByLocation_City(city);
+    }
+
+
  }
