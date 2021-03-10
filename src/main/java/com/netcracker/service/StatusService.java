@@ -10,9 +10,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class StatusService {
-    @Autowired
-    private StatusRepository statusRepository;
 
+    private final StatusRepository statusRepository;
+
+    @Autowired
+    public StatusService(StatusRepository statusRepository) {
+        this.statusRepository = statusRepository;
+    }
 
     public Status createStatus(Status status){
         statusRepository.save(status); // вопрос

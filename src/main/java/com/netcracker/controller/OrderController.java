@@ -45,4 +45,11 @@ public class OrderController {
         return orderService.searchByCity(city);
     }
 
+    @PatchMapping("/order")
+    public ResponseEntity<?> modify(@RequestBody Order order){
+        final boolean update = orderService.modify(order);
+        return update
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    }
 }

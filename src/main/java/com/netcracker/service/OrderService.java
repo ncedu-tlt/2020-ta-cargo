@@ -54,5 +54,21 @@ public class OrderService implements Serviceable<Order> {
        return orderRepository.findOrderByLocation_City(city);
     }
 
+    public boolean modify(Order order){
+        if(orderRepository.existsById(order.getId())){
+            Order orderForModify = displayById(order.getId());
+            orderForModify.setId(order.getId());
+            orderForModify.setName(order.getName());
+            orderForModify.setDestination(order.getDestination());
+            orderForModify.setLocation(order.getLocation());
+            orderForModify.setDriver(order.getDriver());
+            orderForModify.setBox(order.getBox());
+            orderForModify.setReceiver(order.getReceiver());
+            orderForModify.setStatus(order.getStatus());
+            orderForModify.setPrice(order.getPrice());
+            orderRepository.saveAndFlush(orderForModify);
+            return true;
+        }else return false;
+    }
 
  }

@@ -30,7 +30,7 @@ public class Order {
     private Box box;
 
     @Column (name = "price")
-    private int price;
+    private Integer price;
 
     @OneToOne
     @JoinColumn(name = "receiver_id")
@@ -45,7 +45,9 @@ public class Order {
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        if(id != null) {
+            this.id = id;
+        }
     }
 
     public String getName() {
@@ -53,46 +55,55 @@ public class Order {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if(name !=null && !name.isEmpty()) {
+            this.name = name;
+        }
     }
 
     public Address getDestination() {
         return destination;
     }
 
-    public void setDestination(Address destinationId) {
-        this.destination = destinationId;
+    public void setDestination(Address destination) {
+        if(destination != null) {
+            this.destination = destination;
+        }
     }
 
     public Address getLocation() {
         return location;
     }
 
-    public void setLocation(Address locationId) {
-        this.location = locationId;
+    public void setLocation(Address location) {
+        if(location != null) {
+            this.location = location;
+        }
     }
 
     public Client getDriver() {
         return driver;
     }
 
-    public void setDriver(Client driverId) {
-        this.driver = driverId;
+    public void setDriver(Client driver) {
+            this.driver = driver;
     }
 
     public Box getBox() {
         return box;
     }
 
-    public void setBox(Box boxId) {
-        this.box = boxId;
+    public void setBox(Box box) {
+        if(box != null) {
+            this.box = box;
+        }
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
+        if(price != null)
         this.price = price;
     }
 
@@ -100,8 +111,10 @@ public class Order {
         return receiver;
     }
 
-    public void setReceiver(Client receiverId) {
-        this.receiver = receiverId;
+    public void setReceiver(Client receiver) {
+        if(receiver != null) {
+            this.receiver = receiver;
+        }
     }
 
     public Status getStatus() {
@@ -109,6 +122,8 @@ public class Order {
     }
 
     public void setStatus(Status status) {
-        this.status = status;
+        if(status != null) {
+            this.status = status;
+        }
     }
 }

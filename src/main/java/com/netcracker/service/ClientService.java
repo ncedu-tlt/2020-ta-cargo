@@ -13,9 +13,10 @@ import java.util.List;
 @Service
 public class ClientService implements Serviceable<Client>{
 
-    @Autowired
+
     private  final ClientRepository clientRepository;
 
+    @Autowired
     public ClientService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
     }
