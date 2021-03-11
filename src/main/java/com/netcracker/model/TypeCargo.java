@@ -22,7 +22,9 @@ import javax.persistence.*;
         }
 
         public void setTypeId(Integer typeId) {
-            this.typeId = typeId;
+            if(typeId != null) {
+                this.typeId = typeId;
+            }
         }
 
         public String getName() {
@@ -30,7 +32,9 @@ import javax.persistence.*;
         }
 
         public void setName(String name) {
-            this.name = name;
+            if(name != null && !name.isEmpty()) {
+                this.name = name;
+            }
         }
 
         public String getDescription() {
@@ -38,7 +42,9 @@ import javax.persistence.*;
         }
 
         public void setDescription(String description) {
-            this.description = description;
+            if(description != null && !description.isEmpty()) {
+                this.description = description;
+            }
         }
     }
 
