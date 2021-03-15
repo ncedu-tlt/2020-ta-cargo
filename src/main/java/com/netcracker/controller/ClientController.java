@@ -27,6 +27,7 @@ public class ClientController {
         return client;
     }
 
+
     @GetMapping("/client")
     public List<Client> displayAll(){
         return clientService.displayAll();
@@ -65,4 +66,5 @@ public class ClientController {
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
+
 }
