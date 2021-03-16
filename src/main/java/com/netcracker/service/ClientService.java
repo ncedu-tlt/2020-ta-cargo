@@ -2,8 +2,10 @@ package com.netcracker.service;
 
 
 import com.netcracker.exception.SomethingNotFoundException;
+import com.netcracker.model.Role;
 import com.netcracker.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.netcracker.model.Client;
 
@@ -15,10 +17,12 @@ public class ClientService implements Serviceable<Client>{
 
 
     private  final ClientRepository clientRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public ClientService(ClientRepository clientRepository) {
+    public ClientService(ClientRepository clientRepository, PasswordEncoder passwordEncoder) {
         this.clientRepository = clientRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -69,6 +73,8 @@ public class ClientService implements Serviceable<Client>{
             clientForModify.setPhone(client.getPhone());
             clientForModify.setEmail(client.getEmail());
             clientForModify.setDriveCategory(client.getDriveCategory());
+            clientForModify.setPassword(passwordEncoder.encode(client.getPassword()));
+            clientForModify.setRole(client.getRole());
             clientRepository.saveAndFlush(clientForModify);
             return true;
         }else  return false;

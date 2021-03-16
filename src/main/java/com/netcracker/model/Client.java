@@ -23,8 +23,36 @@ public class Client {
     @Column(name = "drive_category")
     private String driveCategory;
 
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "role")
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
+
     @OneToOne(mappedBy = "client", orphanRemoval = true)
     private Car car;
+
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        if(password != null && !password.isEmpty()) {
+            this.password = password;
+        }
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        if(role != null) {
+            this.role = role;
+        }
+    }
 
     public Car getCar() {
         return car;
