@@ -25,11 +25,9 @@ public class Client {
     @Column(name = "drive_category")
     private String driveCategory;
 
-    @JsonBackReference
     @Column(name = "password")
     private String password;
 
-    @JsonBackReference
     @Column(name = "role")
     @Enumerated(value = EnumType.STRING)
     private Role role;

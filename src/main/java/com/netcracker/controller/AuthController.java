@@ -1,6 +1,7 @@
 package com.netcracker.controller;
 
 import com.netcracker.model.AuthRequestDTO;
+import com.netcracker.model.Car;
 import com.netcracker.model.Client;
 import com.netcracker.model.Role;
 import com.netcracker.repository.ClientRepository;
@@ -43,9 +44,18 @@ public class AuthController {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
             Client client = clientRepository.findByEmail(request.getEmail()).orElseThrow(() -> new UsernameNotFoundException("User doesn't exists"));
             String token = jwtTokenProvider.createToken(request.getEmail(), client.getRole().name());
+
+            Car car = client.getCar();
+            String isDriver;
+            if(car != null) {isDriver = "true";
+            }else isDriver = "false";
+
             Map<Object, Object> response = new HashMap<>();
             response.put("email", request.getEmail());
             response.put("token", token);
+            response.put("driver", isDriver);
+            response.put("id", client.getUserId());
+
             return ResponseEntity.ok(response);
         }catch (AuthenticationException e){
             return new ResponseEntity<>("Invalid email/password combination", HttpStatus.FORBIDDEN);

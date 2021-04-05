@@ -6,6 +6,7 @@ import com.netcracker.repository.StatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 
 
 @Service
@@ -18,8 +19,12 @@ public class StatusService {
         this.statusRepository = statusRepository;
     }
 
+    public List<Status> displayAll(){
+        return statusRepository.findAll();
+    }
+
     public Status createStatus(Status status){
-        statusRepository.save(status); // вопрос
+        statusRepository.save(status);
         return status;
     }
 
