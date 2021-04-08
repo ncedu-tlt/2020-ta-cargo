@@ -1,7 +1,5 @@
 package com.netcracker.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 
 @Entity
@@ -34,7 +32,6 @@ public class Client {
 
     @OneToOne(mappedBy = "client", orphanRemoval = true)
     private Car car;
-
 
     public String getPassword() {
         return password;

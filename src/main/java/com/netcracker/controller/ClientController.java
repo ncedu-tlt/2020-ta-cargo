@@ -27,11 +27,9 @@ public class ClientController {
         return client;
     }
 
-
     @GetMapping("/client")
     public List<Client> displayAll(){
         return clientService.displayAll();
-
     }
 
     @GetMapping("/client/{id}")

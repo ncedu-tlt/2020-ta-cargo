@@ -116,7 +116,7 @@ public class ClientService implements Serviceable<Client>{
 
     public boolean modify(Client client) {
         if (clientRepository.existsById(client.getUserId())) {
-            Client clientForModify = displayById(client.getUserId());
+            Client clientForModify = clientRepository.findById(client.getUserId()).orElseThrow(() -> new SomethingNotFoundException("Client with this id " + client.getUserId() + " not found"));
             clientForModify.setUserId(client.getUserId());
             clientForModify.setLastName(client.getLastName());
             clientForModify.setFirstName(client.getFirstName());
