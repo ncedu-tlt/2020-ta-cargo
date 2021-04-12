@@ -33,6 +33,7 @@ public class Client {
     @OneToOne(mappedBy = "client", orphanRemoval = true)
     private Car car;
 
+
     public String getPassword() {
         return password;
     }

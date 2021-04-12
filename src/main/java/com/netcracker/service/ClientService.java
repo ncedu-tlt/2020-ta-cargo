@@ -1,6 +1,5 @@
 package com.netcracker.service;
 
-
 import com.netcracker.exception.SomethingNotFoundException;
 import com.netcracker.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +52,7 @@ public class ClientService implements Serviceable<Client>{
         throw new SomethingNotFoundException("There aren't any Clients");
     }
     }
+
 
     public Client displayById(Integer id) {
 
