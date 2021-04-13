@@ -46,14 +46,14 @@ public class AuthController {
             String token = jwtTokenProvider.createToken(request.getEmail(), client.getRole().name());
 
             Car car = client.getCar();
-            String isDriver;
-            if(car != null) {isDriver = "true";
-            }else isDriver = "false";
+            String canDrive;
+            if(car != null) {canDrive = "true";
+            }else canDrive = "false";
 
             Map<Object, Object> response = new HashMap<>();
             response.put("email", request.getEmail());
             response.put("token", token);
-            response.put("driver", isDriver);
+            response.put("driver", canDrive);
             response.put("id", client.getUserId());
 
             return ResponseEntity.ok(response);
