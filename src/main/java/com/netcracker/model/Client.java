@@ -33,6 +33,19 @@ public class Client {
     @OneToOne(mappedBy = "client", orphanRemoval = true)
     private Car car;
 
+    public Client() {
+    }
+
+    public Client(Integer userId, String lastName, String firstName, String middleName, String phone, String email, String driveCategory, Car car) {
+        this.userId = userId;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.phone = phone;
+        this.email = email;
+        this.driveCategory = driveCategory;
+        this.car = car;
+    }
 
     public String getPassword() {
         return password;

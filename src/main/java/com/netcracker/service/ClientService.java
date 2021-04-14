@@ -7,7 +7,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.netcracker.model.Client;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -32,78 +31,25 @@ public class ClientService implements Serviceable<Client>{
     @Override
     public List<Client> displayAll() {
         try{
-            List<Client> lists = clientRepository.findAll();
-            List<Client> lists2 = new ArrayList<>();
-            for (Client c: lists){
-                Client client = new Client();
-                client.setUserId(c.getUserId());
-                client.setEmail(c.getEmail());
-                client.setLastName(c.getLastName());
-                client.setFirstName(c.getFirstName());
-                client.setMiddleName(c.getMiddleName());
-                client.setPhone(c.getPhone());
-                client.setDriveCategory(c.getDriveCategory());
-                client.setCar(c.getCar());
-
-                lists2.add(client);
-            }
-        return lists2;
-    }catch (Exception ex){
-        throw new SomethingNotFoundException("There aren't any Clients");
+            return  clientRepository.findAll();
+        }catch (Exception ex){
+            throw new SomethingNotFoundException("There aren't any Clients");
+        }
     }
-    }
-
 
     public Client displayById(Integer id) {
-
-        Client client = clientRepository.findById(id).
+        return clientRepository.findById(id).
                 orElseThrow(() -> new SomethingNotFoundException("Client with this id " + id + " not found"));
-
-        Client client2 = new Client();
-        client2.setUserId(client.getUserId());
-        client2.setEmail(client.getEmail());
-        client2.setLastName(client.getLastName());
-        client2.setFirstName(client.getFirstName());
-        client2.setMiddleName(client.getMiddleName());
-        client2.setPhone(client.getPhone());
-        client2.setDriveCategory(client.getDriveCategory());
-        client2.setCar(client.getCar());
-
-         return client2;
     }
 
     public Client displayByEmail(String email) {
-        Client client = clientRepository.findByEmail(email).
+        return clientRepository.findByEmailNew(email).
                 orElseThrow(() -> new SomethingNotFoundException("Client with this email" + email + " not found"));
-
-        Client client2 = new Client();
-        client2.setUserId(client.getUserId());
-        client2.setEmail(client.getEmail());
-        client2.setLastName(client.getLastName());
-        client2.setFirstName(client.getFirstName());
-        client2.setMiddleName(client.getMiddleName());
-        client2.setPhone(client.getPhone());
-        client2.setDriveCategory(client.getDriveCategory());
-        client2.setCar(client.getCar());
-
-        return client2;
     }
 
     public Client displayByPhone(String phone) {
-        Client client = clientRepository.findByPhone(phone).
+        return clientRepository.findByPhone(phone).
         orElseThrow(() -> new SomethingNotFoundException("Client with this phone " + phone + " not found"));
-
-        Client client2 = new Client();
-        client2.setUserId(client.getUserId());
-        client2.setEmail(client.getEmail());
-        client2.setLastName(client.getLastName());
-        client2.setFirstName(client.getFirstName());
-        client2.setMiddleName(client.getMiddleName());
-        client2.setPhone(client.getPhone());
-        client2.setDriveCategory(client.getDriveCategory());
-        client2.setCar(client.getCar());
-
-        return client2;
     }
 
     @Override
