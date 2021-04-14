@@ -43,7 +43,7 @@ public class ClientService implements Serviceable<Client>{
     }
 
     public Client displayByEmail(String email) {
-        return clientRepository.findByEmailNew(email).
+        return clientRepository.findByEmailWithoutReturnPassword(email).
                 orElseThrow(() -> new SomethingNotFoundException("Client with this email" + email + " not found"));
     }
 
