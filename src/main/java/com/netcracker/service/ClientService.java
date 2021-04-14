@@ -116,7 +116,8 @@ public class ClientService implements Serviceable<Client>{
 
     public boolean modify(Client client) {
         if (clientRepository.existsById(client.getUserId())) {
-            Client clientForModify = displayById(client.getUserId());
+            Client clientForModify = clientRepository.findById(client.getUserId())
+                    .orElseThrow(() -> new SomethingNotFoundException("Client with this id " + client.getUserId() + " not found"));
             clientForModify.setUserId(client.getUserId());
             clientForModify.setLastName(client.getLastName());
             clientForModify.setFirstName(client.getFirstName());
@@ -124,9 +125,11 @@ public class ClientService implements Serviceable<Client>{
             clientForModify.setPhone(client.getPhone());
             clientForModify.setEmail(client.getEmail());
             clientForModify.setDriveCategory(client.getDriveCategory());
-            clientForModify.setPassword(passwordEncoder.encode(client.getPassword()));
+            if(client.getPassword() != null){
+                clientForModify.setPassword(passwordEncoder.encode(client.getPassword()));
+            }
             clientForModify.setRole(client.getRole());
-            clientRepository.saveAndFlush(clientForModify);
+            clientRepository.save(clientForModify);
             return true;
         }else  return false;
     }
