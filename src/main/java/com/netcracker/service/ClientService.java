@@ -1,6 +1,5 @@
 package com.netcracker.service;
 
-
 import com.netcracker.exception.SomethingNotFoundException;
 import com.netcracker.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +52,7 @@ public class ClientService implements Serviceable<Client>{
         throw new SomethingNotFoundException("There aren't any Clients");
     }
     }
+
 
     public Client displayById(Integer id) {
 
@@ -116,8 +116,7 @@ public class ClientService implements Serviceable<Client>{
 
     public boolean modify(Client client) {
         if (clientRepository.existsById(client.getUserId())) {
-            Client clientForModify = clientRepository.findById(client.getUserId())
-                    .orElseThrow(() -> new SomethingNotFoundException("Client with this id " + client.getUserId() + " not found"));
+            Client clientForModify = clientRepository.findById(client.getUserId()).orElseThrow(() -> new SomethingNotFoundException("Client with this id " + client.getUserId() + " not found"));
             clientForModify.setUserId(client.getUserId());
             clientForModify.setLastName(client.getLastName());
             clientForModify.setFirstName(client.getFirstName());
@@ -125,11 +124,9 @@ public class ClientService implements Serviceable<Client>{
             clientForModify.setPhone(client.getPhone());
             clientForModify.setEmail(client.getEmail());
             clientForModify.setDriveCategory(client.getDriveCategory());
-            if(client.getPassword() != null){
-                clientForModify.setPassword(passwordEncoder.encode(client.getPassword()));
-            }
+            clientForModify.setPassword(passwordEncoder.encode(client.getPassword()));
             clientForModify.setRole(client.getRole());
-            clientRepository.save(clientForModify);
+            clientRepository.saveAndFlush(clientForModify);
             return true;
         }else  return false;
     }

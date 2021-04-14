@@ -1,13 +1,9 @@
 package com.netcracker.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import org.hibernate.annotations.DynamicUpdate;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "cg_clients")
-@DynamicUpdate()
 public class Client {
 
     @Id
@@ -27,7 +23,6 @@ public class Client {
     @Column(name = "drive_category")
     private String driveCategory;
 
-
     @Column(name = "password")
     private String password;
 
@@ -46,7 +41,6 @@ public class Client {
     public void setPassword(String password) {
         if(password != null && !password.isEmpty()) {
             this.password = password;
-
         }
     }
 

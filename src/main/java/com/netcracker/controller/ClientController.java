@@ -20,24 +20,20 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-
     @PostMapping("/client")
     public Client create(@RequestBody Client client){
         clientService.create(client);
         return client;
     }
 
-
     @GetMapping("/client")
     public List<Client> displayAll(){
         return clientService.displayAll();
-
     }
 
     @GetMapping("/client/{id}")
     public Client displayById(@PathVariable(name = "id") int id){
         return clientService.displayById(id);
-
     }
 
     @GetMapping("/client/email/{email}")
