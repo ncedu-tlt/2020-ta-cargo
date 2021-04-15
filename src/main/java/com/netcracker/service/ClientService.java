@@ -124,7 +124,9 @@ public class ClientService implements Serviceable<Client>{
             clientForModify.setPhone(client.getPhone());
             clientForModify.setEmail(client.getEmail());
             clientForModify.setDriveCategory(client.getDriveCategory());
+            if (client.getPassword()!= null){
             clientForModify.setPassword(passwordEncoder.encode(client.getPassword()));
+            }
             clientForModify.setRole(client.getRole());
             clientRepository.saveAndFlush(clientForModify);
             return true;
