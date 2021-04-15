@@ -71,4 +71,13 @@ public class OrderService implements Serviceable<Order> {
         }else return false;
     }
 
+
+    public List<Order> displayByReceiver(Integer id) {
+        try{
+            return orderRepository.findOrderByReceiverUserId(id);
+        }catch (Exception ex){
+            throw new SomethingNotFoundException("There aren't any Orders");
+        }
+    }
+
  }

@@ -1,6 +1,7 @@
 package com.netcracker.repository;
 
 import com.netcracker.model.Client;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

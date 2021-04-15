@@ -12,4 +12,7 @@ import java.util.List;
 public interface OrderRepository extends JpaRepository<Order, Integer> {
 
     List<Order> findOrderByLocation_City (String city);
+
+    List<Order> findOrderByReceiverUserId (Integer id);
+
 }
