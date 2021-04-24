@@ -37,14 +37,6 @@ public class ClientService implements Serviceable<Client>{
         }
     }
 
-    public List<Client> displayAllByLastNameNotNull() {
-        try{
-            return  clientRepository.findAllByLastNameNotNull();
-        }catch (Exception ex){
-            throw new SomethingNotFoundException("There aren't any Clients");
-        }
-    }
-
     public Client displayById(Integer id) {
         return clientRepository.findById(id).
                 orElseThrow(() -> new SomethingNotFoundException("Client with this id " + id + " not found"));

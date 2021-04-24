@@ -31,11 +31,6 @@ public class ClientController {
         return clientService.displayAll();
     }
 
-    @GetMapping("/client/notnull")
-    public List<Client> displayAllByLastNameNotNull(){
-        return clientService.displayAllByLastNameNotNull();
-    }
-
     @GetMapping("/client/{id}")
     public Client displayById(@PathVariable(name = "id") int id){
         return clientService.displayById(id);
