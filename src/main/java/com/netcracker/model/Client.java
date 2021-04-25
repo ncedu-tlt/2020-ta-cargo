@@ -18,7 +18,7 @@ public class Client {
     private String middleName;
     @Column(name = "phone")
     private String phone;
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
     @Column(name = "drive_category")
     private String driveCategory;
