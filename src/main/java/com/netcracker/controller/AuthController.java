@@ -55,6 +55,7 @@ public class AuthController {
             response.put("token", token);
             response.put("driver", canDrive);
             response.put("id", client.getUserId());
+            response.put("role", client.getRole());
 
             return ResponseEntity.ok(response);
         }catch (AuthenticationException e){
@@ -65,6 +66,10 @@ public class AuthController {
     @PostMapping("/reg")
     public ResponseEntity<?> reg(@RequestBody Client client){
         Client regClient = new Client();
+        regClient.setLastName(client.getLastName());
+        regClient.setFirstName(client.getFirstName());
+        regClient.setMiddleName(client.getMiddleName());
+        regClient.setPhone(client.getPhone());
         regClient.setEmail(client.getEmail());
         regClient.setRole(Role.USER);
         regClient.setPassword(passwordEncoder.encode(client.getPassword()));
