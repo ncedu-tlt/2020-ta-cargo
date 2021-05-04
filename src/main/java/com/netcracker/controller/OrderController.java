@@ -26,6 +26,31 @@ public class OrderController {
         return orderService.displayAll();
     }
 
+    @GetMapping("/order/boxClientIdAndStatus/{id}/{status}")
+    public List<Order> showAllByBoxClientIdAndStatus(@PathVariable Integer id, @PathVariable String status) {
+        return orderService.displayAllByBoxClientIdAndStatus(id, status);
+    }
+
+    @GetMapping("/order/boxClientIdAndNotStatus/{id}/{status}")
+    public List<Order> showAllByBoxClientIdAndNotStatus(@PathVariable Integer id, @PathVariable(name = "status") String status) {
+        return orderService.displayAllByBoxClientIdAndNotStatus(id, status);
+    }
+
+    @GetMapping("/order/driverIdAndStatus/{id}/{status}")
+    public List<Order> showAllByDriverIdAndStatus(@PathVariable Integer id, @PathVariable(name = "status") String status) {
+        return orderService.displayAllByDriverIdAndStatus(id, status);
+    }
+
+    @GetMapping("/order/boxClientId/{id}")
+    public List<Order> showAllByBoxClientId(@PathVariable Integer id) {
+        return orderService.displayAllByBoxClientId(id);
+    }
+
+    @GetMapping("/order/status/{name}")
+    public List<Order> showAllByStatusName(@PathVariable String name) {
+        return orderService.displayAllByStatusName(name);
+    }
+
     @PostMapping("/order")
     public Order create(@RequestBody Order order) {
         orderService.create(order);

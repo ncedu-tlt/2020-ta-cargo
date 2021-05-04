@@ -33,6 +33,46 @@ public class OrderService implements Serviceable<Order> {
     }
     }
 
+    public List<Order> displayAllByBoxClientIdAndStatus(Integer id, String status) {
+        try{
+            return orderRepository.findOrderByBoxClientIdAndStatus(id, status);
+        }catch (Exception ex){
+            throw new SomethingNotFoundException("There aren't any Orders");
+        }
+    }
+
+    public List<Order> displayAllByBoxClientIdAndNotStatus(Integer id, String status) {
+        try{
+            return orderRepository.findOrderByBoxClientIdAndNotStatus(id, status);
+        }catch (Exception ex){
+            throw new SomethingNotFoundException("There aren't any Orders");
+        }
+    }
+
+    public List<Order> displayAllByDriverIdAndStatus(Integer id, String status) {
+        try{
+            return orderRepository.findOrderByDriverIdAndStatus(id, status);
+        }catch (Exception ex){
+            throw new SomethingNotFoundException("There aren't any Orders");
+        }
+    }
+
+    public List<Order> displayAllByBoxClientId(Integer id) {
+        try{
+            return orderRepository.findOrderByBoxClientUserId(id);
+        }catch (Exception ex){
+            throw new SomethingNotFoundException("There aren't any Orders");
+        }
+    }
+
+    public List<Order> displayAllByStatusName(String name) {
+        try{
+            return orderRepository.findOrderByStatusName(name);
+        }catch (Exception ex){
+            throw new SomethingNotFoundException("There aren't any Orders");
+        }
+    }
+
     @Override
     public boolean delete(Integer id) {
         if (orderRepository.existsById(id)){
