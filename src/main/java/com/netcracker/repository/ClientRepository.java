@@ -15,10 +15,10 @@ public interface ClientRepository extends JpaRepository<Client, Integer> {
     Optional<Client> findByEmail(String email);
 
     @Query("select NEW com.netcracker.model.Client(c.userId, c.lastName, c.firstName, c.middleName, c.phone, c.email, c.driveCategory, car) from Client c left join  Car car on car.client.userId = c.userId")
-    List<Client> findAll();
+    List<Client> findAllSec();
 
     @Query("select NEW com.netcracker.model.Client(c.userId, c.lastName, c.firstName, c.middleName, c.phone, c.email, c.driveCategory, car) from Client c left join  Car car on car.client.userId = c.userId where c.userId = ?1")
-    Optional<Client> findById(Integer id);
+    Optional<Client> findByIdSec(Integer id);
 
     @Query("select NEW com.netcracker.model.Client(c.userId, c.lastName, c.firstName, c.middleName, c.phone, c.email, c.driveCategory, car) from Client c left join  Car car on car.client.userId = c.userId where c.email = ?1")
     Optional<Client> findByEmailWithoutReturnPassword(String email);

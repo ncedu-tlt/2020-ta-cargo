@@ -31,14 +31,14 @@ public class ClientService implements Serviceable<Client>{
     @Override
     public List<Client> displayAll() {
         try{
-            return  clientRepository.findAll();
+            return  clientRepository.findAllSec();
         }catch (Exception ex){
             throw new SomethingNotFoundException("There aren't any Clients");
         }
     }
 
     public Client displayById(Integer id) {
-        return clientRepository.findById(id).
+        return clientRepository.findByIdSec(id).
                 orElseThrow(() -> new SomethingNotFoundException("Client with this id " + id + " not found"));
     }
 

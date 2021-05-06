@@ -66,8 +66,7 @@ public class BoxService implements Serviceable<Box> {
     }
 
     public List<Box> displayByClientId(Integer id){
-        return boxRepository.findBoxByClientUserId(id).
-                orElseThrow(() -> new SomethingNotFoundException("The Client with Id " + id + " doesn't have any box"));
+        return boxRepository.findBoxByClientUserId(id);
     }
 }
 
