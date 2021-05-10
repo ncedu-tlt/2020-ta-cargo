@@ -39,7 +39,6 @@ public class ClientController {
     @GetMapping("/client/email/{email}")
     public Client displayByEmail(@PathVariable(name = "email") String email){
         return clientService.displayByEmail(email);
-
     }
 
     @GetMapping("/client/phone/{phone}")

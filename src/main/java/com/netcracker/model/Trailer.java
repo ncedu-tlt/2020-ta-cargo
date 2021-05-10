@@ -21,7 +21,7 @@ public class Trailer {
     private String number;
 
     @Column(name = "volume")
-    private Integer volume;
+    private Double volume;
 
     @Column(name = "lifting_capacity")
     private Integer liftingCapacity;
@@ -62,11 +62,11 @@ public class Trailer {
         }
     }
 
-    public Integer getVolume() {
+    public Double getVolume() {
         return volume;
     }
 
-    public void setVolume(Integer volume) {
+    public void setVolume(Double volume) {
         if(volume != null) {
             this.volume = volume;
         }

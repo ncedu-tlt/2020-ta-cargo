@@ -22,35 +22,70 @@ public class OrderController {
     }
 
     @GetMapping("/order")
-    public List<Order> showAll () {
+    public List<Order> showAll() {
         return orderService.displayAll();
     }
 
-    @PostMapping("/order")
-    public Order create (@RequestBody Order order){
-        orderService.create(order);
-        return  order;
+    @GetMapping("/order/boxClientIdAndStatus/{id}/{status}")
+    public List<Order> showAllByBoxClientIdAndStatus(@PathVariable Integer id, @PathVariable String status) {
+        return orderService.displayAllByBoxClientIdAndStatus(id, status);
     }
 
-    @DeleteMapping ("/order/{id}")
-    public ResponseEntity<?> delete (@PathVariable(name = "id") int id){
+    @GetMapping("/order/boxClientIdAndNotStatus/{id}/{status}")
+    public List<Order> showAllByBoxClientIdAndNotStatus(@PathVariable Integer id, @PathVariable(name = "status") String status) {
+        return orderService.displayAllByBoxClientIdAndNotStatus(id, status);
+    }
+
+    @GetMapping("/order/driverIdAndStatus/{id}/{status}")
+    public List<Order> showAllByDriverIdAndStatus(@PathVariable Integer id, @PathVariable(name = "status") String status) {
+        return orderService.displayAllByDriverIdAndStatus(id, status);
+    }
+
+    @GetMapping("/order/boxClientId/{id}")
+    public List<Order> showAllByBoxClientId(@PathVariable Integer id) {
+        return orderService.displayAllByBoxClientId(id);
+    }
+
+    @GetMapping("/order/status/{name}")
+    public List<Order> showAllByStatusName(@PathVariable String name) {
+        return orderService.displayAllByStatusName(name);
+    }
+
+    @PostMapping("/order")
+    public Order create(@RequestBody Order order) {
+        orderService.create(order);
+        return order;
+    }
+
+    @DeleteMapping("/order/{id}")
+    public ResponseEntity<?> delete(@PathVariable(name = "id") int id) {
         boolean delete = orderService.delete(id);
         return delete
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
-    @GetMapping ("/order/showCity/{city}")
-    public  List<Order> searchByCity (@PathVariable(name = "city") String city){
+    @GetMapping("/order/showCity/{city}")
+    public List<Order> searchByCity(@PathVariable(name = "city") String city) {
         return orderService.searchByCity(city);
     }
 
     @PatchMapping("/order")
-    public ResponseEntity<?> modify(@RequestBody Order order){
+    public ResponseEntity<?> modify(@RequestBody Order order) {
         final boolean update = orderService.modify(order);
         return update
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    }
+
+    @GetMapping("/order/{id}")
+    public List<Order> searchByCity(@PathVariable(name = "id") Integer id) {
+        return orderService.displayByReceiver(id);
+    }
+
+    @GetMapping("/order/ByReceiver/{id}")
+    public List<Order> searchByReceiver(@PathVariable(name = "id") Integer id) {
+        return orderService.displayByReceiver(id);
     }
 
     @GetMapping("/order/displayById/{id}")

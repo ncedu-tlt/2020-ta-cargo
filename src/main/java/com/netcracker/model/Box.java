@@ -21,7 +21,7 @@ public class Box {
     private Integer width;
 
     @Column(name = "volume")
-    private Integer volume;
+    private Double volume;
 
     @OneToOne
     @JoinColumn(name = "client_id")
@@ -32,7 +32,7 @@ public class Box {
     private TypeCargo typeCargo;
 
     @Column(name = "weight")
-    private Integer weight;
+    private Double weight;
 
 
     public Client getClient() {
@@ -95,21 +95,21 @@ public class Box {
         }
     }
 
-    public Integer getVolume() {
+    public Double getVolume() {
         return volume;
     }
 
-    public void setVolume(Integer volume) {
+    public void setVolume(Double volume) {
         if((volume != null)) {
             this.volume = volume;
         }
     }
 
-    public Integer getWeight() {
+    public Double getWeight() {
         return weight;
     }
 
-    public void setWeight(Integer weight) {
+    public void setWeight(Double weight) {
         if((weight != null) ) {
             this.weight = weight;
         }
