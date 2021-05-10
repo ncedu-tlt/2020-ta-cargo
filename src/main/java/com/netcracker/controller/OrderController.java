@@ -52,4 +52,9 @@ public class OrderController {
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
+
+    @GetMapping("/order/displayById/{id}")
+    public Order displayById(@PathVariable(name = "id") Integer id) {
+        return orderService.displayById(id);
+    }
 }
