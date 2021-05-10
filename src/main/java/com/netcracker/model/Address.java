@@ -27,6 +27,12 @@ public class Address {
     @Column(name = "apartment")
     private String apartment;
 
+    @Column(name = "lng")
+    private Number lng;
+
+    @Column(name = "lat")
+    private Number lat;
+
     public Integer getAddressId() {
         return addressId;
     }
@@ -82,6 +88,26 @@ public class Address {
     }
 
     public void setApartment(String apartment) {
+        if((apartment != null)&&(!apartment.isEmpty())) {
+            this.apartment = apartment;
+        }
+    }
+
+    public Number getLng() {
+        return lng;
+    }
+
+    public void setLng(Number lng) {
+        if((apartment != null)&&(!apartment.isEmpty())) {
+            this.apartment = apartment;
+        }
+    }
+
+    public Number getLat() {
+        return lat;
+    }
+
+    public void setLat(Number lat) {
         if((apartment != null)&&(!apartment.isEmpty())) {
             this.apartment = apartment;
         }
