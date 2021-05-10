@@ -83,10 +83,6 @@ public class OrderController {
         return orderService.displayByReceiver(id);
     }
 
-    @GetMapping("/order/ByReceiver/{id}")
-    public List<Order> searchByReceiver(@PathVariable(name = "id") Integer id) {
-        return orderService.displayByReceiver(id);
-    }
 
     @GetMapping("/order/displayById/{id}")
     public Order displayById(@PathVariable(name = "id") Integer id) {
