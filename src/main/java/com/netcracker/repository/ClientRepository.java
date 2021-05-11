@@ -15,15 +15,15 @@ public interface ClientRepository extends JpaRepository<Client, Integer> {
     Optional<Client> findByEmail(String email);
 
     @Query("select NEW com.netcracker.model.Client(c.userId, c.lastName, c.firstName, c.middleName, c.phone, c.email, c.driveCategory, car) from Client c left join  Car car on car.client.userId = c.userId")
-    List<Client> findAllSec();
+    List<Client> findAllWithoutPasswordAndRole();
 
     @Query("select NEW com.netcracker.model.Client(c.userId, c.lastName, c.firstName, c.middleName, c.phone, c.email, c.driveCategory, car) from Client c left join  Car car on car.client.userId = c.userId where c.userId = ?1")
-    Optional<Client> findByIdSec(Integer id);
+    Optional<Client> findByIdWithoutPasswordAndRole(Integer id);
 
     @Query("select NEW com.netcracker.model.Client(c.userId, c.lastName, c.firstName, c.middleName, c.phone, c.email, c.driveCategory, car) from Client c left join  Car car on car.client.userId = c.userId where c.email = ?1")
-    Optional<Client> findByEmailWithoutReturnPassword(String email);
+    Optional<Client> findByEmailWithoutPasswordAndRole(String email);
 
     @Query("select NEW com.netcracker.model.Client(c.userId, c.lastName, c.firstName, c.middleName, c.phone, c.email, c.driveCategory, car) from Client c left join  Car car on car.client.userId = c.userId where c.phone = ?1")
-    Optional<Client> findByPhone(String phone);
+    Optional<Client> findByPhoneWithoutPasswordAndRole(String phone);
 
 }
