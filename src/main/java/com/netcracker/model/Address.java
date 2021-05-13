@@ -27,6 +27,13 @@ public class Address {
     @Column(name = "apartment")
     private String apartment;
 
+    public Address() {
+    }
+
+    public Address(String city) {
+        this.city = city;
+    }
+
     public Integer getAddressId() {
         return addressId;
     }

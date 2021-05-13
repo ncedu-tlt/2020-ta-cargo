@@ -80,6 +80,7 @@ public class OrderService implements Serviceable<Order> {
             return true;
         } else return false;
     }
+
     Order displayById(Integer id){
        return orderRepository.findById(id).
                orElseThrow(() -> new SomethingNotFoundException("your Id " + id + " not found"));
@@ -90,6 +91,7 @@ public class OrderService implements Serviceable<Order> {
             return true;
         }else return false;
     }
+
     public List<Order> searchByCity (String city){
        return orderRepository.findOrderByLocation_City(city);
     }
@@ -118,6 +120,10 @@ public class OrderService implements Serviceable<Order> {
         }catch (Exception ex){
             throw new SomethingNotFoundException("There aren't any Orders");
         }
+    }
+
+    public List<Order> displayByLocationAndDestinationAndTypeAndPrice(String locCity, String destCity, Integer typeId, Integer price){
+        return orderRepository.findOrderByLocationAndDestinationAndTypeAndPrice(locCity, destCity, typeId, price);
     }
 
  }
