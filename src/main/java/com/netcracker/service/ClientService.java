@@ -31,24 +31,28 @@ public class ClientService implements Serviceable<Client>{
     @Override
     public List<Client> displayAll() {
         try{
-            return  clientRepository.findAllSec();
+            return  clientRepository.findAllWithoutPasswordAndRole();
         }catch (Exception ex){
             throw new SomethingNotFoundException("There aren't any Clients");
         }
     }
 
-    public Client displayById(Integer id) {
-        return clientRepository.findByIdSec(id).
+    public Client displayById(Integer id){
+        return clientRepository.findById(id).get();
+    }
+
+    public Client displayByIdWithoutPasswordAndRole(Integer id) {
+        return clientRepository.findByIdWithoutPasswordAndRole(id).
                 orElseThrow(() -> new SomethingNotFoundException("Client with this id " + id + " not found"));
     }
 
-    public Client displayByEmail(String email) {
-        return clientRepository.findByEmailWithoutReturnPassword(email).
+    public Client displayByEmailWithoutPasswordAndRole(String email) {
+        return clientRepository.findByEmailWithoutPasswordAndRole(email).
                 orElseThrow(() -> new SomethingNotFoundException("Client with this email" + email + " not found"));
     }
 
-    public Client displayByPhone(String phone) {
-        return clientRepository.findByPhone(phone).
+    public Client displayByPhoneWithoutPasswordAndRole(String phone) {
+        return clientRepository.findByPhoneWithoutPasswordAndRole(phone).
         orElseThrow(() -> new SomethingNotFoundException("Client with this phone " + phone + " not found"));
     }
 

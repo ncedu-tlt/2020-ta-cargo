@@ -33,17 +33,17 @@ public class ClientController {
 
     @GetMapping("/client/{id}")
     public Client displayById(@PathVariable(name = "id") int id){
-        return clientService.displayById(id);
+        return clientService.displayByIdWithoutPasswordAndRole(id);
     }
 
     @GetMapping("/client/email/{email}")
     public Client displayByEmail(@PathVariable(name = "email") String email){
-        return clientService.displayByEmail(email);
+        return clientService.displayByEmailWithoutPasswordAndRole(email);
     }
 
     @GetMapping("/client/phone/{phone}")
     public Client displayByPhone(@PathVariable(name = "phone") String phone){
-        return clientService.displayByPhone(phone);
+        return clientService.displayByPhoneWithoutPasswordAndRole(phone);
     }
 
     @DeleteMapping("/client/{id}")
@@ -57,8 +57,9 @@ public class ClientController {
     @PatchMapping("/client")
     public ResponseEntity<?> modify(@RequestBody Client client ){
         final boolean updateField = clientService.modify(client);
+
         return updateField
-                ? new ResponseEntity<>(HttpStatus.OK)
+                ?  new ResponseEntity<>(clientService.displayById(client.getUserId()), HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 

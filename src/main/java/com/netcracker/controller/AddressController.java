@@ -29,7 +29,11 @@ public class AddressController {
     @GetMapping("/address")
     public List<Address> displayAll(){
         return addressService.displayAll();
+    }
 
+    @GetMapping("/address/city")
+    public List<Address> displayAllCityDistinct(){
+        return addressService.displayAllCityDistinct();
     }
 
     @DeleteMapping("/address/{id}")
