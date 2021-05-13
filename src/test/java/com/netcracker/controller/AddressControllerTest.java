@@ -27,7 +27,6 @@ class AddressControllerTest {
     private MockMvc mvc;
 
     @Test
-    @Sql(scripts = "classpath:cleanAddress.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     void create() throws Exception {
         String body =
                 "{\n" +
@@ -54,7 +53,6 @@ class AddressControllerTest {
 
     @Test
     @Sql(scripts = "classpath:address.sql")
-    @Sql(scripts = "classpath:cleanAddress.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     void displayAll() throws Exception {
         mvc.perform(get("/address")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -71,7 +69,6 @@ class AddressControllerTest {
 
     @Test
     @Sql(scripts = "classpath:address.sql")
-    @Sql(scripts = "classpath:cleanAddress.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     void delete() throws Exception {
         mvc.perform(MockMvcRequestBuilders.delete("/address/{id}", 3  ))
                 .andExpect(status().isOk())

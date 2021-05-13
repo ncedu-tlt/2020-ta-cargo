@@ -27,7 +27,6 @@ class ClientControllerTest {
     private MockMvc mvc;
 
     @Test
-    @Sql(scripts = "classpath:cleanClient.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     void create() throws Exception {
         String body =
                 "{\n" +
@@ -55,7 +54,6 @@ class ClientControllerTest {
 
     @Test
     @Sql(scripts = "classpath:client.sql")
-    @Sql(scripts = "classpath:cleanClient.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     void displayAll() throws Exception {
         mvc.perform(get("/client")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -75,7 +73,6 @@ class ClientControllerTest {
 
     @Test
     @Sql(scripts = "classpath:client.sql")
-    @Sql(scripts = "classpath:cleanClient.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     void displayById() throws Exception {
         mvc.perform(get("/client/{id}", 1)
                 .contentType(MediaType.APPLICATION_JSON))
@@ -94,7 +91,6 @@ class ClientControllerTest {
 
     @Test
     @Sql(scripts = "classpath:client.sql")
-    @Sql(scripts = "classpath:cleanClient.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     void displayByEmail() throws Exception {
         mvc.perform(get("/client/email/{email}", "kirill@mail.ru")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -113,7 +109,6 @@ class ClientControllerTest {
 
     @Test
     @Sql(scripts = "classpath:client.sql")
-    @Sql(scripts = "classpath:cleanClient.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     void displayByPhone() throws Exception {
         mvc.perform(get("/client/phone/{phone}", "112233")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -132,7 +127,6 @@ class ClientControllerTest {
 
     @Test
     @Sql(scripts = "classpath:client.sql")
-    @Sql(scripts = "classpath:cleanClient.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     void delete() throws Exception {
         mvc.perform(MockMvcRequestBuilders.delete("/client/{id}", 2))
                 .andExpect(status().isOk())
@@ -148,7 +142,6 @@ class ClientControllerTest {
 
     @Test
     @Sql(scripts = "classpath:client.sql")
-    @Sql(scripts = "classpath:cleanClient.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     void modify() throws Exception {
 
         String body =
@@ -176,7 +169,6 @@ class ClientControllerTest {
 
     @Test
     @Sql(scripts = "classpath:client.sql")
-    @Sql(scripts = "classpath:cleanClient.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     void modifyNotExistingObject() throws Exception {
 
         String body =
