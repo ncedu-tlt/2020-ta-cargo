@@ -20,7 +20,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ActiveProfiles("IntegrationTest")
 @SpringBootTest
-@AutoConfigureMockMvc
 class AddressControllerTest {
 
     @Autowired
