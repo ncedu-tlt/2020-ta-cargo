@@ -2,6 +2,7 @@ package com.netcracker.model;
 
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "cg_box")
@@ -28,7 +29,7 @@ public class Box {
     private Client client;
 
     @OneToOne
-    @JoinColumn (name="type_id")
+    @JoinColumn(name = "type_id")
     private TypeCargo typeCargo;
 
     @Column(name = "weight")
@@ -40,7 +41,7 @@ public class Box {
     }
 
     public void setClient(Client client) {
-        if(client != null) {
+        if (client != null) {
             this.client = client;
         }
     }
@@ -50,7 +51,7 @@ public class Box {
     }
 
     public void setTypeCargo(TypeCargo typeCargo) {
-        if(typeCargo != null) {
+        if (typeCargo != null) {
             this.typeCargo = typeCargo;
         }
     }
@@ -60,7 +61,7 @@ public class Box {
     }
 
     public void setBoxId(Integer boxId) {
-        if((boxId != null)) {
+        if ((boxId != null)) {
             this.boxId = boxId;
         }
     }
@@ -70,7 +71,7 @@ public class Box {
     }
 
     public void setName(String name) {
-        if((name != null) && (!name.isEmpty())) {
+        if ((name != null) && (!name.isEmpty())) {
             this.name = name;
         }
     }
@@ -80,7 +81,7 @@ public class Box {
     }
 
     public void setHeight(Integer height) {
-        if((height != null) ) {
+        if ((height != null)) {
             this.height = height;
         }
     }
@@ -90,7 +91,7 @@ public class Box {
     }
 
     public void setWidth(Integer width) {
-        if((width != null)) {
+        if ((width != null)) {
             this.width = width;
         }
     }
@@ -100,7 +101,7 @@ public class Box {
     }
 
     public void setVolume(Double volume) {
-        if((volume != null)) {
+        if ((volume != null)) {
             this.volume = volume;
         }
     }
@@ -110,8 +111,16 @@ public class Box {
     }
 
     public void setWeight(Double weight) {
-        if((weight != null) ) {
+        if ((weight != null)) {
             this.weight = weight;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Box box = (Box) o;
+        return Objects.equals(boxId, box.boxId) && Objects.equals(name, box.name) && Objects.equals(height, box.height) && Objects.equals(width, box.width) && Objects.equals(volume, box.volume) && Objects.equals(client, box.client) && Objects.equals(typeCargo, box.typeCargo) && Objects.equals(weight, box.weight);
     }
 }

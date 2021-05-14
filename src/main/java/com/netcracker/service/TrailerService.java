@@ -38,7 +38,7 @@ public class TrailerService implements Serviceable<Trailer>{
            orElseThrow(() -> new SomethingNotFoundException("your Id " + id + " not found"));
     }
 
-    public Trailer displayByVolume(Integer volume) {
+    public Trailer displayByVolume(double volume) {
         return trailerRepository.findByVolume(volume).
                 orElseThrow(() -> new SomethingNotFoundException("your volume " + volume + " not found"));
     }
