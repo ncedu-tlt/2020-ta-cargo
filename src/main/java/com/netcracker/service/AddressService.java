@@ -34,6 +34,14 @@ public class AddressService implements Serviceable<Address> {
         }
     }
 
+    public List<Address> displayAllCityDistinct(){
+        try{
+            return addressRepository.fainAllCityDistinct();
+        }catch (Exception ex){
+            throw new SomethingNotFoundException("There aren't any City");
+        }
+    }
+
     public Address displayById(Integer id){
         return addressRepository.findById(id).
                 orElseThrow(() -> new SomethingNotFoundException("your Id " + id + " not found"));

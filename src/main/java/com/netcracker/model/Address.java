@@ -33,6 +33,13 @@ public class Address {
     @Column(name = "lat")
     private Number lat;
 
+    public Address() {
+    }
+
+    public Address(String city) {
+        this.city = city;
+    }
+
     public Integer getAddressId() {
         return addressId;
     }
