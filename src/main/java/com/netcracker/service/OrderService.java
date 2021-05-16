@@ -81,7 +81,7 @@ public class OrderService implements Serviceable<Order> {
         } else return false;
     }
 
-    Order displayById(Integer id){
+    public Order displayById(Integer id){
        return orderRepository.findById(id).
                orElseThrow(() -> new SomethingNotFoundException("your Id " + id + " not found"));
     }
