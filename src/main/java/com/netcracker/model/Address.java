@@ -28,10 +28,10 @@ public class Address {
     private String apartment;
 
     @Column(name = "lng")
-    private Number lng;
+    private Double lng;
 
     @Column(name = "lat")
-    private Number lat;
+    private Double lat;
 
     public Address() {
     }
@@ -100,23 +100,23 @@ public class Address {
         }
     }
 
-    public Number getLng() {
+    public Double getLng() {
         return lng;
     }
 
-    public void setLng(Number lng) {
-        if((apartment != null)&&(!apartment.isEmpty())) {
-            this.apartment = apartment;
+    public void setLng(Double lng) {
+        if(lng != null) {
+            this.lng = lng;
         }
     }
 
-    public Number getLat() {
+    public Double getLat() {
         return lat;
     }
 
-    public void setLat(Number lat) {
-        if((apartment != null)&&(!apartment.isEmpty())) {
-            this.apartment = apartment;
+    public void setLat(Double lat) {
+        if(lat != null) {
+            this.lat = lat;
         }
     }
 }
