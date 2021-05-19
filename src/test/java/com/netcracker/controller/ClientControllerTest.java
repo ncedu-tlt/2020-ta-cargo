@@ -20,13 +20,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ActiveProfiles("IntegrationTest")
 @SpringBootTest
-class ClientControllerTest {
+public class ClientControllerTest {
 
     @Autowired
     private MockMvc mvc;
 
     @Test
-    void create() throws Exception {
+    public void create() throws Exception {
         String body =
                 "{\n" +
                         "    \"lastName\": \"Ivanov\",\n" +
@@ -53,7 +53,7 @@ class ClientControllerTest {
 
     @Test
     @Sql(scripts = "classpath:client.sql")
-    void displayAll() throws Exception {
+    public void displayAll() throws Exception {
         mvc.perform(get("/client")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$[*]", iterableWithSize(2)))
@@ -72,7 +72,7 @@ class ClientControllerTest {
 
     @Test
     @Sql(scripts = "classpath:client.sql")
-    void displayById() throws Exception {
+    public void displayById() throws Exception {
         mvc.perform(get("/client/{id}", 1)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("userId", is(1)))
@@ -90,7 +90,7 @@ class ClientControllerTest {
 
     @Test
     @Sql(scripts = "classpath:client.sql")
-    void displayByEmail() throws Exception {
+    public void displayByEmail() throws Exception {
         mvc.perform(get("/client/email/{email}", "kirill@mail.ru")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("userId", is(1)))
@@ -108,7 +108,7 @@ class ClientControllerTest {
 
     @Test
     @Sql(scripts = "classpath:client.sql")
-    void displayByPhone() throws Exception {
+    public void displayByPhone() throws Exception {
         mvc.perform(get("/client/phone/{phone}", "112233")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("userId", is(1)))
@@ -126,14 +126,14 @@ class ClientControllerTest {
 
     @Test
     @Sql(scripts = "classpath:client.sql")
-    void delete() throws Exception {
+    public void delete() throws Exception {
         mvc.perform(MockMvcRequestBuilders.delete("/client/{id}", 2))
                 .andExpect(status().isOk())
                 .andDo(print());
     }
 
     @Test
-    void deleteNotExistingObject() throws Exception {
+    public void deleteNotExistingObject() throws Exception {
         mvc.perform(MockMvcRequestBuilders.delete("/client/{id}", 10))
                 .andExpect(status().isNotModified())
                 .andDo(print());
@@ -141,7 +141,7 @@ class ClientControllerTest {
 
     @Test
     @Sql(scripts = "classpath:client.sql")
-    void modify() throws Exception {
+    public void modify() throws Exception {
 
         String body =
                 "{\n" +
@@ -168,7 +168,7 @@ class ClientControllerTest {
 
     @Test
     @Sql(scripts = "classpath:client.sql")
-    void modifyNotExistingObject() throws Exception {
+    public void modifyNotExistingObject() throws Exception {
 
         String body =
                 "{\n" +

@@ -31,9 +31,9 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
     @Query("select o from Order o where o.driver.userId = :id and o.status.name = :status")
     List<Order> findOrderByDriverIdAndStatus(@Param("id") Integer id, @Param("status") String status);
 
-    @Query("select o from Order o where o.location.city = :locCity and o.destination.city = :destCity and o.box.typeCargo.typeId = :typeId and  o.price <= :price")
+    @Query("select o from Order o where o.location.city = :locCity and o.destination.city = :destCity and o.box.typeCargo.typeId = :typeId and  o.price <= :price and o.status.name = :status")
     List<Order> findOrderByLocationAndDestinationAndTypeAndPrice(@Param("locCity") String locCity, @Param("destCity") String destCity,
-                          @Param("typeId") Integer typeId, @Param("price") Integer price);
+                          @Param("typeId") Integer typeId, @Param("price") Integer price, @Param("status") String status);
 
 }
 

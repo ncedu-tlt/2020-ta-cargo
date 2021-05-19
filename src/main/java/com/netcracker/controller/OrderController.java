@@ -41,9 +41,9 @@ public class OrderController {
         return orderService.displayAllByDriverIdAndStatus(id, status);
     }
 
-    @GetMapping("/order/byLocDestTypePrice/{locCity}/{destCity}/{typeId}/{price}")
-    public List<Order> showByLocationAndDestinationAndTypeAndPrice(@PathVariable(name = "locCity") String locCity, @PathVariable(name = "destCity") String destCity, @PathVariable(name = "typeId") Integer typeId, @PathVariable(name = "price") Integer price) {
-        return orderService.displayByLocationAndDestinationAndTypeAndPrice(locCity, destCity, typeId, price);
+    @GetMapping("/order/byLocDestTypePrice/{locCity}/{destCity}/{typeId}/{price}/{status}")
+    public List<Order> showByLocationAndDestinationAndTypeAndPrice(@PathVariable(name = "locCity") String locCity, @PathVariable(name = "destCity") String destCity, @PathVariable(name = "typeId") Integer typeId, @PathVariable(name = "price") Integer price, @PathVariable(name = "status") String status) {
+        return orderService.displayByLocationAndDestinationAndTypeAndPrice(locCity, destCity, typeId, price, status);
     }
 
     @GetMapping("/order/boxClientId/{id}")
