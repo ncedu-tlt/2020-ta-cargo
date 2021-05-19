@@ -26,22 +26,19 @@ public class TrailerController {
         return trailer;
     }
 
-
     @GetMapping("/trailer")
     public List<Trailer> displayAll(){
         return trailerService.displayAll();
 
     }
 
-
     @GetMapping("/trailer/{id}")
     public Trailer displayById(@PathVariable(name = "id") int id){
         return trailerService.displayById(id);
-
     }
 
     @GetMapping("/trailer/volume/{volume}")
-    public Trailer displayByVolume(@PathVariable(name = "volume") int volume){
+    public Trailer displayByVolume(@PathVariable(name = "volume") double volume){
         return trailerService.displayByVolume(volume);
     }
 

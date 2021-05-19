@@ -1,13 +1,14 @@
 package com.netcracker.controller;
 
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
@@ -18,15 +19,16 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+@RunWith(SpringRunner.class)
 @ActiveProfiles("IntegrationTest")
 @SpringBootTest
-class AddressControllerTest {
+public class AddressControllerTest {
 
     @Autowired
     private MockMvc mvc;
 
     @Test
-    void create() throws Exception {
+    public void create() throws Exception {
         String body =
                 "{\n" +
                         "    \"country\": \"RF\",\n" +
@@ -52,7 +54,7 @@ class AddressControllerTest {
 
     @Test
     @Sql(scripts = "classpath:address.sql")
-    void displayAll() throws Exception {
+    public void displayAll() throws Exception {
         mvc.perform(get("/address")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$[*]", iterableWithSize(2)))
@@ -68,14 +70,14 @@ class AddressControllerTest {
 
     @Test
     @Sql(scripts = "classpath:address.sql")
-    void delete() throws Exception {
+    public void delete() throws Exception {
         mvc.perform(MockMvcRequestBuilders.delete("/address/{id}", 3  ))
                 .andExpect(status().isOk())
                 .andDo(print());
     }
 
     @Test
-    void deleteNotExistingObject() throws Exception {
+    public void deleteNotExistingObject() throws Exception {
         mvc.perform(MockMvcRequestBuilders.delete("/address/{id}", 10))
                 .andExpect(status().isNotModified())
                 .andDo(print());

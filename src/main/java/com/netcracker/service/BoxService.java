@@ -31,8 +31,8 @@ public class BoxService implements Serviceable<Box> {
     @Override
     public List<Box> displayAll() {
         try {
-        return boxRepository.findAll();
-        }catch (Exception ex){
+            return boxRepository.findAll();
+        } catch (Exception ex) {
             throw new SomethingNotFoundException("There aren't any Boxes");
         }
     }
@@ -65,7 +65,7 @@ public class BoxService implements Serviceable<Box> {
                 orElseThrow(() -> new SomethingNotFoundException("The Box " + id + " not found"));
     }
 
-    public List<Box> displayByClientId(Integer id){
+    public List<Box> displayByClientId(Integer id) {
         return boxRepository.findBoxByClientUserId(id);
     }
 }
