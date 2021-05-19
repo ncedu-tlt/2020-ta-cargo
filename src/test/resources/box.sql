@@ -1,3 +1,6 @@
+
+truncate table cg_clients cascade;
+truncate table cg_type_cargo cascade;
 TRUNCATE TABLE cg_box CASCADE;
 
 INSERT INTO cg_clients (id, lastname, firstname, middlename, phone, email, drive_category, password, role)

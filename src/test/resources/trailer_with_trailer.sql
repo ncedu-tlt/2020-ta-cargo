@@ -9,6 +9,8 @@ VALUES (1, 'Golev', 'Kirill', 'Aleksandrovich', '112233', 'kirill@mail.ru', 'A',
 INSERT INTO cg_car (id, name, volume, lifting_capacity, user_id)
 VALUES (1, 'lambo', 1.1, 1, 1);
 
+INSERT INTO cg_trailer (id, name, number, volume, lifting_capacity, car_id)
+VALUES (1, 'buk', '10', 1.1, 1, 1);
 
 
 

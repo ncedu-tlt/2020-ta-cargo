@@ -1,11 +1,13 @@
 package com.netcracker.controller;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
@@ -16,6 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@RunWith(SpringRunner.class)
 @ActiveProfiles("IntegrationTest")
 @SpringBootTest
 public class BoxControllerTest {
@@ -25,7 +28,7 @@ public class BoxControllerTest {
 
     @Test
     @Sql(scripts = "classpath:box.sql")
-    void modify() throws Exception {
+    public void modify() throws Exception {
 
         String body =
                 "{\n" +
@@ -51,7 +54,7 @@ public class BoxControllerTest {
 
     @Test
     @Sql(scripts = "classpath:box.sql")
-    void create() throws Exception {
+    public void create() throws Exception {
         String body =
                 "{\n" +
                         "    \"boxId\" : 1,\n" +
@@ -82,7 +85,7 @@ public class BoxControllerTest {
 
     @Test
     @Sql(scripts = "classpath:box.sql")
-    void delete() throws Exception {
+    public void delete() throws Exception {
         mvc.perform(MockMvcRequestBuilders.delete("/box/{id}", 1))
                 .andExpect(status().isOk())
                 .andDo(print());
@@ -90,7 +93,7 @@ public class BoxControllerTest {
 
     @Test
     @Sql(scripts = "classpath:box.sql")
-    void showAll() throws Exception {
+    public void showAll() throws Exception {
         mvc.perform(get("/box")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.*", hasSize(3)))
@@ -100,7 +103,7 @@ public class BoxControllerTest {
 
     @Test
     @Sql(scripts = "classpath:box.sql")
-    void showById() throws Exception {
+    public void showById() throws Exception {
         mvc.perform(get("/box/{id}", 2)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("boxId", is(2)))
@@ -108,9 +111,9 @@ public class BoxControllerTest {
                 .andDo(print());
     }
 
-    @Test
+    @org.junit.Test
     @Sql(scripts = "classpath:box.sql")
-    void displayByClientId() throws Exception {
+    public void displayByClientId() throws Exception {
         mvc.perform(get("/box/{id}", 1)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("boxId", is(1)))
