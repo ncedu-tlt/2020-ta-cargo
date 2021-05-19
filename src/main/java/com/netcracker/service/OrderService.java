@@ -122,8 +122,8 @@ public class OrderService implements Serviceable<Order> {
         }
     }
 
-    public List<Order> displayByLocationAndDestinationAndTypeAndPrice(String locCity, String destCity, Integer typeId, Integer price){
-        return orderRepository.findOrderByLocationAndDestinationAndTypeAndPrice(locCity, destCity, typeId, price);
+    public List<Order> displayByLocationAndDestinationAndTypeAndPrice(String locCity, String destCity, Integer typeId, Integer price, String status){
+        return orderRepository.findOrderByLocationAndDestinationAndTypeAndPrice(locCity, destCity, typeId, price, status);
     }
 
  }
