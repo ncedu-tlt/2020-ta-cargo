@@ -183,15 +183,15 @@ public class OrderControllerTest {
 
         String body =
                 "{\n" +
-                        "    \"name\": \"order\",\n" +
-                        "    \"destination\": {\"addressId\": 2},\n" +
-                        "    \"location\": {\"addressId\": 1},\n" +
-                        "    \"driver\": {\"userId\": 1},\n" +
-                        "    \"box\": {\"boxId\": 1},\n" +
-                        "    \"price\": \"3800\",\n" +
-                        "    \"receiver\": {\"userId\": 2},\n" +
-                        "    \"status\": {\"id\": 1}" +
-                        "}";
+                "    \"name\": \"order\",\n" +
+                "    \"destination\": {\"addressId\": 2},\n" +
+                "    \"location\": {\"addressId\": 1},\n" +
+                "    \"driver\": {\"userId\": 1},\n" +
+                "    \"box\": {\"boxId\": 1},\n" +
+                "    \"price\": \"3800\",\n" +
+                "    \"receiver\": {\"userId\": 2},\n" +
+                "    \"status\": {\"id\": 1}" +
+                "}";
 
 
         mvc.perform(post("/order")
@@ -252,9 +252,9 @@ public class OrderControllerTest {
 
         String body =
                 "{\n" +
-                        "    \"id\": 4,\n" +
-                        "    \"name\": \"carGo\" "+
-                        "}";
+                "    \"id\": 4,\n" +
+                "    \"name\": \"carGo\" "+
+                "}";
 
         mvc.perform(patch("/order")
                 .contentType(MediaType.APPLICATION_JSON)

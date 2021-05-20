@@ -1,10 +1,7 @@
 package com.netcracker;
 
 
-import com.netcracker.controller.AddressControllerTest;
-import com.netcracker.controller.BoxControllerTest;
-import com.netcracker.controller.ClientControllerTest;
-import com.netcracker.controller.TrailerControllerTest;
+import com.netcracker.controller.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -13,7 +10,9 @@ import org.junit.runners.Suite;
         AddressControllerTest.class,
         BoxControllerTest.class,
         ClientControllerTest.class,
-        TrailerControllerTest.class
+        TrailerControllerTest.class,
+        OrderControllerTest.class,
+        CarControllerTest.class
 })
 public class TestExecutor {
 }

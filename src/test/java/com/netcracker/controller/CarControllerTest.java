@@ -40,11 +40,11 @@ public class CarControllerTest {
     public void create() throws Exception {
         String body =
                 "{\n" +
-                        "    \"name\": \"KIA\",\n" +
-                        "    \"volume\": \"666\",\n" +
-                        "    \"liftingCapacity\": \"666\",\n" +
-                        "    \"Client\": {\"userId\": \"3\"} " +
-                        "}";
+                "    \"name\": \"KIA\",\n" +
+                "    \"volume\": \"666\",\n" +
+                "    \"liftingCapacity\": \"666\",\n" +
+                "    \"Client\": {\"userId\": \"3\"} " +
+                "}";
 
 
         mvc.perform(post("/car")
@@ -95,10 +95,10 @@ public class CarControllerTest {
 
         String body =
                 "{\n" +
-                        "    \"id\": 1,\n" +
-                        "    \"name\": \"BUGATTY\",\n" +
-                        "    \"liftingCapacity\": 666.66" +
-                        "}";
+                "    \"id\": 1,\n" +
+                "    \"name\": \"BUGATTY\",\n" +
+                "    \"liftingCapacity\": 666.66" +
+                "}";
 
 
         mvc.perform(patch("/car")
