@@ -83,11 +83,6 @@ public class OrderController {
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
-    @GetMapping("/order/{id}")
-    public List<Order> searchByCity(@PathVariable(name = "id") Integer id) {
-        return orderService.displayByReceiver(id);
-    }
-
 
     @GetMapping("/order/displayById/{id}")
     public Order displayById(@PathVariable(name = "id") Integer id) {
