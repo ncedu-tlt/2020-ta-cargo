@@ -84,7 +84,6 @@ public class OrderController {
     }
 
 
-
     @GetMapping("/order/displayById/{id}")
     public Order displayById(@PathVariable(name = "id") Integer id) {
         return orderService.displayById(id);

@@ -2,24 +2,27 @@ package com.netcracker.controller;
 
 import com.netcracker.model.Order;
 import com.netcracker.service.OrderService;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
 
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
+@RunWith(SpringRunner.class)
 @ActiveProfiles("IntegrationTest")
 @SpringBootTest
 public class OrderControllerTest {
@@ -33,7 +36,7 @@ public class OrderControllerTest {
 
     @Test
     @Sql(scripts = "classpath:order.sql")
-    void showAll() throws Exception{
+    public void showAll() throws Exception{
 
         mvc.perform(get("/order")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -53,7 +56,7 @@ public class OrderControllerTest {
 
     @Test
     @Sql(scripts = "classpath:order.sql")
-    void showAllByBoxClientIdAndStatus() throws Exception{
+    public void showAllByBoxClientIdAndStatus() throws Exception{
 
         mvc.perform(get("/order/boxClientIdAndStatus/{id}/{status}", 2, "open")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -73,7 +76,7 @@ public class OrderControllerTest {
 
     @Test
     @Sql(scripts = "classpath:order.sql")
-    void showAllByBoxClientIdAndNotStatus() throws Exception{
+    public void showAllByBoxClientIdAndNotStatus() throws Exception{
 
         mvc.perform(get("/order/boxClientIdAndNotStatus/{id}/{status}", 2, "open")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -93,7 +96,7 @@ public class OrderControllerTest {
 
     @Test
     @Sql(scripts = "classpath:order.sql")
-    void showAllByDriverIdAndStatus() throws Exception{
+    public void showAllByDriverIdAndStatus() throws Exception{
 
         mvc.perform(get("/order/driverIdAndStatus/{id}/{status}",
                  1, "open")
@@ -114,28 +117,28 @@ public class OrderControllerTest {
 
     @Test
     @Sql(scripts = "classpath:order.sql")
-    void showByLocationAndDestinationAndTypeAndPrice() throws Exception{
+    public void showByLocationAndDestinationAndTypeAndPrice() throws Exception{
 
-            mvc.perform(get("/order/byLocDestTypePrice/{locCity}/{destCity}/{typeId}/{price}",
-                    "Samara", "Tolyatti", 1, 5000)
+            mvc.perform(get("/order/byLocDestTypePrice/{locCity}/{destCity}/{typeId}/{price}/{status}",
+                    "Samara", "Tolyatti", 1, 5000, "open")
                     .contentType(MediaType.APPLICATION_JSON))
-                    .andExpect(jsonPath("$[*]", iterableWithSize(3)))
-                    .andExpect(jsonPath("$.[*].id", containsInAnyOrder(5, 6, 7)))
-                    .andExpect(jsonPath("$.[*].name", containsInAnyOrder("order", "order", "order")))
-                    .andExpect(jsonPath("$.[*].destination.addressId", containsInAnyOrder(2, 2, 2)))
-                    .andExpect(jsonPath("$.[*].location.addressId", containsInAnyOrder(3, 3, 3)))
-                    .andExpect(jsonPath("$.[*].driver.userId", containsInAnyOrder(1, 1, 1)))
-                    .andExpect(jsonPath("$.[*].box.boxId", containsInAnyOrder(1, 2, 2)))
-                    .andExpect(jsonPath("$.[*].price", containsInAnyOrder(3800, 3800, 3800)))
-                    .andExpect(jsonPath("$.[*].receiver.userId", containsInAnyOrder(2, 3, 3)))
-                    .andExpect(jsonPath("$.[*].status.id", containsInAnyOrder(2, 1, 2)))
+                    .andExpect(jsonPath("$[*]", iterableWithSize(1)))
+                    .andExpect(jsonPath("$.[*].id", containsInAnyOrder( 6)))
+                    .andExpect(jsonPath("$.[*].name", containsInAnyOrder(  "order")))
+                    .andExpect(jsonPath("$.[*].destination.addressId", containsInAnyOrder(2)))
+                    .andExpect(jsonPath("$.[*].location.addressId", containsInAnyOrder(3)))
+                    .andExpect(jsonPath("$.[*].driver.userId", containsInAnyOrder(1)))
+                    .andExpect(jsonPath("$.[*].box.boxId", containsInAnyOrder(2)))
+                    .andExpect(jsonPath("$.[*].price", containsInAnyOrder(3800)))
+                    .andExpect(jsonPath("$.[*].receiver.userId", containsInAnyOrder(3)))
+                    .andExpect(jsonPath("$.[*].status.id", containsInAnyOrder(1)))
                     .andExpect(status().isOk())
                     .andDo(print());
     }
 
     @Test
     @Sql(scripts = "classpath:order.sql")
-    void showAllByBoxClientId() throws Exception{
+    public void showAllByBoxClientId() throws Exception{
 
         mvc.perform(get("/order/boxClientId/{id}", 2)
                 .contentType(MediaType.APPLICATION_JSON))
@@ -155,7 +158,7 @@ public class OrderControllerTest {
 
     @Test
     @Sql(scripts = "classpath:order.sql")
-    void showAllByStatusName() throws Exception{
+    public void showAllByStatusName() throws Exception{
 
         mvc.perform(get("/order/status/{name}", "open")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -225,7 +228,7 @@ public class OrderControllerTest {
 
     @Test
     @Sql(scripts = "classpath:order.sql")
-    void searchByCity() throws Exception{
+    public void searchByCity() throws Exception{
 
         mvc.perform(get("/order/showCity/{city}", "Tolyatti")
                 .contentType(MediaType.APPLICATION_JSON))
